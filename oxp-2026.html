@@ -711,7 +711,7 @@
       <button class="tab" type="button" role="tab" id="tab-route" aria-controls="p-route" aria-selected="false" tabindex="-1">Маршрут</button>
       <button class="tab" type="button" role="tab" id="tab-budget" aria-controls="p-budget" aria-selected="false" tabindex="-1">Бюджет</button>
       <button class="tab" type="button" role="tab" id="tab-spend" aria-controls="p-spend" aria-selected="false" tabindex="-1">Витрати <span class="cnt">0</span></button>
-      <button class="tab" type="button" role="tab" id="tab-docs"  aria-controls="p-docs"  aria-selected="false" tabindex="-1">Документи і бронювання <span class="cnt">13</span></button>
+      <button class="tab" type="button" role="tab" id="tab-docs"  aria-controls="p-docs"  aria-selected="false" tabindex="-1">Документи і бронювання <span class="cnt">0</span></button>
     </div>
   </div>
 
@@ -1125,11 +1125,13 @@
     <section>
       <div class="sub-head">
         <h3>Що змінює цей склад</h3>
-        <span class="eyebrow">було 12 в двох машинах</span>
+        <span class="eyebrow">дорога сходиться, подія — ні</span>
       </div>
 
       <div class="t-wrap">
- <tr><th>Що</th><th>Було в розрахунку</th><th>Стає за фактом</th></tr>
+        <table>
+          <thead>
+            <tr><th>Що</th><th>Було в розрахунку</th><th>Стає за фактом</th></tr>
           </thead>
           <tbody>
             <tr><td>Розсадка<span class="sub">буса 9 місць, GX 7</span></td><td>8 у бусі + 4 в GX</td><td>8 + 4 — збігається, борт повний</td></tr>
@@ -1439,62 +1441,13 @@
     <section>
       <div class="sec-head">
         <h2>Документи і бронювання</h2>
-        <span class="eyebrow">13 позицій</span>
+        <span class="eyebrow">порожньо</span>
       </div>
-      <p>Один список усього, що має бути оформлене або оплачене до 19 вересня. Строки тут не рівномірні: частина позицій залежить від складу групи, а частина — від того, чи випустить прокатник бус за кордон.</p>
+      <p>Місце для самих документів: підтверджень броні, страхових полісів, договору оренди, дозволів. Складаємо їх тут, щоб у поїздці не шукати по чатах і пошті.</p>
 
-      <div class="stats">
-        <div class="stat"><span class="k">Позицій</span><span class="v">13</span><span class="s">броні та документи</span></div>
-        <div class="stat is-accent"><span class="k">Готово</span><span class="v">0</span><span class="s">жодної броні ще немає</span></div>
-        <div class="stat"><span class="k">Перший строк</span><span class="v">31.08</span><span class="s">будинок і бус</span></div>
-        <div class="stat"><span class="k">Усе має бути</span><span class="v">19.09</span><span class="s">за добу до виїзду</span></div>
-      </div>
-
-      <div class="t-wrap">
-        <table>
-          <thead>
-            <tr><th>Що</th><th>Строк</th><th class="n">Сума</th><th>Стан</th></tr>
-          </thead>
-          <tbody>
-            <tr><td>Будинок на 12 осіб<span class="sub">6 ночей, 21–26.09, два паркомісця</span></td><td class="d">до <b>31.08</b></td><td class="n">2 500</td><td><span class="pill pill-block">Блокує</span></td></tr>
-            <tr><td>Оренда Trafic<span class="sub">19–29.09, ліміт 350 км/добу сумарно — у договорі</span></td><td class="d">до <b>31.08</b></td><td class="n">616</td><td><span class="pill pill-todo">Не почато</span></td></tr>
-            <tr><td>Квитки Premium<span class="sub">€255 онлайн; неповоротні</span></td><td class="d">до <b>07.09</b></td><td class="n">1 785</td><td><span class="pill pill-todo">Не почато</span></td></tr>
-            <tr><td>Дозвіл прокатника на виїзд за кордон<span class="sub">довіреність; частина компаній не випускає взагалі</span></td><td class="d">до <b>07.09</b></td><td class="n">70</td><td><span class="pill pill-flag">Уточнити</span></td></tr>
-            <tr><td>Зелена карта на бус<span class="sub">на строк оренди</span></td><td class="d">до <b>07.09</b></td><td class="n">25</td><td><span class="pill pill-todo">Не почато</span></td></tr>
-            <tr><td>КАСКО на бус<span class="sub">умови залежать від прокатника</span></td><td class="d">до <b>07.09</b></td><td class="n">60</td><td><span class="pill pill-todo">Не почато</span></td></tr>
-            <tr><td>Ночівлі в дорозі, дві<span class="sub">20.09 і 27.09, паркування на дві машини</span></td><td class="d">до <b>12.09</b></td><td class="n">456</td><td><span class="pill pill-todo">Не почато</span></td></tr>
-            <tr><td>Зелена карта на Lexus GX<span class="sub">15 днів; тарифи не регулюються, порівняти компанії</span></td><td class="d">до <b>15.09</b></td><td class="n">25</td><td><span class="pill pill-todo">Не почато</span></td></tr>
-            <tr><td>Медстраховки, 12 осіб<span class="sub">9 днів, покриття €30 000</span></td><td class="d">до <b>15.09</b></td><td class="n">72</td><td><span class="pill pill-todo">Не почато</span></td></tr>
-            <tr><td>Підстави на виїзд<span class="sub">чоловіки 18–60; визначає склад</span></td><td class="d">до <b>05.09</b></td><td class="n">—</td><td><span class="pill pill-block">Блокує</span></td></tr>
-            <tr><td>Закордонні паспорти<span class="sub">перевірити строк дії — щонайменше 3 місяці після повернення</span></td><td class="d">до <b>31.08</b></td><td class="n">—</td><td><span class="pill pill-flag">Перевірити</span></td></tr>
-            <tr><td>Реєстрація в LEZ Брюсселя, дві машини<span class="sub">безкоштовно, обов’язково для іноземних номерів; штраф €150</span></td><td class="d">до <b>19.09</b></td><td class="n">0</td><td><span class="pill pill-todo">Не почато</span></td></tr>
-            <tr><td>Parking C, Brussels Expo<span class="sub">оплата на місці: 5 днів × 2 машини × €12</span></td><td class="d"><b>22–26.09</b></td><td class="n">120</td><td><span class="pill pill-flag">На місці</span></td></tr>
-          </tbody>
-        </table>
-      </div>
-    </section>
-
-    <section>
-      <div class="sub-head">
-        <h3>Пакет на кордон</h3>
-        <span class="eyebrow">по кожній машині</span>
-      </div>
-      <div class="checks">
-        <div class="check">
-          <span class="check-tag is-cal">Бус</span>
-          <h3>Renault Trafic — орендований</h3>
-          <p>Договір оренди, довіреність на виїзд за кордон, техпаспорт, зелена карта, КАСКО, водійські посвідчення тих, кого внесено в договір. Плюс підтвердження реєстрації в LEZ.</p>
-        </div>
-        <div class="check">
-          <span class="check-tag">GX 450</span>
-          <h3>Lexus GX — власний</h3>
-          <p>Техпаспорт, зелена карта на 15 днів, водійське посвідчення, підтвердження реєстрації в LEZ. Якщо за кермом не власник — довіреність.</p>
-        </div>
-        <div class="check">
-          <span class="check-tag">Кожен</span>
-          <h3>На кожного з дванадцяти</h3>
-          <p>Закордонний паспорт, медстраховка на 9 днів, підстави на виїзд для чоловіків 18–60. Квиток на подію — в застосунку або на пошті, роздруківка не потрібна.</p>
-        </div>
+      <div class="empty">
+        <h3>Ще нічого не додано</h3>
+        <p>Перше, що тут з’явиться, — підтвердження броні будинку і договір на бус. Далі поліси, зелені карти, дозвіл на виїзд авто, реєстрація в LEZ.</p>
       </div>
     </section>
 
