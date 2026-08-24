@@ -1,0 +1,1465 @@
+<title>Київ → Брюссель на OXP 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+
+<style>
+  /* Палітра ToDo: помаранчевий #FE5000, чорнило #2C2C2C, темний фон #101820 */
+  :root {
+    --ground:        #f7f7f7;
+    --surface:       #ffffff;
+    --surface-sunk:  #f1f2f3;
+    --ink:           #2c2c2c;
+    --ink-soft:      #5c6066;
+    --ink-faint:     #9a9a9a;
+    --rule:          #e4e5e7;
+    --rule-strong:   #cbcdd1;
+    --accent:        #fe5000;
+    --accent-soft:   #ffeee5;
+    --flag:          #28303d;
+    --flag-soft:     #edf0f3;
+    --dot:           rgba(44, 44, 44, 0.07);
+    --ua:            #28303d;
+    --pl:            #5a6675;
+    --de:            #fe5000;
+    --be:            #8b95a2;
+
+    --sans: "Gilroy", "Manrope", Arial, Helvetica, sans-serif;
+    --mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --ground:       #101820;
+      --surface:      #19212b;
+      --surface-sunk: #212a35;
+      --ink:          #eceff2;
+      --ink-soft:     #a6aeb8;
+      --ink-faint:    #79838e;
+      --rule:         #2a3440;
+      --rule-strong:  #3b4652;
+      --accent:       #ff7a3d;
+      --accent-soft:  #3a1c0c;
+      --flag:         #9db2c7;
+      --flag-soft:    #1d2833;
+      --dot:          rgba(255, 255, 255, 0.05);
+      --ua:           #9db2c7;
+      --pl:           #7c8b9c;
+      --de:           #ff7a3d;
+      --be:           #6e7a88;
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --ground:       #101820;
+    --surface:      #19212b;
+    --surface-sunk: #212a35;
+    --ink:          #eceff2;
+    --ink-soft:     #a6aeb8;
+    --ink-faint:    #79838e;
+    --rule:         #2a3440;
+    --rule-strong:  #3b4652;
+    --accent:       #ff7a3d;
+    --accent-soft:  #3a1c0c;
+    --flag:         #9db2c7;
+    --flag-soft:    #1d2833;
+    --dot:          rgba(255, 255, 255, 0.05);
+    --ua:           #9db2c7;
+    --pl:           #7c8b9c;
+    --de:           #ff7a3d;
+    --be:           #6e7a88;
+  }
+
+  /* власний перемикач — має пріоритет над темою переглядача */
+  :root[data-ui="light"] {
+    --ground:        #f7f7f7;
+    --surface:       #ffffff;
+    --surface-sunk:  #f1f2f3;
+    --ink:           #2c2c2c;
+    --ink-soft:      #5c6066;
+    --ink-faint:     #9a9a9a;
+    --rule:          #e4e5e7;
+    --rule-strong:   #cbcdd1;
+    --accent:        #fe5000;
+    --accent-soft:   #ffeee5;
+    --flag:          #28303d;
+    --flag-soft:     #edf0f3;
+    --dot:           rgba(44, 44, 44, 0.07);
+    --ua:            #28303d;
+    --pl:            #5a6675;
+    --de:            #fe5000;
+    --be:            #8b95a2;
+    color-scheme: light;
+  }
+
+  :root[data-ui="dark"] {
+    --ground:       #101820;
+    --surface:      #19212b;
+    --surface-sunk: #212a35;
+    --ink:          #eceff2;
+    --ink-soft:     #a6aeb8;
+    --ink-faint:    #79838e;
+    --rule:         #2a3440;
+    --rule-strong:  #3b4652;
+    --accent:       #ff7a3d;
+    --accent-soft:  #3a1c0c;
+    --flag:         #9db2c7;
+    --flag-soft:    #1d2833;
+    --dot:          rgba(255, 255, 255, 0.05);
+    --ua:           #9db2c7;
+    --pl:           #7c8b9c;
+    --de:           #ff7a3d;
+    --be:           #6e7a88;
+    color-scheme: dark;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    background-color: var(--ground);
+    background-image: radial-gradient(var(--dot) 1px, transparent 1px);
+    background-size: 22px 22px;
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 17px;
+    font-weight: 400;
+    line-height: 1.6;
+    margin: 0;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .page {
+    max-width: 60rem;
+    margin: 0 auto;
+    padding: clamp(1.5rem, 4vw, 4rem) clamp(1.1rem, 4vw, 2.5rem) 5rem;
+    display: flex;
+    flex-direction: column;
+    gap: clamp(2.5rem, 5vw, 4rem);
+  }
+
+  h1, h2, h3 {
+    font-family: var(--sans);
+    text-wrap: balance;
+    margin: 0;
+    line-height: 1.14;
+    letter-spacing: -0.02em;
+  }
+
+  h1 { font-size: clamp(2.1rem, 6vw, 3.4rem); font-weight: 800; }
+  h2 { font-size: clamp(1.35rem, 3vw, 1.75rem); font-weight: 700; }
+  h3 { font-size: 1.05rem; font-weight: 700; letter-spacing: -0.01em; }
+
+  p { margin: 0; max-width: 66ch; }
+
+  .eyebrow {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.11em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+  }
+
+  .lede { font-size: 1.1rem; color: var(--ink-soft); }
+
+  a { color: var(--accent); text-decoration-thickness: 1px; text-underline-offset: 2px; }
+  a:focus-visible, button:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+
+  /* ---------- шапка ---------- */
+
+  header { display: flex; flex-direction: column; gap: 1rem; }
+
+  .brand { color: var(--ink); line-height: 1; }
+
+  .brand-logo {
+    display: block;
+    height: 2.4rem;
+    width: auto;
+  }
+  .brand-row {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  .theme-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    flex: none;
+    font-family: var(--sans);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    background: var(--surface);
+    border: 1px solid var(--rule-strong);
+    border-radius: 999px;
+    padding: 0.5rem 0.95rem;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: color .15s ease, border-color .15s ease;
+  }
+  .theme-toggle:hover { color: var(--accent); border-color: var(--accent); }
+  .theme-toggle .tt-ico { font-size: 0.95rem; line-height: 1; }
+  @media (max-width: 32rem) { .theme-toggle .tt-txt { display: none; } }
+  @media (prefers-reduced-motion: reduce) { .theme-toggle { transition: none; } }
+  .brand small {
+    display: block;
+    margin-top: 0.35rem;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+  }
+
+  .meta-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1.75rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--rule);
+    font-size: 0.82rem;
+    color: var(--ink-soft);
+  }
+  .meta-row b { color: var(--ink); font-weight: 700; font-family: var(--mono); font-variant-numeric: tabular-nums; }
+
+  section { display: flex; flex-direction: column; gap: 1.15rem; }
+
+  .sec-head {
+    display: flex;
+    align-items: baseline;
+    gap: 0.9rem;
+    padding-bottom: 0.6rem;
+    border-bottom: 2px solid var(--ink);
+  }
+  .sec-head .eyebrow { margin-left: auto; white-space: nowrap; }
+
+  /* ---------- смуга маршруту ---------- */
+
+  .route { display: flex; flex-direction: column; gap: 0.6rem; }
+
+  .route-bar {
+    display: flex;
+    height: 2.7rem;
+    border: 1px solid var(--rule-strong);
+    border-radius: 999px;
+    background: var(--surface);
+    overflow: hidden;
+  }
+
+  .leg {
+    display: flex;
+    align-items: center;
+    padding: 0 0.9rem;
+    min-width: 0;
+    border-right: 1px solid var(--rule-strong);
+    font-family: var(--mono);
+    font-size: 0.76rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    color: var(--ink);
+    overflow: hidden;
+    white-space: nowrap;
+  }
+  .leg:last-child { border-right: 0; }
+
+  .leg-ua { background: color-mix(in srgb, var(--ua) 13%, var(--surface)); }
+  .leg-pl { background: color-mix(in srgb, var(--pl) 13%, var(--surface)); }
+  .leg-de { background: color-mix(in srgb, var(--de) 16%, var(--surface)); }
+  .leg-be { background: color-mix(in srgb, var(--be) 13%, var(--surface)); }
+
+  .route-ends {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    font-size: 0.82rem;
+    color: var(--ink-soft);
+  }
+  .route-ends b { color: var(--ink); font-weight: 700; }
+
+  /* ---------- смуга пробігу ---------- */
+
+  .mbar {
+    display: flex;
+    height: 2.7rem;
+    border: 1px solid var(--rule-strong);
+    border-radius: 999px;
+    background: var(--surface);
+    overflow: hidden;
+  }
+  .mbar > div {
+    display: flex; align-items: center; padding: 0 0.9rem; min-width: 0;
+    font-family: var(--mono); font-size: 0.76rem; font-weight: 600;
+    white-space: nowrap; overflow: hidden;
+  }
+  .m-inc { flex: 3850 1 0; background: var(--surface-sunk); color: var(--ink); }
+  .m-over { flex: 850 1 0; background: color-mix(in srgb, var(--accent) 20%, var(--surface)); color: var(--ink); border-left: 1px solid var(--rule-strong); }
+
+  /* ---------- таблиці ---------- */
+
+  .t-wrap {
+    overflow-x: auto;
+    border: 1px solid var(--rule);
+    border-radius: 14px;
+    background: var(--surface);
+  }
+
+  table { border-collapse: collapse; width: 100%; font-size: 0.94rem; }
+
+  th, td { text-align: left; padding: 0.7rem 1rem; border-bottom: 1px solid var(--rule); }
+
+  thead th {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    background: var(--surface-sunk);
+    white-space: nowrap;
+  }
+
+  td.n, th.n { text-align: right; font-family: var(--mono); font-variant-numeric: tabular-nums; white-space: nowrap; }
+  td.d { font-family: var(--mono); font-size: 0.82rem; white-space: nowrap; color: var(--ink-soft); }
+  td.d b { color: var(--ink); font-weight: 600; }
+
+  tbody tr:last-child td { border-bottom: 0; }
+
+  tr.total td {
+    background: var(--surface-sunk);
+    font-weight: 700;
+    border-top: 2px solid var(--ink);
+  }
+  tr.total td.n { font-size: 1.02rem; }
+  tr.sum td { background: var(--accent-soft); font-weight: 700; border-top: 2px solid var(--accent); }
+  tr.sum td.n { font-size: 1.1rem; }
+  tr.mark td { background: color-mix(in srgb, var(--flag) 7%, var(--surface)); }
+
+  td .sub { display: block; font-size: 0.82rem; font-weight: 400; color: var(--ink-faint); }
+  .pick { color: var(--accent); font-weight: 700; }
+
+  /* підсумкова таблиця — фірмове зведення */
+  .t-final {
+    border: 2px solid var(--accent);
+    background: color-mix(in srgb, var(--accent) 4%, var(--surface));
+  }
+  .t-final thead th { background: var(--accent-soft); color: var(--accent); }
+  .t-final th, .t-final td { border-bottom-color: color-mix(in srgb, var(--accent) 18%, var(--rule)); }
+  .t-final tr.total td {
+    background: color-mix(in srgb, var(--accent) 10%, var(--surface));
+    border-top-color: var(--accent);
+  }
+  .t-final tr.sum td {
+    background: var(--accent);
+    color: #ffffff;
+    border-top-color: var(--accent);
+  }
+  .t-final tr.sum td .sub { color: rgba(255, 255, 255, 0.72); }
+
+  /* ---------- врізки ---------- */
+
+  .verdict {
+    border: 1px solid color-mix(in srgb, var(--accent) 35%, var(--rule));
+    border-left: 4px solid var(--accent);
+    border-radius: 14px;
+    background: var(--accent-soft);
+    padding: 1rem 1.2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+  .verdict p { max-width: 72ch; }
+
+  .note {
+    border: 1px solid color-mix(in srgb, var(--flag) 22%, var(--rule));
+    border-left: 4px solid var(--flag);
+    border-radius: 14px;
+    background: var(--flag-soft);
+    padding: 1rem 1.2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+  .note p { max-width: 72ch; color: var(--ink); font-size: 0.94rem; }
+
+  /* ---------- чек-лист ---------- */
+
+  .checks {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    background: var(--rule);
+    border: 1px solid var(--rule);
+    border-radius: 14px;
+    overflow: hidden;
+  }
+  .check {
+    background: var(--surface);
+    padding: 1rem 1.2rem;
+    display: grid;
+    grid-template-columns: 6.5rem 1fr;
+    gap: 0.25rem 1rem;
+    align-items: baseline;
+  }
+  @media (max-width: 34rem) { .check { grid-template-columns: 1fr; } }
+  .check-tag {
+    font-size: 0.66rem;
+    font-weight: 700;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--flag);
+    background: var(--flag-soft);
+    border-radius: 999px;
+    padding: 0.2rem 0.6rem;
+    justify-self: start;
+    white-space: nowrap;
+  }
+  .check-tag.is-cal { color: var(--accent); background: var(--accent-soft); }
+  .check h3 { grid-column: 2; }
+  .check p { grid-column: 2; font-size: 0.92rem; color: var(--ink-soft); }
+  @media (max-width: 34rem) { .check h3, .check p { grid-column: 1; } }
+
+  footer {
+    border-top: 1px solid var(--rule);
+    padding-top: 1rem;
+    font-size: 0.78rem;
+    color: var(--ink-faint);
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+  footer b { color: var(--ink-soft); font-weight: 700; }
+
+  /* ---------- додано: статуси і вкладки ---------- */
+
+  :root {
+    --ok:        #1f7a55;
+    --ok-soft:   #e7f2ec;
+    --warn:      #a35a00;
+    --warn-soft: #fdf0e2;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --ok:        #5cbf94;
+      --ok-soft:   #12302a;
+      --warn:      #e0a25c;
+      --warn-soft: #2e2216;
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --ok:        #5cbf94;
+    --ok-soft:   #12302a;
+    --warn:      #e0a25c;
+    --warn-soft: #2e2216;
+  }
+
+  :root[data-ui="light"] {
+    --ok:        #1f7a55;
+    --ok-soft:   #e7f2ec;
+    --warn:      #a35a00;
+    --warn-soft: #fdf0e2;
+  }
+
+  :root[data-ui="dark"] {
+    --ok:        #5cbf94;
+    --ok-soft:   #12302a;
+    --warn:      #e0a25c;
+    --warn-soft: #2e2216;
+  }
+
+  /* смуга вкладок */
+
+  .tabs-wrap {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    margin: 0 calc(-1 * clamp(1.1rem, 4vw, 2.5rem));
+    padding: 0 clamp(1.1rem, 4vw, 2.5rem);
+    background: color-mix(in srgb, var(--ground) 92%, transparent);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .tabs {
+    display: flex;
+    gap: 0.15rem;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .tabs::-webkit-scrollbar { display: none; }
+
+  .tab {
+    flex: none;
+    appearance: none;
+    background: none;
+    border: 0;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -1px;
+    padding: 0.85rem 0.8rem;
+    font-family: var(--sans);
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    cursor: pointer;
+    white-space: nowrap;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    transition: color .15s ease;
+  }
+  .tab:hover { color: var(--ink); }
+  .tab[aria-selected="true"] {
+    color: var(--ink);
+    border-bottom-color: var(--accent);
+  }
+  .tab .cnt {
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0;
+    color: var(--ink-faint);
+    background: var(--surface-sunk);
+    border-radius: 999px;
+    padding: 0.1rem 0.4rem;
+  }
+  .tab[aria-selected="true"] .cnt { color: var(--accent); background: var(--accent-soft); }
+  @media (prefers-reduced-motion: reduce) { .tab { transition: none; } }
+
+  .panel { display: flex; flex-direction: column; gap: clamp(2.2rem, 4vw, 3.2rem); }
+  .panel[hidden] { display: none; }
+
+  .panel-intro { display: flex; flex-direction: column; gap: 0.5rem; }
+
+  /* пігулки статусу */
+
+  .pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    font-family: var(--sans);
+    font-size: 0.66rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    border-radius: 999px;
+    padding: 0.22rem 0.6rem;
+    white-space: nowrap;
+    border: 1px solid transparent;
+  }
+  .pill-ok    { color: var(--ok);     background: var(--ok-soft);     border-color: color-mix(in srgb, var(--ok) 30%, transparent); }
+  .pill-work  { color: var(--warn);   background: var(--warn-soft);   border-color: color-mix(in srgb, var(--warn) 30%, transparent); }
+  .pill-todo  { color: var(--ink-soft); background: var(--surface-sunk); border-color: var(--rule-strong); }
+  .pill-block { color: var(--accent); background: var(--accent-soft); border-color: color-mix(in srgb, var(--accent) 35%, transparent); }
+  .pill-flag  { color: var(--flag);   background: var(--flag-soft);   border-color: color-mix(in srgb, var(--flag) 25%, transparent); }
+
+  /* список справ */
+
+  .plan { display: flex; flex-direction: column; gap: 1px; background: var(--rule); border: 1px solid var(--rule); border-radius: 14px; overflow: hidden; }
+
+  .task {
+    background: var(--surface);
+    padding: 1rem 1.2rem;
+    display: grid;
+    grid-template-columns: 2rem 1fr auto;
+    gap: 0.3rem 1rem;
+    align-items: start;
+  }
+  .task-no {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--ink-faint);
+    padding-top: 0.15rem;
+  }
+  .task h3 { grid-column: 2; }
+  .task p  { grid-column: 2; font-size: 0.92rem; color: var(--ink-soft); max-width: 68ch; }
+  .task-side {
+    grid-column: 3;
+    grid-row: 1 / span 2;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.35rem;
+    text-align: right;
+  }
+  .task-when {
+    font-family: var(--mono);
+    font-size: 0.76rem;
+    color: var(--ink-soft);
+    white-space: nowrap;
+  }
+  .task-cost {
+    font-family: var(--mono);
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--ink);
+    white-space: nowrap;
+  }
+  @media (max-width: 40rem) {
+    .task { grid-template-columns: 1.6rem 1fr; }
+    .task h3, .task p { grid-column: 2; }
+    .task-side {
+      grid-column: 2;
+      grid-row: auto;
+      flex-direction: row;
+      align-items: center;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+      text-align: left;
+      padding-top: 0.2rem;
+    }
+  }
+
+  .task.is-done { background: color-mix(in srgb, var(--ok) 5%, var(--surface)); }
+  .task.is-done .task-no { color: var(--ok); }
+
+  /* плитки-показники */
+
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr));
+    gap: 1px;
+    background: var(--rule);
+    border: 1px solid var(--rule);
+    border-radius: 14px;
+    overflow: hidden;
+  }
+  .stat { background: var(--surface); padding: 1rem 1.15rem; display: flex; flex-direction: column; gap: 0.3rem; }
+  .stat .k { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.09em; text-transform: uppercase; color: var(--ink-faint); }
+  .stat .v { font-family: var(--mono); font-size: 1.35rem; font-weight: 600; color: var(--ink); font-variant-numeric: tabular-nums; }
+  .stat .s { font-size: 0.8rem; color: var(--ink-soft); }
+  .stat.is-accent .v { color: var(--accent); }
+  .stat.is-ok .v { color: var(--ok); }
+
+  /* порожній стан */
+
+  .empty {
+    border: 1px dashed var(--rule-strong);
+    border-radius: 14px;
+    background: var(--surface);
+    padding: 1.6rem 1.3rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+    text-align: center;
+    align-items: center;
+  }
+  .empty h3 { color: var(--ink); }
+  .empty p { color: var(--ink-soft); font-size: 0.92rem; max-width: 52ch; }
+
+  .sub-head {
+    display: flex;
+    align-items: baseline;
+    gap: 0.7rem;
+    padding-bottom: 0.4rem;
+    border-bottom: 1px solid var(--rule-strong);
+  }
+  .sub-head .eyebrow { margin-left: auto; white-space: nowrap; }
+</style>
+
+<div class="page">
+
+  <header>
+    <div class="brand-row">
+      <div class="brand">
+<svg class="brand-logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 107 41" fill="none" role="img" aria-label="ToDo">
+        <title>ToDo</title>
+        <path d="M16.0497 1.4683C16.0497 6.82871 16.0497 -1.26893 16.0497 4.09148C16.0497 6.03035 12.9702 6.03035 12.9702 4.09148C12.9702 -1.26893 12.9702 6.82871 12.9702 1.4683C12.9702 -0.489576 16.0497 -0.489576 16.0497 1.4683Z" fill="currentColor"></path>
+        <path d="M25.2883 11.4098V17.9867C25.2883 19.9256 22.2088 19.9256 22.2088 17.9867V6.84772C22.2088 4.90885 19.1293 4.90885 19.1293 6.84772V15.0974C19.1293 17.0363 16.0497 17.0363 16.0497 15.0974V15.1354V9.71801C16.0497 7.77914 12.9702 7.77914 12.9702 9.71801V15.9148V15.8388C12.8928 17.6636 9.98756 17.6826 9.91009 15.8388V15.9148V4.24355C9.91009 2.30468 6.83058 2.30468 6.83058 4.24355V17.9867C6.83058 19.9256 3.75106 19.9256 3.75106 17.9867V12.0751C3.75106 10.1362 0.671549 10.1362 0.671549 12.0751V19.5264H0.632812V29.6199L0.652181 29.5629C0.903965 35.6647 6.05586 40.5879 12.3505 40.5879H16.6695C23.0997 40.5879 28.3678 35.4175 28.3678 29.1067V11.3908C28.3678 9.45189 25.2883 9.45189 25.2883 11.4098ZM26.2761 29.1086C26.2761 34.45 21.8214 38.803 16.3984 38.803H12.7572C7.31478 38.803 2.8795 34.431 2.8795 29.1086C2.8795 23.7672 7.33414 19.4143 12.7572 19.4143H16.3984C21.8408 19.4143 26.2761 23.7672 26.2761 29.1086Z" fill="#FE5000"></path>
+        <path d="M19.9815 31.9789C21.5966 31.9789 22.906 30.6938 22.906 29.1086C22.906 27.5234 21.5966 26.2383 19.9815 26.2383C18.3663 26.2383 17.0569 27.5234 17.0569 29.1086C17.0569 30.6938 18.3663 31.9789 19.9815 31.9789Z" fill="currentColor"></path>
+        <path d="M9.01905 27.6621C10.646 27.6621 11.9436 28.9546 11.9436 30.5324H6.09448C6.09448 28.9546 7.39214 27.6621 9.01905 27.6621Z" fill="currentColor"></path>
+        <path d="M79.7803 16H74.4723C73.5693 16 72.8425 16.7133 72.8425 17.5996V30.569C72.8425 31.4552 73.5693 32.1686 74.4723 32.1686H79.7803C85.0882 32.1686 88.6782 28.883 88.6782 24.0843C88.6782 19.2856 85.0882 16 79.7803 16ZM79.6481 30.1605H75.7498C75.4414 30.1605 75.1991 29.9227 75.1991 29.6201V18.5312C75.1991 18.2286 75.4414 17.9908 75.7498 17.9908H79.6481C83.7226 17.9908 86.3436 20.4334 86.3436 24.0648C86.3436 27.6963 83.7226 30.1605 79.6481 30.1605Z" fill="#FE5000"></path>
+        <path d="M99.9547 19.8044C96.2106 19.8044 93.4575 22.3983 93.4575 26.0513C93.4575 29.7044 96.2106 32.3199 99.9547 32.3199C103.699 32.3199 106.43 29.7044 106.43 26.0513C106.43 22.3983 103.699 19.8044 99.9547 19.8044ZM99.9547 30.3528C97.5541 30.3528 95.7481 28.6452 95.7481 26.0297C95.7481 23.4142 97.5541 21.7282 99.9547 21.7282C102.355 21.7282 104.139 23.4142 104.139 26.0297C104.139 28.6452 102.355 30.3528 99.9547 30.3528Z" fill="#FE5000"></path>
+        <path d="M44.8053 18.0124H40.1801C39.6075 18.0124 39.167 17.5585 39.167 17.0181C39.167 16.4561 39.6295 16.0238 40.1801 16.0238H51.765C52.3376 16.0238 52.7781 16.4777 52.7781 17.0181C52.7781 17.5801 52.3156 18.0124 51.765 18.0124H47.1399V31.1764C47.1399 31.8033 46.6113 32.322 45.9726 32.322C45.3339 32.322 44.8053 31.8033 44.8053 31.1764V18.0124Z" fill="currentColor"></path>
+        <path d="M55.1128 26.0535C55.1128 22.4004 57.8659 19.8065 61.61 19.8065C65.3542 19.8065 68.0852 22.4004 68.0852 26.0535C68.0852 29.7065 65.3542 32.322 61.61 32.322C57.8659 32.3004 55.1128 29.6849 55.1128 26.0535ZM65.7947 26.0535C65.7947 23.438 64.0107 21.7519 61.61 21.7519C59.2094 21.7519 57.4033 23.438 57.4033 26.0535C57.4033 28.669 59.2094 30.3766 61.61 30.3766C64.0107 30.355 65.7947 28.6474 65.7947 26.0535Z" fill="currentColor"></path>
+  </svg>
+        <small>Офіційний партнер Odoo в Україні</small>
+      </div>
+      <button class="theme-toggle" type="button" id="themeBtn" aria-label="Перемкнути тему">
+        <span class="tt-ico" id="ttIco" aria-hidden="true">☾</span><span class="tt-txt" id="ttTxt">Темна</span>
+      </button>
+    </div>
+
+    <p class="eyebrow">Робочий документ поїздки · 12 осіб · 20–28 вересня 2026</p>
+    <h1>Київ → Брюссель<br>на Odoo Experience 2026</h1>
+    <p class="lede">Дев’ять днів, дві машини, будинок на всіх. Тут план дій, маршрут, запланований бюджет і облік фактичних витрат. Квитки на майстер-класи 22–23.09 йдуть окремим бюджетом.</p>
+
+    <div class="meta-row">
+      <span>Бюджет плану <b>€11 857</b></span>
+      <span>Витрачено <b>€0</b></span>
+      <span>До виїзду <b>27 днів</b></span>
+      <span>Курс НБУ <b>₴52,24/€</b></span>
+      <span>Дані на <b>24.08.2026</b></span>
+    </div>
+  </header>
+
+  <div class="tabs-wrap">
+    <div class="tabs" role="tablist" aria-label="Розділи документа">
+      <button class="tab" type="button" role="tab" id="tab-plan"  aria-controls="p-plan"  aria-selected="true"  tabindex="0">План дій <span class="cnt">13</span></button>
+      <button class="tab" type="button" role="tab" id="tab-done"  aria-controls="p-done"  aria-selected="false" tabindex="-1">Пройдено <span class="cnt">12</span></button>
+      <button class="tab" type="button" role="tab" id="tab-route" aria-controls="p-route" aria-selected="false" tabindex="-1">Маршрут</button>
+      <button class="tab" type="button" role="tab" id="tab-budget" aria-controls="p-budget" aria-selected="false" tabindex="-1">Бюджет</button>
+      <button class="tab" type="button" role="tab" id="tab-spend" aria-controls="p-spend" aria-selected="false" tabindex="-1">Витрати <span class="cnt">0</span></button>
+      <button class="tab" type="button" role="tab" id="tab-docs"  aria-controls="p-docs"  aria-selected="false" tabindex="-1">Документи і бронювання <span class="cnt">13</span></button>
+    </div>
+  </div>
+
+  <!-- ========== 1. ПЛАН ДІЙ ========== -->
+  <div class="panel" id="p-plan" role="tabpanel" aria-labelledby="tab-plan" tabindex="0">
+
+    <section>
+      <div class="sec-head">
+        <h2>План дій</h2>
+        <span class="eyebrow">13 відкритих пунктів</span>
+      </div>
+      <p>Порядок тут не за темами, а за тим, що від чого залежить. Три перші пункти блокують решту: без складу немає квитків і розсадки, без будинку не тримається головна стаття бюджету.</p>
+
+      <div class="stats">
+        <div class="stat is-accent"><span class="k">Блокує решту</span><span class="v">3</span><span class="s">будинок, склад, підстави</span></div>
+        <div class="stat"><span class="k">Усього відкрито</span><span class="v">13</span><span class="s">на 24.08.2026</span></div>
+        <div class="stat"><span class="k">До виїзду</span><span class="v">27 днів</span><span class="s">виїзд 20.09</span></div>
+        <div class="stat is-accent"><span class="k">Не в бюджеті</span><span class="v">€175</span><span class="s">LEZ, якщо бус Euro 5</span></div>
+      </div>
+
+      <div class="note">
+        <p><b>Як користуватися.</b> Щойно пункт закритий — переносьте його на вкладку «Пройдено» з датою і тим, чим саме закрився. Якщо пункт коштував грошей, той самий факт іде у «Витрати», щоб план і факт зійшлися в одному місці.</p>
+      </div>
+    </section>
+
+    <section>
+      <div class="sub-head">
+        <h3>Блокує решту</h3>
+        <span class="eyebrow">до 31.08 — 05.09</span>
+      </div>
+      <div class="plan">
+
+        <div class="task">
+          <span class="task-no">01</span>
+          <h3>Забронювати будинок на 12 осіб, 6 ночей</h3>
+          <p>21–26.09, до €417 за ніч. Два паркомісця у дворі обов’язково — їздимо своїм транспортом. Шукати Мехелен, Вілворде, північ Брюсселя: кожні 10 км зайвого плеча до Heysel — це 100 км за п’ять днів на кожну машину.</p>
+          <div class="task-side">
+            <span class="pill pill-block">Блокує</span>
+            <span class="task-when">до 31.08</span>
+            <span class="task-cost">€2 500</span>
+          </div>
+        </div>
+
+        <div class="task">
+          <span class="task-no">02</span>
+          <h3>Затвердити остаточний склад групи</h3>
+          <p>Від складу залежить усе інше: скільки Premium, як сідаємо у дві машини, чи вистачає 12 місць. Квитки вже неповоротні, тож купувати можна тільки під підтверджених людей.</p>
+          <div class="task-side">
+            <span class="pill pill-block">Блокує</span>
+            <span class="task-when">до 31.08</span>
+            <span class="task-cost">—</span>
+          </div>
+        </div>
+
+        <div class="task">
+          <span class="task-no">03</span>
+          <h3>Оформити підстави на виїзд для чоловіків 18–60</h3>
+          <p>Найдовший за строками пункт і головна причина, чому склад досі не остаточний. Починати відразу — саме це визначає, хто фізично їде.</p>
+          <div class="task-side">
+            <span class="pill pill-block">Блокує</span>
+            <span class="task-when">до 05.09</span>
+            <span class="task-cost">—</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <section>
+      <div class="sub-head">
+        <h3>Цього тижня</h3>
+        <span class="eyebrow">до 31.08 — 01.09</span>
+      </div>
+      <div class="plan">
+
+        <div class="task">
+          <span class="task-no">04</span>
+          <h3>Уточнити Euro-норму Trafic і перевірити LEZ</h3>
+          <p>Trafic 1.6 dCi буває і Euro 5, і Euro 6. Спитати в прокатника рік і норму, перевірити на lez.brussels. Якщо Euro 5 — day-pass ≈ €35 × 5 в’їздів = €175, і цього в бюджеті немає. Бензиновий GX 450 проходить без питань.</p>
+          <div class="task-side">
+            <span class="pill pill-flag">Перевірити</span>
+            <span class="task-when">до 31.08</span>
+            <span class="task-cost">ризик €175</span>
+          </div>
+        </div>
+
+        <div class="task">
+          <span class="task-no">05</span>
+          <h3>Підтвердити бронь бусу з лімітом у договорі</h3>
+          <p>Trafic на 11 діб, 19.09–29.09. Ключове формулювання — 350 км/добу рахуються сумарно за строк, а не щодня: різниця €81 проти €287 перепробігу. Це має бути в тексті договору, а не на словах.</p>
+          <div class="task-side">
+            <span class="pill pill-todo">Не почато</span>
+            <span class="task-when">до 31.08</span>
+            <span class="task-cost">€616</span>
+          </div>
+        </div>
+
+        <div class="task">
+          <span class="task-no">06</span>
+          <h3>Перевірити польський ПДВ на пальне</h3>
+          <p>Знижений ПДВ 8% діє до 31.08. У розрахунку вже закладено повернення до 23% з вересня. Якщо програму продовжать — пальне вийде приблизно на €50 дешевше; перерахувати першого числа.</p>
+          <div class="task-side">
+            <span class="pill pill-flag">Перевірити</span>
+            <span class="task-when">01.09</span>
+            <span class="task-cost">−€50</span>
+          </div>
+        </div>
+
+        <div class="task">
+          <span class="task-no">07</span>
+          <h3>Визначитися зі стендом ToDo</h3>
+          <p>Якщо виставляємося — цієї статті в бюджеті немає взагалі. У 2025 були поліграфія, візитки, мерч-пак, подарунки, ТВ, вода. Відповідальний — Якшин. Рішення потрібне зараз: поліграфія має строк виготовлення.</p>
+          <div class="task-side">
+            <span class="pill pill-block">Поза бюджетом</span>
+            <span class="task-when">до 31.08</span>
+            <span class="task-cost">?</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <section>
+      <div class="sub-head">
+        <h3>До виїзду</h3>
+        <span class="eyebrow">07.09 — 19.09</span>
+      </div>
+      <div class="plan">
+
+        <div class="task">
+          <span class="task-no">08</span>
+          <h3>Розподілити Premium і Basic, купити квитки</h3>
+          <p>Premium €255 онлайн проти €285 на місці. Basic дає доповіді, експо та воркшопи; Premium — кейноут, обіди, напої та вечірку. Чиста економія на п’ятьох Basic — €1 050, бо €225 повертаються докупленими обідами.</p>
+          <div class="task-side">
+            <span class="pill pill-todo">Не почато</span>
+            <span class="task-when">до 07.09</span>
+            <span class="task-cost">€1 785</span>
+          </div>
+        </div>
+
+        <div class="task">
+          <span class="task-no">09</span>
+          <h3>Дозвіл на виїзд бусу за кордон, зелена карта, КАСКО</h3>
+          <p>Довіреність від прокатника, зелена карта на бус і дозвіл на в’їзд до ЄС. Частина компаній узагалі не випускає машини за кордон — з’ясувати до оплати оренди, а не після.</p>
+          <div class="task-side">
+            <span class="pill pill-todo">Не почато</span>
+            <span class="task-when">до 07.09</span>
+            <span class="task-cost">€155</span>
+          </div>
+        </div>
+
+        <div class="task">
+          <span class="task-no">10</span>
+          <h3>Забронювати дві ночівлі в дорозі</h3>
+          <p>Вроцлав або Дрезден на 20.09, дзеркально на 27.09. Орієнтир з факту 2025 — €19 з особи за ніч, Катовіце, 556 zł на групу. Потрібне паркування на дві машини.</p>
+          <div class="task-side">
+            <span class="pill pill-todo">Не почато</span>
+            <span class="task-when">до 12.09</span>
+            <span class="task-cost">€456</span>
+          </div>
+        </div>
+
+        <div class="task">
+          <span class="task-no">11</span>
+          <h3>Зелена карта на Lexus GX</h3>
+          <p>15 днів, категорія «легковий». Тарифи не регулюються МТСБУ з 2025 року, розкид ₴800–1 600 — варто порівняти кілька компаній.</p>
+          <div class="task-side">
+            <span class="pill pill-todo">Не почато</span>
+            <span class="task-when">до 15.09</span>
+            <span class="task-cost">€25</span>
+          </div>
+        </div>
+
+        <div class="task">
+          <span class="task-no">12</span>
+          <h3>Медстраховки на 12 осіб, 9 днів</h3>
+          <p>Покриття €30 000 — за фактом 2025 це ₴290 з особи. Оформлюється швидко, але без неї не пускають на кордоні, тож не лишати на останній день.</p>
+          <div class="task-side">
+            <span class="pill pill-todo">Не почато</span>
+            <span class="task-when">до 15.09</span>
+            <span class="task-cost">€72</span>
+          </div>
+        </div>
+
+        <div class="task">
+          <span class="task-no">13</span>
+          <h3>Зареєструвати обидві машини в LEZ Брюсселя</h3>
+          <p>Машини на іноземних номерах зобов’язані зареєструватися до першого в’їзду — сама реєстрація безкоштовна, штраф за її відсутність €150 на машину. Робиться онлайн, але не в останню ніч перед виїздом.</p>
+          <div class="task-side">
+            <span class="pill pill-todo">Не почато</span>
+            <span class="task-when">до 19.09</span>
+            <span class="task-cost">безкоштовно</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </div>
+
+  <!-- ========== 2. ПРОЙДЕНО ========== -->
+  <div class="panel" id="p-done" role="tabpanel" aria-labelledby="tab-done" tabindex="0" hidden>
+
+    <section>
+      <div class="sec-head">
+        <h2>Пройдено</h2>
+        <span class="eyebrow">12 закритих питань</span>
+      </div>
+      <p>Тут лежить те, що вже не обговорюється: ухвалені рішення й перевірені факти, на яких стоїть решта документа. Пункти сюди переїжджають з «Плану дій» — разом із тим, чим саме закрилися.</p>
+
+      <div class="stats">
+        <div class="stat is-ok"><span class="k">Закрито</span><span class="v">12</span><span class="s">рішення і перевірені факти</span></div>
+        <div class="stat"><span class="k">Оплачено</span><span class="v">€0</span><span class="s">жодної броні ще немає</span></div>
+        <div class="stat is-ok"><span class="k">Зекономлено</span><span class="v">€206</span><span class="s">уточнення ліміту оренди</span></div>
+        <div class="stat"><span class="k">Стан на</span><span class="v">24.08</span><span class="s">2026 рік</span></div>
+      </div>
+    </section>
+
+    <section>
+      <div class="sub-head">
+        <h3>Рішення щодо поїздки</h3>
+        <span class="eyebrow">склад, житло, транспорт</span>
+      </div>
+      <div class="plan">
+
+        <div class="task is-done">
+          <span class="task-no">✓</span>
+          <h3>Склад і графік: 12 осіб, дев’ять днів</h3>
+          <p>Виїзд 20.09, у Брюсселі ввечері 21.09, майстер-класи 22–23.09, подія 24–26.09, повернення 28.09. Дві ночі в дорозі, шість у Брюсселі.</p>
+          <div class="task-side"><span class="pill pill-ok">Вирішено</span><span class="task-when">20–28.09</span></div>
+        </div>
+
+        <div class="task is-done">
+          <span class="task-no">✓</span>
+          <h3>Житло — один будинок на всіх, 6 ночей</h3>
+          <p>Замість кількох квартир беремо один об’єкт на 12 осіб на 21–26.09. Це дешевше на людину і знімає питання логістики між групами вранці.</p>
+          <div class="task-side"><span class="pill pill-ok">Вирішено</span><span class="task-when">21–26.09</span></div>
+        </div>
+
+        <div class="task is-done">
+          <span class="task-no">✓</span>
+          <h3>Дві машини: орендований бус плюс власний GX</h3>
+          <p>Renault Trafic 1.6 dCi в оренду (9 місць, їде 8) і власний Lexus GX 450 (їде 4). Вільний ряд у бусі йде під багаж, запас — чотири місця.</p>
+          <div class="task-side"><span class="pill pill-ok">Вирішено</span><span class="task-when">8 + 4</span></div>
+        </div>
+
+        <div class="task is-done">
+          <span class="task-no">✓</span>
+          <h3>Майстер-класи виведено в окремий бюджет</h3>
+          <p>€990 з особи, до 30 учасників на потік. У графіку дні 22–23.09 лишаються — саме через них будинок береться на 6 ночей, а бус на 11 діб. Самі квитки в цей розрахунок не входять.</p>
+          <div class="task-side"><span class="pill pill-ok">Вирішено</span><span class="task-when">22–23.09</span></div>
+        </div>
+
+      </div>
+    </section>
+
+    <section>
+      <div class="sub-head">
+        <h3>Перевірені факти</h3>
+        <span class="eyebrow">оренда, маршрут, ціни</span>
+      </div>
+      <div class="plan">
+
+        <div class="task is-done">
+          <span class="task-no">✓</span>
+          <h3>Ліміт 350 км/добу рахується сумарно за строк</h3>
+          <p>Підтверджено в прокатника: 350 множаться на 11 діб, а не перевіряються щодня. Для маршруту з чотирма ходовими днями по 1 100 км це принципово — за подобовим розрахунком перепробіг був би 3 000 км.</p>
+          <div class="task-side"><span class="pill pill-ok">Підтверджено</span><span class="task-cost">€81 замість €287</span></div>
+        </div>
+
+        <div class="task is-done">
+          <span class="task-no">✓</span>
+          <h3>Строк оренди — 11 діб із добою запасу з обох боків</h3>
+          <p>Бус беремо 19.09 і здаємо 29.09. Дві зайві доби коштують €112, зате включений ліміт зростає на 700 км і перепробіг падає зі €148 до €81.</p>
+          <div class="task-side"><span class="pill pill-ok">Порахувано</span><span class="task-cost">спокій за €45</span></div>
+        </div>
+
+        <div class="task is-done">
+          <span class="task-no">✓</span>
+          <h3>Маршрут: 2 200 км в один бік</h3>
+          <p>Київ → Львів → Краків → Вроцлав → Дрезден → Кельн → Брюссель. Україна 615 км, Польща 520, Німеччина 850, Бельгія 215.</p>
+          <div class="task-side"><span class="pill pill-ok">Визначено</span><span class="task-cost">4 400 км</span></div>
+        </div>
+
+        <div class="task is-done">
+          <span class="task-no">✓</span>
+          <h3>Платні дороги: одна ділянка на весь маршрут</h3>
+          <p>Державні A4 і A2 безкоштовні для легкових з 2021 року, у Німеччині та Бельгії зборів із легкових немає. Платимо лише на концесійному A4 Kraków–Katowice, по 18 zł на двох пунктах. Паралельна DK94 з’їдає 40 хвилин і того не варта.</p>
+          <div class="task-side"><span class="pill pill-ok">Перевірено</span><span class="task-cost">€30</span></div>
+        </div>
+
+        <div class="task is-done">
+          <span class="task-no">✓</span>
+          <h3>Стратегія заправки: Німеччину проходимо на запасі</h3>
+          <p>Німеччина — 39% кілометрів і найдорожчий літр: різниця близько 50 центів. Бак Trafic на 80 л, залитий у Польщі замість Німеччини, економить €38.</p>
+          <div class="task-side"><span class="pill pill-ok">Вирішено</span><span class="task-cost">−€38 за бак</span></div>
+        </div>
+
+        <div class="task is-done">
+          <span class="task-no">✓</span>
+          <h3>Ціни пального і курс зафіксовані</h3>
+          <p>Середньозважено за маршрутом: дизель €2,01, бензин €1,85. Курс НБУ ₴52,24/€ на 24.08.2026. Джерела — index.minfin, cenypaliw.fyi, ADAC, FOD Economie.</p>
+          <div class="task-side"><span class="pill pill-ok">Зафіксовано</span><span class="task-when">24.08.2026</span></div>
+        </div>
+
+        <div class="task is-done">
+          <span class="task-no">✓</span>
+          <h3>Строки повернення квитків з’ясовані</h3>
+          <p>Повне повернення закрилося 31.07, 50% — 15.08. Тобто будь-яка купівля з цього моменту — гроші без повернення. Звідси й правило купувати тільки під підтверджений склад.</p>
+          <div class="task-side"><span class="pill pill-ok">З’ясовано</span><span class="task-when">неповоротні</span></div>
+        </div>
+
+        <div class="task is-done">
+          <span class="task-no">✓</span>
+          <h3>Бюджет порахований у двох варіантах</h3>
+          <p>7 Premium + 5 Basic — €11 857 з ризиками, або €988 на особу. Усі 12 на Premium — €13 012, або €1 084. Різниця €1 050, тобто €88 на кожного.</p>
+          <div class="task-side"><span class="pill pill-ok">Зроблено</span><span class="task-cost">€11 857</span></div>
+        </div>
+
+      </div>
+    </section>
+
+  </div>
+
+  <!-- ========== 3. МАРШРУТ ========== -->
+  <div class="panel" id="p-route" role="tabpanel" aria-labelledby="tab-route" tabindex="0" hidden>
+
+  <section>
+    <div class="sec-head"><h2>Дев’ять днів</h2><span class="eyebrow">2 ночі в дорозі + 6 у Брюсселі</span></div>
+    <div class="t-wrap">
+      <table>
+        <thead><tr><th>День</th><th>Що відбувається</th><th>Ніч</th></tr></thead>
+        <tbody>
+          <tr><td class="d"><b>20.09</b> нд</td><td>Київ → Вроцлав або Дрезден, ~1 100 км</td><td class="d">мотель у дорозі</td></tr>
+          <tr><td class="d"><b>21.09</b> пн</td><td>→ Брюссель, надвечір. Заселення в будинок</td><td class="d">будинок</td></tr>
+          <tr><td class="d"><b>22.09</b> вт</td><td>Майстер-клас, день 1</td><td class="d">будинок</td></tr>
+          <tr><td class="d"><b>23.09</b> ср</td><td>Майстер-клас, день 2</td><td class="d">будинок</td></tr>
+          <tr><td class="d"><b>24.09</b> чт</td><td>Odoo Experience, день 1 — кейноут, обід за Premium</td><td class="d">будинок</td></tr>
+          <tr><td class="d"><b>25.09</b> пт</td><td>Odoo Experience, день 2 — вечірка</td><td class="d">будинок</td></tr>
+          <tr><td class="d"><b>26.09</b> сб</td><td>Odoo Experience, день 3</td><td class="d">будинок</td></tr>
+          <tr><td class="d"><b>27.09</b> нд</td><td>Брюссель → Дрезден або Вроцлав</td><td class="d">мотель у дорозі</td></tr>
+          <tr><td class="d"><b>28.09</b> пн</td><td>→ Київ</td><td class="d">—</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>Дні майстер-класів лишаються у графіку: саме вони визначають, що будинок береться на 6 ночей, бус — на 11 діб із запасом, а їжа рахується на 9 днів. Самі квитки на майстер-класи до цього бюджету не входять.</p>
+  </section>
+
+  <section>
+    <div class="sec-head"><h2>Маршрут</h2><span class="eyebrow">2 200 км в один бік</span></div>
+    <div class="route">
+      <div class="route-bar">
+        <div class="leg leg-ua" style="flex: 615 1 0">UA 615 км</div>
+        <div class="leg leg-pl" style="flex: 520 1 0">PL 520 км</div>
+        <div class="leg leg-de" style="flex: 850 1 0">DE 850 км</div>
+        <div class="leg leg-be" style="flex: 215 1 0">BE 215 км</div>
+      </div>
+      <div class="route-ends">
+        <span><b>Київ</b> → Львів → Краків</span>
+        <span>Вроцлав → Дрезден → Кельн → <b>Брюссель</b></span>
+      </div>
+    </div>
+    <div class="t-wrap">
+      <table>
+        <thead>
+          <tr><th>Пальне за маршрутом</th><th class="n">Частка км</th><th class="n">Дизель</th><th class="n">Бензин 95</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Україна<span class="sub">₴91,90 і ₴80,05 за курсом ₴52,24/€</span></td><td class="n">28%</td><td class="n">€1,76</td><td class="n">€1,53</td></tr>
+          <tr><td>Польща<span class="sub">оцінка на вересень, після повернення ПДВ 23%</span></td><td class="n">24%</td><td class="n">€1,78</td><td class="n">€1,54</td></tr>
+          <tr class="mark"><td>Німеччина<span class="sub">ADAC, найдорожча ділянка</span></td><td class="n">39%</td><td class="n">€2,24</td><td class="n">€2,20</td></tr>
+          <tr><td>Бельгія<span class="sub">трохи нижче офіційного максимуму</span></td><td class="n">10%</td><td class="n">€2,16</td><td class="n">€1,92</td></tr>
+          <tr class="total"><td>Середньозважено за маршрутом</td><td class="n">100%</td><td class="n">€2,01</td><td class="n">€1,85</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>Німеччина — 39% кілометрів і найдорожчий літр, тож заправлятися треба максимально в Україні та Польщі: різниця з німецькою колонкою близько 50 центів на літрі. Бак Trafic на 80 л, залитий у Польщі замість Німеччини, економить €38.</p>
+    <p>Платних доріг на маршруті майже немає: державні ділянки A4 і A2 безкоштовні для легкових з 2021 року, у Німеччині та Бельгії зборів із легкових немає взагалі. Платити доведеться один раз — на концесійному A4 Kraków–Katowice, по 18 zł на пунктах оплати в Мисловицях і Балицях. Паралельна безкоштовна DK94 з’їдає близько 40 хвилин і того не варта.</p>
+  </section>
+
+  <section>
+    <div class="sec-head"><h2>Пробіг і перепробіг</h2><span class="eyebrow">Ліміт 350 км на добу</span></div>
+    <div class="mbar">
+      <div class="m-inc">Включено 3 850 км · 350 × 11 діб</div>
+      <div class="m-over">Понад 850 км</div>
+    </div>
+    <div class="t-wrap">
+      <table>
+        <tbody>
+          <tr><td>Пробіг бусу<span class="sub">4 400 км маршрут + ~300 км на місці: п’ять поїздок до Expo і назад</span></td><td class="n">4 700 км</td></tr>
+          <tr><td>Включено в оренду<span class="sub">350 км × 11 діб, сумарно за строк</span></td><td class="n">3 850 км</td></tr>
+          <tr><td>Перепробіг</td><td class="n">850 км</td></tr>
+          <tr class="total"><td>До оплати по ₴500 за 100 км<span class="sub">₴4 250 за курсом ₴52,24/€</span></td><td class="n">€81</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="verdict">
+      <h3>Ліміт рахується сумарно за весь строк оренди</h3>
+      <p>Підтверджено: 350 км множаться на 11 діб, а не перевіряються кожен день окремо. Для маршруту з чотирма ходовими днями по 1 100 км це принципово — за подобовим розрахунком перепробіг був би 3 000 км, тобто ₴15 000 ≈ €287 замість €81. Це формулювання варто побачити в договорі, але в бюджет іде €81.</p>
+      <p>Запас у дві доби майже окуповує себе: бус беремо 19.09 і здаємо 29.09, це €112 зверху, зате включений ліміт зростає на 700 км і перепробіг падає зі €148 до €81. Чиста ціна спокою — €45.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head"><h2>Дві машини на 12 осіб</h2><span class="eyebrow">8 + 4, запас 4 місця</span></div>
+    <div class="t-wrap">
+      <table>
+        <thead>
+          <tr><th>Машина</th><th class="n">Їде</th><th class="n">Витрата</th><th class="n">Пальне на 4 700 км</th><th class="n">€</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Renault Trafic 1.6 dCi<span class="sub">оренда €56/добу, механіка; 9 місць — 8 пасажирів + водій</span></td>
+            <td class="n">8</td><td class="n">9 л/100</td><td class="n">423 л дизеля</td><td class="n">850</td>
+          </tr>
+          <tr>
+            <td>Lexus GX 450<span class="sub">власний, бензин; 7 місць</span></td>
+            <td class="n">4</td><td class="n">12 л/100</td><td class="n">564 л бензину</td><td class="n">1 044</td>
+          </tr>
+          <tr class="total"><td>Пальне, обидві машини</td><td class="n">12</td><td class="n"></td><td class="n">987 л</td><td class="n">1 894</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>Розсадка: <b>8 у бусі, 4 в Lexus</b> — за місцями це не межа ні там, ні там, і вільний ряд у бусі якраз іде під багаж. На трасі при 130 км/год витрата GX піде радше до 14 л/100 — за нинішніх цін це ще €175 понад розрахунок.</p>
+  </section>
+
+
+  </div>
+
+
+  <!-- ========== 4. БЮДЖЕТ ========== -->
+  <div class="panel" id="p-budget" role="tabpanel" aria-labelledby="tab-budget" tabindex="0" hidden>
+
+  <section>
+    <div class="sec-head"><h2>Два варіанти за квитками</h2><span class="eyebrow">Група ті самі 12 осіб</span></div>
+    <div class="t-wrap">
+      <table>
+        <thead>
+          <tr><th></th><th class="n">7 Premium + 5 Basic</th><th class="n">12 Premium</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Перепустки на подію<span class="sub">Premium €255; Basic безкоштовно</span></td><td class="n">1 785</td><td class="n">3 060</td></tr>
+          <tr><td>Обіди для тих, хто на Basic<span class="sub">3 дні × €15 × 5 осіб</span></td><td class="n">225</td><td class="n">—</td></tr>
+          <tr><td>Дорога, житло, їжа, транспорт<span class="sub">однаково в обох варіантах</span></td><td class="n">8 769</td><td class="n">8 769</td></tr>
+          <tr class="sum"><td>Усього</td><td class="n">€10 779</td><td class="n">€11 829</td></tr>
+          <tr class="total"><td>На особу</td><td class="n">€898</td><td class="n">€986</td></tr>
+          <tr><td>Ризики<span class="sub">10% запасу на непередбачене</span></td><td class="n">1 078</td><td class="n">1 183</td></tr>
+          <tr class="sum"><td>Усього з ризиками</td><td class="n">€11 857<span class="sub">€988 на особу</span></td><td class="n">€13 012<span class="sub">€1 084 на особу</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>Різниця — <b>€1 050</b>, тобто €88 на кожного з дванадцяти. Але економія на одному Basic не €255, а <span class="pick">€210</span>: Premium включає обіди й напої всі три дні події, і на Basic їх доводиться докуповувати приблизно по €15 на день. До того ж Basic не дає кейноут і вечірку — для тих, хто їде за нетворкінгом, це і є половина сенсу поїздки.</p>
+  </section>
+
+  <section>
+    <div class="sec-head"><h2>Постатейно</h2><span class="eyebrow">Однаково в обох варіантах</span></div>
+
+    <div class="t-wrap">
+      <table>
+        <thead><tr><th>Машини</th><th class="n">€</th></tr></thead>
+        <tbody>
+          <tr><td>Пальне, обидві машини<span class="sub">4 700 км на кожну, за цінами на 24.08.2026</span></td><td class="n">1 894</td></tr>
+          <tr><td>Оренда бусу<span class="sub">€56 × 11 діб — 9 днів поїздки + запас день до і день після</span></td><td class="n">616</td></tr>
+          <tr class="mark"><td>Перепробіг<span class="sub">850 км понад ліміт</span></td><td class="n">81</td></tr>
+          <tr><td>Виїзд за кордон, зелена карта, КАСКО<span class="sub">по бусу: дозвіл 70 + зелена карта 25 + КАСКО 60; уточнити в прокатника</span></td><td class="n">155</td></tr>
+          <tr><td>Платні дороги, Польща<span class="sub">A4 Kraków–Katowice, єдина платна ділянка: 2 пункти оплати × 18 zł = 36 zł на машину в один бік</span></td><td class="n">30</td></tr>
+          <tr><td>Зелена карта на GX<span class="sub">15 днів, категорія «легковий»; тарифи з 2025 року не регулюються МТСБУ — розкид ₴800–1 600</span></td><td class="n">25</td></tr>
+          <tr><td>Паркування<span class="sub">Brussels Expo, Parking C: 5 днів × 2 машини × €12 = 120; біля будинку та інше — 60</span></td><td class="n">180</td></tr>
+          <tr class="total"><td>Разом машини</td><td class="n">2 981</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="t-wrap">
+      <table>
+        <thead><tr><th>Будинок у Брюсселі, 6 ночей</th><th class="n">€</th></tr></thead>
+        <tbody>
+          <tr><td>Будинок на 12 осіб, 6 ночей<span class="sub">21–26.09, ≈€417 за ніч, включно з прибиранням і сервісними зборами</span></td><td class="n">2 500</td></tr>
+          <tr class="mark"><td>Разом будинок<span class="sub">€208 на особу, або €35 за ніч</span></td><td class="n">2 500</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="note">
+      <h3>Будинок — найненадійніший рядок бюджету</h3>
+      <p>€2 500 — це цільова сума, а не ціна конкретного об’єкта: єдина велика стаття без підтвердження. Орієнтир — факт 2025: квартиру в Ікселлі забронювали <b>за 11 днів до заїзду, просто в дні OXP</b>, і вийшло €919 за 6 ночей на п’ятьох — <b>€153 за ніч, або €30 з особи</b>. За тією ж ставкою будинок на 12 осіб дав би €360 за ніч і €2 310 за блок.</p>
+      <p>Наші €417 за ніч — на 16% вище торішньої ставки з розрахунку на людину. Запас невеликий і свідомий: об’єктів на 12 місць кратно менше, ніж на 5, а шість ночей у дні OXP звужують вибір ще сильніше. Якщо вкластися в €2 500 не вдасться, це б’є по бюджету сильніше за будь-яку іншу невизначеність тут — кожні €100 понад план це майже 1% усієї поїздки.</p>
+    </div>
+
+    <div class="t-wrap">
+      <table>
+        <thead>
+          <tr><th>Люди, крім квитків</th><th class="n">На особу</th><th class="n">На 12 осіб</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Ночівлі в дорозі, 2 ночі<span class="sub">за фактом 2025: Катовіце, 556 zł на групу — €19 з особи за ніч</span></td><td class="n">38</td><td class="n">456</td></tr>
+          <tr><td>Їжа, 9 днів<span class="sub">4 дні дороги по €30; на майстер-класах і за Premium обіди включені</span></td><td class="n">230</td><td class="n">2 760</td></tr>
+          <tr><td>Медстраховка, 9 днів<span class="sub">за фактом 2025: ₴290 з особи, покриття €30 000</span></td><td class="n">6</td><td class="n">72</td></tr>
+          <tr class="sum"><td>Разом</td><td class="n">274</td><td class="n">3 288</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="t-wrap t-final">
+      <table>
+        <thead>
+          <tr><th>Зведення</th><th class="n">7 Premium</th><th class="n">12 Premium</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Машини</td><td class="n">2 981</td><td class="n">2 981</td></tr>
+          <tr><td>Будинок, 6 ночей</td><td class="n">2 500</td><td class="n">2 500</td></tr>
+          <tr><td>Люди, крім квитків<span class="sub">€274 × 12</span></td><td class="n">3 288</td><td class="n">3 288</td></tr>
+          <tr class="total"><td>Підсумок — три таблиці вище</td><td class="n">8 769</td><td class="n">8 769</td></tr>
+          <tr><td>Перепустки на подію<span class="sub">Premium €255 × 7 або × 12</span></td><td class="n">1 785</td><td class="n">3 060</td></tr>
+          <tr><td>Обіди тим, хто на Basic<span class="sub">3 дні × €15 × 5 осіб</span></td><td class="n">225</td><td class="n">—</td></tr>
+          <tr class="sum"><td>Усього<span class="sub">курс НБУ ₴52,24/€ на 24.08.2026</span></td><td class="n">€10 779<span class="sub">₴563 095</span></td><td class="n">€11 829<span class="sub">₴617 947</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>Три таблиці вище — лише те, що не залежить від квитків: €8 769. Перепустки й обіди для тих, хто на Basic, додаються зверху і дають підсумок зі зведення вгорі вкладки. Запас на непередбачене сюди не входить — він окремим рядком у таблиці вгорі вкладки: 10%, тобто €11 857 і €13 012 з ризиками. Саме з нього й покриваються витратні матеріали, дрібний ремонт і LEZ day-pass, якщо бус виявиться Euro 5.</p>
+  </section>
+
+
+  </div>
+
+  <!-- ========== 5. ВИТРАТИ ========== -->
+  <div class="panel" id="p-spend" role="tabpanel" aria-labelledby="tab-spend" tabindex="0" hidden>
+
+    <section>
+      <div class="sec-head">
+        <h2>Витрати</h2>
+        <span class="eyebrow">факт проти плану</span>
+      </div>
+      <p>Сюди пишемо кожен платіж, щойно він пройшов. Бюджет на сусідній вкладці лишається незмінним планом — саме проти нього тут і рахується різниця, тож видно не «скільки витрачено», а «чи вкладаємося».</p>
+
+      <div class="stats">
+        <div class="stat"><span class="k">Бюджет плану</span><span class="v">€11 857</span><span class="s">7 Premium, із ризиками</span></div>
+        <div class="stat is-accent"><span class="k">Витрачено</span><span class="v">€0</span><span class="s">0 записів</span></div>
+        <div class="stat"><span class="k">Лишається</span><span class="v">€11 857</span><span class="s">100% бюджету</span></div>
+        <div class="stat"><span class="k">Найближчий платіж</span><span class="v">€2 500</span><span class="s">будинок, до 31.08</span></div>
+      </div>
+
+      <div class="note">
+        <p><b>Правило запису.</b> Сума — у євро за курсом на дату платежу, гривневі оплати переводимо відразу і пишемо обидві цифри. Обов’язково хто платив і чи є документ: у поїздці на 12 осіб половина спірних питань потім — саме про це.</p>
+      </div>
+    </section>
+
+    <section>
+      <div class="sub-head">
+        <h3>План і факт за статтями</h3>
+        <span class="eyebrow">варіант 7 Premium</span>
+      </div>
+      <div class="t-wrap">
+        <table>
+          <thead>
+            <tr><th>Стаття</th><th class="n">План</th><th class="n">Факт</th><th class="n">Різниця</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Машини<span class="sub">пальне, оренда, страховки, паркування</span></td><td class="n">2 981</td><td class="n">—</td><td class="n">—</td></tr>
+            <tr><td>Будинок у Брюсселі<span class="sub">6 ночей, 21–26.09</span></td><td class="n">2 500</td><td class="n">—</td><td class="n">—</td></tr>
+            <tr><td>Люди, крім квитків<span class="sub">ночівлі в дорозі, їжа, медстраховка</span></td><td class="n">3 288</td><td class="n">—</td><td class="n">—</td></tr>
+            <tr><td>Перепустки на подію<span class="sub">7 × Premium €255</span></td><td class="n">1 785</td><td class="n">—</td><td class="n">—</td></tr>
+            <tr><td>Обіди тим, хто на Basic<span class="sub">3 дні × €15 × 5 осіб</span></td><td class="n">225</td><td class="n">—</td><td class="n">—</td></tr>
+            <tr class="total"><td>База</td><td class="n">10 779</td><td class="n">—</td><td class="n">—</td></tr>
+            <tr class="mark"><td>Запас на непередбачене<span class="sub">10% — сюди ж LEZ day-pass, дрібний ремонт, витратні</span></td><td class="n">1 078</td><td class="n">—</td><td class="n">—</td></tr>
+            <tr class="sum"><td>Усього</td><td class="n">€11 857</td><td class="n">€0</td><td class="n">€11 857</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section>
+      <div class="sub-head">
+        <h3>Журнал витрат</h3>
+        <span class="eyebrow">0 записів</span>
+      </div>
+      <div class="t-wrap">
+        <table>
+          <thead>
+            <tr><th>Дата</th><th>Стаття</th><th>Опис</th><th class="n">Сума</th><th>Хто платив</th><th>Документ</th></tr>
+          </thead>
+          <tbody>
+            <tr><td colspan="6" style="padding:0;border:0;">
+              <div class="empty" style="border:0;border-radius:0;">
+                <h3>Записів ще немає</h3>
+                <p>Перший платіж очікується за будинок — €2 500 до 31 серпня. Щойно він пройде, рядок стає тут, а пункт 01 із «Плану дій» переїжджає в «Пройдено».</p>
+              </div>
+            </td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- ========== 6. ДОКУМЕНТИ І БРОНЮВАННЯ ========== -->
+  <div class="panel" id="p-docs" role="tabpanel" aria-labelledby="tab-docs" tabindex="0" hidden>
+
+    <section>
+      <div class="sec-head">
+        <h2>Документи і бронювання</h2>
+        <span class="eyebrow">13 позицій</span>
+      </div>
+      <p>Один список усього, що має бути оформлене або оплачене до 19 вересня. Строки тут не рівномірні: частина позицій залежить від складу групи, а частина — від того, чи випустить прокатник бус за кордон.</p>
+
+      <div class="stats">
+        <div class="stat"><span class="k">Позицій</span><span class="v">13</span><span class="s">броні та документи</span></div>
+        <div class="stat is-accent"><span class="k">Готово</span><span class="v">0</span><span class="s">жодної броні ще немає</span></div>
+        <div class="stat"><span class="k">Перший строк</span><span class="v">31.08</span><span class="s">будинок і бус</span></div>
+        <div class="stat"><span class="k">Усе має бути</span><span class="v">19.09</span><span class="s">за добу до виїзду</span></div>
+      </div>
+
+      <div class="t-wrap">
+        <table>
+          <thead>
+            <tr><th>Що</th><th>Строк</th><th class="n">Сума</th><th>Стан</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Будинок на 12 осіб<span class="sub">6 ночей, 21–26.09, два паркомісця</span></td><td class="d">до <b>31.08</b></td><td class="n">2 500</td><td><span class="pill pill-block">Блокує</span></td></tr>
+            <tr><td>Оренда Trafic<span class="sub">19–29.09, ліміт 350 км/добу сумарно — у договорі</span></td><td class="d">до <b>31.08</b></td><td class="n">616</td><td><span class="pill pill-todo">Не почато</span></td></tr>
+            <tr><td>Квитки Premium<span class="sub">€255 онлайн; неповоротні</span></td><td class="d">до <b>07.09</b></td><td class="n">1 785</td><td><span class="pill pill-todo">Не почато</span></td></tr>
+            <tr><td>Дозвіл прокатника на виїзд за кордон<span class="sub">довіреність; частина компаній не випускає взагалі</span></td><td class="d">до <b>07.09</b></td><td class="n">70</td><td><span class="pill pill-flag">Уточнити</span></td></tr>
+            <tr><td>Зелена карта на бус<span class="sub">на строк оренди</span></td><td class="d">до <b>07.09</b></td><td class="n">25</td><td><span class="pill pill-todo">Не почато</span></td></tr>
+            <tr><td>КАСКО на бус<span class="sub">умови залежать від прокатника</span></td><td class="d">до <b>07.09</b></td><td class="n">60</td><td><span class="pill pill-todo">Не почато</span></td></tr>
+            <tr><td>Ночівлі в дорозі, дві<span class="sub">20.09 і 27.09, паркування на дві машини</span></td><td class="d">до <b>12.09</b></td><td class="n">456</td><td><span class="pill pill-todo">Не почато</span></td></tr>
+            <tr><td>Зелена карта на Lexus GX<span class="sub">15 днів; тарифи не регулюються, порівняти компанії</span></td><td class="d">до <b>15.09</b></td><td class="n">25</td><td><span class="pill pill-todo">Не почато</span></td></tr>
+            <tr><td>Медстраховки, 12 осіб<span class="sub">9 днів, покриття €30 000</span></td><td class="d">до <b>15.09</b></td><td class="n">72</td><td><span class="pill pill-todo">Не почато</span></td></tr>
+            <tr><td>Підстави на виїзд<span class="sub">чоловіки 18–60; визначає склад</span></td><td class="d">до <b>05.09</b></td><td class="n">—</td><td><span class="pill pill-block">Блокує</span></td></tr>
+            <tr><td>Закордонні паспорти<span class="sub">перевірити строк дії — щонайменше 3 місяці після повернення</span></td><td class="d">до <b>31.08</b></td><td class="n">—</td><td><span class="pill pill-flag">Перевірити</span></td></tr>
+            <tr><td>Реєстрація в LEZ Брюсселя, дві машини<span class="sub">безкоштовно, обов’язково для іноземних номерів; штраф €150</span></td><td class="d">до <b>19.09</b></td><td class="n">0</td><td><span class="pill pill-todo">Не почато</span></td></tr>
+            <tr><td>Parking C, Brussels Expo<span class="sub">оплата на місці: 5 днів × 2 машини × €12</span></td><td class="d"><b>22–26.09</b></td><td class="n">120</td><td><span class="pill pill-flag">На місці</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section>
+      <div class="sub-head">
+        <h3>Пакет на кордон</h3>
+        <span class="eyebrow">по кожній машині</span>
+      </div>
+      <div class="checks">
+        <div class="check">
+          <span class="check-tag is-cal">Бус</span>
+          <h3>Renault Trafic — орендований</h3>
+          <p>Договір оренди, довіреність на виїзд за кордон, техпаспорт, зелена карта, КАСКО, водійські посвідчення тих, кого внесено в договір. Плюс підтвердження реєстрації в LEZ.</p>
+        </div>
+        <div class="check">
+          <span class="check-tag">GX 450</span>
+          <h3>Lexus GX — власний</h3>
+          <p>Техпаспорт, зелена карта на 15 днів, водійське посвідчення, підтвердження реєстрації в LEZ. Якщо за кермом не власник — довіреність.</p>
+        </div>
+        <div class="check">
+          <span class="check-tag">Кожен</span>
+          <h3>На кожного з дванадцяти</h3>
+          <p>Закордонний паспорт, медстраховка на 9 днів, підстави на виїзд для чоловіків 18–60. Квиток на подію — в застосунку або на пошті, роздруківка не потрібна.</p>
+        </div>
+      </div>
+    </section>
+
+  </div>
+  <footer>
+    <span>Розрахунок від 24 серпня 2026. Odoo Experience 24–26.09, Brussels Expo; Premium 3 дні €255 онлайн (€285 на місці), Basic безкоштовно — за даними odoo.com. Квитки на майстер-класи 22–23.09 до цього бюджету не входять.</span>
+    <span>До Expo їздимо власними машинами, Parking C — €12 на добу. Платні дороги — лише A4 Kraków–Katowice, тариф Stalexport з 01.04.2026. Зелені карти по ₴1 300 за 15 днів (тарифи не регулюються з 01.01.2025, порівнюйте компанії), медстраховка та ночівлі в дорозі — за фактичними оплатами поїздки на OXP 2025. Оренда: Trafic €56/добу на 11 діб (9 днів поїздки плюс доба запасу до і після), ліміт 350 км/добу, перепробіг ₴500 за 100 км. Витрата: бус 9 л/100 дизеля, GX 450 — 12 л/100 бензину. Ціни пального на 24.08.2026: Україна — index.minfin (₴91,90 дизель, ₴80,05 А95) за курсом НБУ ₴52,24/€; Польща — 7,61 і 6,58 zł за курсом 4,88 zł/€ плюс поправка на повернення ПДВ з вересня; Німеччина — ADAC; Бельгія — офіційні максимуми FOD Economie.</span>
+  </footer>
+</div>
+
+<script>
+  (function () {
+    var root = document.documentElement;
+
+    /* ---------- тема ---------- */
+    var btn = document.querySelector(".theme-toggle");
+    var ico = document.getElementById("ttIco");
+    var txt = document.getElementById("ttTxt");
+    var mq = window.matchMedia("(prefers-color-scheme: dark)");
+
+    function current() {
+      var own = root.getAttribute("data-ui");
+      if (own) return own;
+      var host = root.getAttribute("data-theme");
+      if (host === "dark" || host === "light") return host;
+      return mq.matches ? "dark" : "light";
+    }
+
+    function paint() {
+      var dark = current() === "dark";
+      ico.textContent = dark ? "☀" : "☾";
+      txt.textContent = dark ? "Світла" : "Темна";
+      btn.setAttribute("aria-pressed", dark ? "true" : "false");
+      btn.setAttribute("aria-label", dark ? "Увімкнути світлу тему" : "Увімкнути темну тему");
+    }
+
+    try {
+      var saved = localStorage.getItem("oxp-theme");
+      if (saved === "dark" || saved === "light") root.setAttribute("data-ui", saved);
+    } catch (e) {}
+
+    paint();
+
+    btn.addEventListener("click", function () {
+      var next = current() === "dark" ? "light" : "dark";
+      root.setAttribute("data-ui", next);
+      try { localStorage.setItem("oxp-theme", next); } catch (e) {}
+      paint();
+    });
+
+    var sync = function () { if (!root.getAttribute("data-ui")) paint(); };
+    if (mq.addEventListener) mq.addEventListener("change", sync);
+    new MutationObserver(sync).observe(root, { attributes: true, attributeFilter: ["data-theme"] });
+
+    /* ---------- вкладки ---------- */
+    var tabs = Array.prototype.slice.call(document.querySelectorAll('[role="tab"]'));
+    var keys = ["plan", "done", "route", "budget", "spend", "docs"];
+
+    function show(id, focus) {
+      tabs.forEach(function (t) {
+        var on = t.id === "tab-" + id;
+        t.setAttribute("aria-selected", on ? "true" : "false");
+        t.tabIndex = on ? 0 : -1;
+        var panel = document.getElementById(t.getAttribute("aria-controls"));
+        if (panel) panel.hidden = !on;
+        if (on && focus) t.focus();
+      });
+      try { localStorage.setItem("oxp-tab", id); } catch (e) {}
+      if (history.replaceState) history.replaceState(null, "", "#" + id);
+    }
+
+    tabs.forEach(function (t, i) {
+      t.addEventListener("click", function () {
+        show(t.id.replace("tab-", ""), false);
+        window.scrollTo({ top: 0, behavior: "instant" });
+      });
+      t.addEventListener("keydown", function (e) {
+        var step = e.key === "ArrowRight" ? 1 : e.key === "ArrowLeft" ? -1 : 0;
+        if (step) {
+          e.preventDefault();
+          show(keys[(i + step + keys.length) % keys.length], true);
+        } else if (e.key === "Home") {
+          e.preventDefault(); show(keys[0], true);
+        } else if (e.key === "End") {
+          e.preventDefault(); show(keys[keys.length - 1], true);
+        }
+      });
+    });
+
+    var start = (location.hash || "").replace("#", "");
+    if (keys.indexOf(start) < 0) {
+      try { start = localStorage.getItem("oxp-tab") || ""; } catch (e) { start = ""; }
+    }
+    show(keys.indexOf(start) >= 0 ? start : "plan", false);
+  })();
+</script>
