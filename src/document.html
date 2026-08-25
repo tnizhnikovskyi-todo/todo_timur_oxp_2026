@@ -181,9 +181,9 @@
   .brand-row {
     display: flex;
     align-items: flex-start;
-    justify-content: space-between;
     gap: 1rem;
   }
+  .brand-row .brand { margin-right: auto; }
 
   .theme-toggle {
     display: inline-flex;
@@ -657,6 +657,91 @@
   .empty h3 { color: var(--ink); }
   .empty p { color: var(--ink-soft); font-size: 0.92rem; max-width: 52ch; }
 
+  /* ---------- замок на вкладках ---------- */
+
+  .panel.is-locked > section { display: none; }
+  .panel:not(.is-locked) > .lock { display: none; }
+
+  .lock {
+    border: 1px solid var(--rule-strong);
+    border-radius: 14px;
+    background: var(--surface);
+    padding: clamp(2rem, 6vw, 3.5rem) 1.4rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.9rem;
+    text-align: center;
+  }
+  .lock-ico { color: var(--ink-faint); }
+  .lock h2 { font-size: clamp(1.2rem, 2.6vw, 1.5rem); }
+  .lock p { color: var(--ink-soft); font-size: 0.94rem; max-width: 44ch; }
+
+  .lock form {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 0.3rem;
+  }
+  .lock input {
+    font-family: var(--mono);
+    font-size: 0.95rem;
+    color: var(--ink);
+    background: var(--surface-sunk);
+    border: 1px solid var(--rule-strong);
+    border-radius: 999px;
+    padding: 0.6rem 1.1rem;
+    width: 12rem;
+    max-width: 100%;
+  }
+  .lock input::placeholder { color: var(--ink-faint); }
+  .lock input:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
+
+  .lock button {
+    font-family: var(--sans);
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    color: #ffffff;
+    background: var(--accent);
+    border: 0;
+    border-radius: 999px;
+    padding: 0.65rem 1.4rem;
+    cursor: pointer;
+  }
+  .lock button:hover { filter: brightness(1.07); }
+
+  .lock .err {
+    font-size: 0.85rem;
+    color: var(--accent);
+    min-height: 1.2em;
+  }
+
+  .tab .lk { flex: none; width: 0.62rem; height: 0.78rem; opacity: 0.55; }
+  .tab[aria-selected="true"] .lk { opacity: 1; }
+  .is-unlocked .tab .lk { display: none; }
+
+  .relock {
+    display: none;
+    align-items: center;
+    gap: 0.35rem;
+    flex: none;
+    font-family: var(--sans);
+    font-size: 0.66rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    background: none;
+    border: 0;
+    padding: 0.3rem 0;
+    cursor: pointer;
+  }
+  .is-unlocked .relock { display: inline-flex; }
+  .relock:hover { color: var(--accent); }
+
   .sub-head {
     display: flex;
     align-items: baseline;
@@ -685,6 +770,7 @@
   </svg>
         <small>Офіційний партнер Odoo в Україні</small>
       </div>
+      <button class="relock" type="button" id="relockBtn">Замкнути</button>
       <button class="theme-toggle" type="button" id="themeBtn" aria-label="Перемкнути тему">
         <span class="tt-ico" id="ttIco" aria-hidden="true">☾</span><span class="tt-txt" id="ttTxt">Темна</span>
       </button>
@@ -709,10 +795,10 @@
     <div class="tabs" role="tablist" aria-label="Розділи документа">
       <button class="tab" type="button" role="tab" id="tab-plan"  aria-controls="p-plan"  aria-selected="true"  tabindex="0">План дій <span class="cnt">24</span></button>
       <button class="tab" type="button" role="tab" id="tab-done"  aria-controls="p-done"  aria-selected="false" tabindex="-1">Пройдено <span class="cnt">14</span></button>
-      <button class="tab" type="button" role="tab" id="tab-people" aria-controls="p-people" aria-selected="false" tabindex="-1">Учасники <span class="cnt">14</span></button>
+      <button class="tab" type="button" role="tab" id="tab-people" aria-controls="p-people" aria-selected="false" tabindex="-1"><svg class="lk" viewBox="0 0 10 12" fill="none" aria-hidden="true"><path d="M2 5V3.5a3 3 0 016 0V5" stroke="currentColor" stroke-width="1.3"/><rect x=".8" y="5" width="8.4" height="6.4" rx="1.4" fill="currentColor"/></svg>Учасники <span class="cnt">14</span></button>
       <button class="tab" type="button" role="tab" id="tab-route" aria-controls="p-route" aria-selected="false" tabindex="-1">Маршрут</button>
-      <button class="tab" type="button" role="tab" id="tab-budget" aria-controls="p-budget" aria-selected="false" tabindex="-1">Бюджет</button>
-      <button class="tab" type="button" role="tab" id="tab-spend" aria-controls="p-spend" aria-selected="false" tabindex="-1">Витрати <span class="cnt">0</span></button>
+      <button class="tab" type="button" role="tab" id="tab-budget" aria-controls="p-budget" aria-selected="false" tabindex="-1"><svg class="lk" viewBox="0 0 10 12" fill="none" aria-hidden="true"><path d="M2 5V3.5a3 3 0 016 0V5" stroke="currentColor" stroke-width="1.3"/><rect x=".8" y="5" width="8.4" height="6.4" rx="1.4" fill="currentColor"/></svg>Бюджет</button>
+      <button class="tab" type="button" role="tab" id="tab-spend" aria-controls="p-spend" aria-selected="false" tabindex="-1"><svg class="lk" viewBox="0 0 10 12" fill="none" aria-hidden="true"><path d="M2 5V3.5a3 3 0 016 0V5" stroke="currentColor" stroke-width="1.3"/><rect x=".8" y="5" width="8.4" height="6.4" rx="1.4" fill="currentColor"/></svg>Витрати <span class="cnt">0</span></button>
       <button class="tab" type="button" role="tab" id="tab-docs"  aria-controls="p-docs"  aria-selected="false" tabindex="-1">Документи і бронювання <span class="cnt">0</span></button>
     </div>
   </div>
@@ -1174,7 +1260,19 @@
   </div>
 
   <!-- ========== 3. УЧАСНИКИ ========== -->
-  <div class="panel" id="p-people" role="tabpanel" aria-labelledby="tab-people" tabindex="0" hidden>
+  <div class="panel is-locked" id="p-people" role="tabpanel" aria-labelledby="tab-people" tabindex="0" hidden>
+
+      <div class="lock">
+        <svg class="lock-ico" width="26" height="32" viewBox="0 0 10 12" fill="none" aria-hidden="true"><path d="M2 5V3.5a3 3 0 016 0V5" stroke="currentColor" stroke-width="1.1"/><rect x=".8" y="5" width="8.4" height="6.4" rx="1.4" fill="currentColor"/></svg>
+        <h2>Учасники — під кодом</h2>
+        <p>Тут прізвища, посади й ролі всіх чотирнадцятьох. Введіть код — і всі три закриті вкладки відкриються разом.</p>
+        <form class="lock-form" autocomplete="off">
+          <input type="password" inputmode="text" placeholder="код" aria-label="Код доступу" autocomplete="off">
+          <button type="submit">Відкрити</button>
+        </form>
+        <span class="err" role="status" aria-live="polite"></span>
+      </div>
+
 
     <section>
       <div class="sec-head">
@@ -1365,7 +1463,19 @@
 
 
   <!-- ========== 5. БЮДЖЕТ ========== -->
-  <div class="panel" id="p-budget" role="tabpanel" aria-labelledby="tab-budget" tabindex="0" hidden>
+  <div class="panel is-locked" id="p-budget" role="tabpanel" aria-labelledby="tab-budget" tabindex="0" hidden>
+
+      <div class="lock">
+        <svg class="lock-ico" width="26" height="32" viewBox="0 0 10 12" fill="none" aria-hidden="true"><path d="M2 5V3.5a3 3 0 016 0V5" stroke="currentColor" stroke-width="1.1"/><rect x=".8" y="5" width="8.4" height="6.4" rx="1.4" fill="currentColor"/></svg>
+        <h2>Бюджет — під кодом</h2>
+        <p>Тут суми поїздки, рахунок на перепустки і розрахунок на особу. Введіть код — і всі три закриті вкладки відкриються разом.</p>
+        <form class="lock-form" autocomplete="off">
+          <input type="password" inputmode="text" placeholder="код" aria-label="Код доступу" autocomplete="off">
+          <button type="submit">Відкрити</button>
+        </form>
+        <span class="err" role="status" aria-live="polite"></span>
+      </div>
+
 
   <section>
     <div class="sec-head"><h2>Перепустки: рахунок на 12 Premium</h2><span class="eyebrow">ПДВ 21% зверху</span></div>
@@ -1466,7 +1576,19 @@
   </div>
 
   <!-- ========== 6. ВИТРАТИ ========== -->
-  <div class="panel" id="p-spend" role="tabpanel" aria-labelledby="tab-spend" tabindex="0" hidden>
+  <div class="panel is-locked" id="p-spend" role="tabpanel" aria-labelledby="tab-spend" tabindex="0" hidden>
+
+      <div class="lock">
+        <svg class="lock-ico" width="26" height="32" viewBox="0 0 10 12" fill="none" aria-hidden="true"><path d="M2 5V3.5a3 3 0 016 0V5" stroke="currentColor" stroke-width="1.1"/><rect x=".8" y="5" width="8.4" height="6.4" rx="1.4" fill="currentColor"/></svg>
+        <h2>Витрати — під кодом</h2>
+        <p>Тут фактичні платежі, хто платив і чи зійшлося з планом. Введіть код — і всі три закриті вкладки відкриються разом.</p>
+        <form class="lock-form" autocomplete="off">
+          <input type="password" inputmode="text" placeholder="код" aria-label="Код доступу" autocomplete="off">
+          <button type="submit">Відкрити</button>
+        </form>
+        <span class="err" role="status" aria-live="polite"></span>
+      </div>
+
 
     <section>
       <div class="sec-head">
@@ -1671,6 +1793,61 @@
         text = "поїздка позаду";
       }
       for (var i = 0; i < nodes.length; i++) nodes[i].textContent = text;
+    })();
+
+    /* ---------- замок на вкладках ---------- */
+    /* Це візуальний замок, а не захист: сторінка приходить у браузер цілком,
+       тому вміст закритих вкладок є у файлі й читається через код сторінки.
+       Код хешований лише щоб не лежав відкритим текстом. */
+    (function () {
+      var EXPECTED = "26c65094";
+      var KEY = "oxp-unlocked";
+      var panels = document.querySelectorAll(".panel.is-locked");
+      if (!panels.length) return;
+
+      function hash(str) {
+        var x = 0x811c9dc5;
+        for (var i = 0; i < str.length; i++) {
+          x ^= str.charCodeAt(i);
+          x = (x * 0x01000193) >>> 0;
+        }
+        return x.toString(16);
+      }
+
+      function setLocked(locked) {
+        for (var i = 0; i < panels.length; i++) {
+          panels[i].classList.toggle("is-locked", locked);
+        }
+        root.classList.toggle("is-unlocked", !locked);
+      }
+
+      try { if (localStorage.getItem(KEY) === "1") setLocked(false); } catch (e) {}
+
+      var forms = document.querySelectorAll(".lock-form");
+      for (var f = 0; f < forms.length; f++) {
+        forms[f].addEventListener("submit", function (e) {
+          e.preventDefault();
+          var input = this.querySelector("input");
+          var err = this.parentNode.querySelector(".err");
+          if (hash(input.value.trim().toLowerCase()) === EXPECTED) {
+            setLocked(false);
+            try { localStorage.setItem(KEY, "1"); } catch (e2) {}
+            window.scrollTo({ top: 0, behavior: "instant" });
+          } else {
+            err.textContent = "Не той код";
+            input.value = "";
+            input.focus();
+          }
+        });
+      }
+
+      var relock = document.getElementById("relockBtn");
+      if (relock) {
+        relock.addEventListener("click", function () {
+          setLocked(true);
+          try { localStorage.removeItem(KEY); } catch (e) {}
+        });
+      }
     })();
   })();
 </script>
