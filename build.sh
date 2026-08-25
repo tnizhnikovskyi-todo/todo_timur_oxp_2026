@@ -17,7 +17,7 @@ sed '0,\#<title>.*</title>#{\#<title>.*</title>#d}' src/document.html > "$out/.b
 # Якщо git недоступний, у документі лишається вписана вручну дата.
 updated=$(git log -1 --date=format:'%d.%m.%Y' --format='%ad' 2>/dev/null || true)
 if [ -n "$updated" ]; then
-  sed -i "s#\(<b id=\"updated\">\)[^<]*\(</b>\)#\1${updated}\2#" "$out/.body.tmp"
+  sed -i "s#\(class=\"js-updated\">\)[^<]*#\1${updated}#g" "$out/.body.tmp"
   printf 'Оновлено: %s (з коміту)\n' "$updated"
 else
   printf 'Оновлено: дата з документа — git недоступний\n'
