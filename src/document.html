@@ -657,7 +657,11 @@
   .empty h3 { color: var(--ink); }
   .empty p { color: var(--ink-soft); font-size: 0.92rem; max-width: 52ch; }
 
-  /* ---------- замок на вкладках ---------- */
+  /* ---------- замок на вкладках і на сумах ---------- */
+
+  /* Суми видно лише після введення коду; .nomoney — те, що стоїть замість них. */
+  html:not(.is-unlocked) .money { display: none !important; }
+  html.is-unlocked .nomoney { display: none !important; }
 
   .panel.is-locked > section { display: none; }
   .panel:not(.is-locked) > .lock { display: none; }
@@ -781,10 +785,10 @@
     <p class="lede">Дев’ять днів, дві машини, будинок на всіх. Тут план дій, маршрут, запланований бюджет і облік фактичних витрат. Майстер-клас 22–23.09 — тільки в Кутька, окремим бюджетом.</p>
 
     <div class="meta-row">
-      <span>Бюджет плану <b>€13 719</b></span>
-      <span>Витрачено <b>€0</b></span>
+      <span class="money">Бюджет плану <b>€13 719</b></span>
+      <span class="money">Витрачено <b>€0</b></span>
       <span>До виїзду <b class="js-days">26 днів</b></span>
-      <span>Курс НБУ <b>₴52,24/€</b></span>
+      <span class="money">Курс НБУ <b>₴52,24/€</b></span>
       <span>Склад <b>13–14</b></span>
       <span>Ціни на <b>24.08.2026</b></span>
       <span>Оновлено <b class="js-updated">25.08.2026</b></span>
@@ -795,7 +799,7 @@
     <div class="tabs" role="tablist" aria-label="Розділи документа">
       <button class="tab" type="button" role="tab" id="tab-plan"  aria-controls="p-plan"  aria-selected="true"  tabindex="0">План дій <span class="cnt">24</span></button>
       <button class="tab" type="button" role="tab" id="tab-done"  aria-controls="p-done"  aria-selected="false" tabindex="-1">Пройдено <span class="cnt">14</span></button>
-      <button class="tab" type="button" role="tab" id="tab-people" aria-controls="p-people" aria-selected="false" tabindex="-1"><svg class="lk" viewBox="0 0 10 12" fill="none" aria-hidden="true"><path d="M2 5V3.5a3 3 0 016 0V5" stroke="currentColor" stroke-width="1.3"/><rect x=".8" y="5" width="8.4" height="6.4" rx="1.4" fill="currentColor"/></svg>Учасники <span class="cnt">14</span></button>
+      <button class="tab" type="button" role="tab" id="tab-people" aria-controls="p-people" aria-selected="false" tabindex="-1">Учасники <span class="cnt">14</span></button>
       <button class="tab" type="button" role="tab" id="tab-route" aria-controls="p-route" aria-selected="false" tabindex="-1">Маршрут</button>
       <button class="tab" type="button" role="tab" id="tab-budget" aria-controls="p-budget" aria-selected="false" tabindex="-1"><svg class="lk" viewBox="0 0 10 12" fill="none" aria-hidden="true"><path d="M2 5V3.5a3 3 0 016 0V5" stroke="currentColor" stroke-width="1.3"/><rect x=".8" y="5" width="8.4" height="6.4" rx="1.4" fill="currentColor"/></svg>Бюджет</button>
       <button class="tab" type="button" role="tab" id="tab-spend" aria-controls="p-spend" aria-selected="false" tabindex="-1"><svg class="lk" viewBox="0 0 10 12" fill="none" aria-hidden="true"><path d="M2 5V3.5a3 3 0 016 0V5" stroke="currentColor" stroke-width="1.3"/><rect x=".8" y="5" width="8.4" height="6.4" rx="1.4" fill="currentColor"/></svg>Витрати <span class="cnt">0</span></button>
@@ -817,7 +821,7 @@
         <div class="stat is-accent"><span class="k">Блокує решту</span><span class="v">3</span><span class="s">будинок, склад, підстави</span></div>
         <div class="stat"><span class="k">Усього відкрито</span><span class="v">24</span><span class="s">станом на <span class="js-updated">25.08.2026</span></span></div>
         <div class="stat"><span class="k">До виїзду</span><span class="v js-days">26 днів</span><span class="s">виїзд 20.09</span></div>
-        <div class="stat is-accent"><span class="k">Не в бюджеті</span><span class="v">€175</span><span class="s">LEZ, якщо бус Euro 5</span></div>
+        <div class="stat is-accent money"><span class="k">Не в бюджеті</span><span class="v">€175</span><span class="s">LEZ, якщо бус Euro 5</span></div><div class="stat is-accent nomoney"><span class="k">Поза бюджетом</span><span class="v">3</span><span class="s">стенд, обіди 22–23.09, LEZ</span></div>
       </div>
 
       <div class="note">
@@ -835,11 +839,11 @@
         <div class="task">
           <span class="task-no">01</span>
           <h3>Забронювати будинок на 13 осіб, 6 ночей</h3>
-          <p>21–26.09, до €417 за ніч. Місць потрібно 13, а якщо Борис їде — 14: ті, хто добирається своїм ходом, живуть з нами. Два паркомісця у дворі обов’язково — їздимо своїм транспортом. Шукати Мехелен, Вілворде, північ Брюсселя: кожні 10 км зайвого плеча до Heysel — це 100 км за п’ять днів на кожну машину.</p>
+          <p>21–26.09<span class="money">, до €417 за ніч</span>. Місць потрібно 13, а якщо Борис їде — 14: ті, хто добирається своїм ходом, живуть з нами. Два паркомісця у дворі обов’язково — їздимо своїм транспортом. Шукати Мехелен, Вілворде, північ Брюсселя: кожні 10 км зайвого плеча до Heysel — це 100 км за п’ять днів на кожну машину.</p>
           <div class="task-side">
             <span class="pill pill-block">Блокує</span>
             <span class="task-when">до 31.08</span>
-            <span class="task-cost">€2 500</span>
+            <span class="task-cost money">€2 500</span>
           </div>
         </div>
 
@@ -878,33 +882,33 @@
         <div class="task">
           <span class="task-no">04</span>
           <h3>Уточнити Euro-норму Trafic і перевірити LEZ</h3>
-          <p>Trafic 1.6 dCi буває і Euro 5, і Euro 6. Спитати в прокатника рік і норму, перевірити на lez.brussels. Якщо Euro 5 — day-pass ≈ €35 × 5 в’їздів = €175, і цього в бюджеті немає. Бензиновий GX 450 проходить без питань.</p>
+          <p>Trafic 1.6 dCi буває і Euro 5, і Euro 6. Спитати в прокатника рік і норму, перевірити на lez.brussels. Якщо Euro 5 — <span class="money">day-pass ≈ €35 × 5 в’їздів = €175, і цього в бюджеті немає.</span><span class="nomoney">потрібен day-pass на кожен із п’яти в’їздів, і цього в бюджеті немає.</span> Бензиновий GX 450 проходить без питань.</p>
           <div class="task-side">
             <span class="pill pill-flag">Перевірити</span>
             <span class="task-when">до 31.08</span>
-            <span class="task-cost">ризик €175</span>
+            <span class="task-cost money">ризик €175</span>
           </div>
         </div>
 
         <div class="task">
           <span class="task-no">05</span>
           <h3>Підтвердити бронь бусу з лімітом у договорі</h3>
-          <p>Trafic на 11 діб, 19.09–29.09. Ключове формулювання — 350 км/добу рахуються сумарно за строк, а не щодня: різниця €81 проти €287 перепробігу. Це має бути в тексті договору, а не на словах.</p>
+          <p>Trafic на 11 діб, 19.09–29.09. Ключове формулювання — 350 км/добу рахуються сумарно за строк, а не щодня: <span class="money">різниця €81 проти €287 перепробігу.</span><span class="nomoney">перепробіг виходить утричі менший.</span> Це має бути в тексті договору, а не на словах.</p>
           <div class="task-side">
             <span class="pill pill-todo">Не почато</span>
             <span class="task-when">до 31.08</span>
-            <span class="task-cost">€616</span>
+            <span class="task-cost money">€616</span>
           </div>
         </div>
 
         <div class="task">
           <span class="task-no">06</span>
           <h3>Перевірити польський ПДВ на пальне</h3>
-          <p>Знижений ПДВ 8% діє до 31.08. У розрахунку вже закладено повернення до 23% з вересня. Якщо програму продовжать — пальне вийде приблизно на €50 дешевше; перерахувати першого числа.</p>
+          <p>Знижений ПДВ 8% діє до 31.08. У розрахунку вже закладено повернення до 23% з вересня. Якщо програму продовжать — пальне вийде<span class="money"> приблизно на €50</span> дешевше; перерахувати першого числа.</p>
           <div class="task-side">
             <span class="pill pill-flag">Перевірити</span>
             <span class="task-when">01.09</span>
-            <span class="task-cost">−€50</span>
+            <span class="task-cost money">−€50</span>
           </div>
         </div>
 
@@ -922,11 +926,11 @@
         <div class="task">
           <span class="task-no">08</span>
           <h3>Спланувати 22–23.09 для решти групи</h3>
-          <p>На майстер-класі тільки Кутько — отже дванадцять людей два дні в Брюсселі без програми. Частину займе монтаж стенду, але не два повні дні на дванадцятьох. Тут же спливає діра в бюджеті: обіди цих двох днів рахувалися як включені в майстер-клас, а тепер їх немає — це ще близько €360 на групу.</p>
+          <p>На майстер-класі тільки Кутько — отже дванадцять людей два дні в Брюсселі без програми. Частину займе монтаж стенду, але не два повні дні на дванадцятьох. Тут же спливає діра в бюджеті: обіди цих двох днів рахувалися як включені в майстер-клас, а тепер їх немає<span class="money"> — це ще близько €360 на групу</span>.</p>
           <div class="task-side">
             <span class="pill pill-block">Порожні дні</span>
             <span class="task-when">до 31.08</span>
-            <span class="task-cost">+€360 обіди</span>
+            <span class="task-cost money">+€360 обіди</span>
           </div>
         </div>
 
@@ -987,22 +991,22 @@
         <div class="task">
           <span class="task-no">13</span>
           <h3>Оплатити рахунок на 12 Premium і вирішити 13-ту перепустку</h3>
-          <p>Рахунок Odoo виставлений: 12 × €255 плюс ПДВ 21% — €3 702,60. Варіант із Basic знятий, розподіляти нікого не треба. Лишається оплатити в строк і окремо вирішити Мазуренка й Бориса: на події вони будуть, а в рахунку їх немає. Кожна додаткова перепустка — €255 плюс ПДВ, тобто €308,55.</p>
+          <p><span class="money">Рахунок Odoo виставлений: 12 × €255 плюс ПДВ 21% — €3 702,60.</span><span class="nomoney">Рахунок Odoo на 12 Premium виставлений.</span> Варіант із Basic знятий, розподіляти нікого не треба. Лишається оплатити в строк і окремо вирішити Мазуренка й Бориса: на події вони будуть, а в рахунку їх немає. <span class="money">Кожна додаткова перепустка — €255 плюс ПДВ, тобто €308,55.</span><span class="nomoney">За кожну додаткову перепустку — повна ціна плюс ПДВ.</span></p>
           <div class="task-side">
             <span class="pill pill-block">Рахунок виставлений</span>
             <span class="task-when">за строком рахунку</span>
-            <span class="task-cost">€3 703</span>
+            <span class="task-cost money">€3 703</span>
           </div>
         </div>
 
         <div class="task">
           <span class="task-no">14</span>
           <h3>З’ясувати, чи повертається бельгійський ПДВ</h3>
-          <p>У рахунку на перепустки €643 податку. Для неєвропейської компанії повернення ПДВ можливе не завжди й потребує окремої процедури зі строками — питання до фінансового блоку: Семенюк, Дерев’янко, Литвинчук. Якщо повертається, це мінус €643 з бюджету; якщо ні, сума лишається в ньому назавжди.</p>
+          <p><span class="money">У рахунку на перепустки €643 податку.</span><span class="nomoney">У рахунку на перепустки є бельгійський ПДВ.</span> Для неєвропейської компанії повернення ПДВ можливе не завжди й потребує окремої процедури зі строками — питання до фінансового блоку: Семенюк, Дерев’янко, Литвинчук. Якщо повертається, це мінус<span class="money"> €643</span> з бюджету; якщо ні, сума лишається в ньому назавжди.</p>
           <div class="task-side">
             <span class="pill pill-flag">До бухгалтерії</span>
             <span class="task-when">до 07.09</span>
-            <span class="task-cost">−€643?</span>
+            <span class="task-cost money">−€643?</span>
           </div>
         </div>
 
@@ -1013,18 +1017,18 @@
           <div class="task-side">
             <span class="pill pill-todo">Не почато</span>
             <span class="task-when">до 07.09</span>
-            <span class="task-cost">€155</span>
+            <span class="task-cost money">€155</span>
           </div>
         </div>
 
         <div class="task">
           <span class="task-no">16</span>
           <h3>Купити наліпки Umweltplakette на обидві машини</h3>
-          <p>Маршрут іде через Дрезден і Кельн, а там Umweltzone з обов’язковою зеленою наліпкою — вона потрібна й іноземним авто. Якщо йдемо не об’їзною, без неї в’їзд у місто це штраф. Сама наліпка коштує €6–20 залежно від сервісу, але оформлення й доставка займають час.</p>
+          <p>Маршрут іде через Дрезден і Кельн, а там Umweltzone з обов’язковою зеленою наліпкою — вона потрібна й іноземним авто. Якщо йдемо не об’їзною, без неї в’їзд у місто це штраф. Сама наліпка коштує<span class="money"> €6–20 залежно від сервісу</span><span class="nomoney"> дрібні гроші</span>, але оформлення й доставка займають час.</p>
           <div class="task-side">
             <span class="pill pill-flag">Перевірити</span>
             <span class="task-when">до 07.09</span>
-            <span class="task-cost">≈€30 на дві</span>
+            <span class="task-cost money">≈€30 на дві</span>
           </div>
         </div>
 
@@ -1042,33 +1046,33 @@
         <div class="task">
           <span class="task-no">18</span>
           <h3>Забронювати дві ночівлі в дорозі</h3>
-          <p>Вроцлав або Дрезден на 20.09, дзеркально на 27.09. Орієнтир з факту 2025 — €19 з особи за ніч, Катовіце, 556 zł на групу. Потрібне паркування на дві машини.</p>
+          <p>Вроцлав або Дрезден на 20.09, дзеркально на 27.09. <span class="money">Орієнтир з факту 2025 — €19 з особи за ніч, Катовіце, 556 zł на групу.</span><span class="nomoney">Орієнтир — факт 2025 року в Катовіце.</span> Потрібне паркування на дві машини.</p>
           <div class="task-side">
             <span class="pill pill-todo">Не почато</span>
             <span class="task-when">до 12.09</span>
-            <span class="task-cost">€456</span>
+            <span class="task-cost money">€456</span>
           </div>
         </div>
 
         <div class="task">
           <span class="task-no">19</span>
           <h3>Зелена карта на Lexus GX</h3>
-          <p>15 днів, категорія «легковий». Тарифи не регулюються МТСБУ з 2025 року, розкид ₴800–1 600 — варто порівняти кілька компаній.</p>
+          <p>15 днів, категорія «легковий». Тарифи не регулюються МТСБУ з 2025 року, розкид<span class="money"> ₴800–1 600</span><span class="nomoney"> між компаніями великий</span> — варто порівняти кілька компаній.</p>
           <div class="task-side">
             <span class="pill pill-todo">Не почато</span>
             <span class="task-when">до 15.09</span>
-            <span class="task-cost">€25</span>
+            <span class="task-cost money">€25</span>
           </div>
         </div>
 
         <div class="task">
           <span class="task-no">20</span>
           <h3>Медстраховки на 12 осіб, 9 днів</h3>
-          <p>Покриття €30 000 — за фактом 2025 це ₴290 з особи. Саме дванадцять: ті, хто добирається своїм ходом, оформлюють страховки собі самі. Оформлюється швидко, але без неї не пускають на кордоні, тож не лишати на останній день.</p>
+          <p><span class="money">Покриття €30 000 — за фактом 2025 це ₴290 з особи.</span><span class="nomoney">Стандартне покриття, як у 2025 році.</span> Саме дванадцять: ті, хто добирається своїм ходом, оформлюють страховки собі самі. Оформлюється швидко, але без неї не пускають на кордоні, тож не лишати на останній день.</p>
           <div class="task-side">
             <span class="pill pill-todo">Не почато</span>
             <span class="task-when">до 15.09</span>
-            <span class="task-cost">€72</span>
+            <span class="task-cost money">€72</span>
           </div>
         </div>
 
@@ -1097,7 +1101,7 @@
         <div class="task">
           <span class="task-no">23</span>
           <h3>Зареєструвати обидві машини в LEZ Брюсселя</h3>
-          <p>Машини на іноземних номерах зобов’язані зареєструватися до першого в’їзду — сама реєстрація безкоштовна, штраф за її відсутність €150 на машину. Робиться онлайн, але не в останню ніч перед виїздом.</p>
+          <p>Машини на іноземних номерах зобов’язані зареєструватися до першого в’їзду — сама реєстрація безкоштовна, штраф за її відсутність<span class="money"> €150 на машину</span><span class="nomoney"> відчутний</span>. Робиться онлайн, але не в останню ніч перед виїздом.</p>
           <div class="task-side">
             <span class="pill pill-todo">Не почато</span>
             <span class="task-when">до 19.09</span>
@@ -1108,7 +1112,7 @@
         <div class="task">
           <span class="task-no">24</span>
           <h3>Перерахувати бюджет під фінальний склад</h3>
-          <p>Дорожня частина зійшлася: дванадцять у двох машинах — це рівно те, на чому стоїть розрахунок. Перерахувати треба 13-ту і 14-ту перепустку по €308,55 з ПДВ, будинок на фактичну кількість місць і обіди 22–23.09, які випали разом із майстер-класом — ≈€360. Плюс стенд, якого в бюджеті немає взагалі.</p>
+          <p>Дорожня частина зійшлася: дванадцять у двох машинах — це рівно те, на чому стоїть розрахунок. <span class="money">Перерахувати треба 13-ту і 14-ту перепустку по €308,55 з ПДВ, будинок на фактичну кількість місць і обіди 22–23.09, які випали разом із майстер-класом — ≈€360.</span><span class="nomoney">Перерахувати треба 13-ту і 14-ту перепустку, будинок на фактичну кількість місць і обіди 22–23.09, які випали разом із майстер-класом.</span> Плюс стенд, якого в бюджеті немає взагалі.</p>
           <div class="task-side">
             <span class="pill pill-todo">Чекає на склад</span>
             <span class="task-when">після складу</span>
@@ -1133,8 +1137,8 @@
 
       <div class="stats">
         <div class="stat is-ok"><span class="k">Закрито</span><span class="v">14</span><span class="s">рішення і перевірені факти</span></div>
-        <div class="stat"><span class="k">Оплачено</span><span class="v">€0</span><span class="s">жодної броні ще немає</span></div>
-        <div class="stat is-ok"><span class="k">Зекономлено</span><span class="v">€206</span><span class="s">уточнення ліміту оренди</span></div>
+        <div class="stat"><span class="k">Оплачено</span><span class="v">0</span><span class="s">жодної броні ще немає</span></div>
+        <div class="stat is-ok money"><span class="k">Зекономлено</span><span class="v">€206</span><span class="s">уточнення ліміту оренди</span></div>
         <div class="stat"><span class="k">Стан на</span><span class="v">24.08</span><span class="s">2026 рік</span></div>
       </div>
     </section>
@@ -1184,8 +1188,8 @@
         <div class="task is-done">
           <span class="task-no">✓</span>
           <h3>На майстер-класі тільки Кутько</h3>
-          <p>Один учасник, €990 — і це окремий бюджет, у розрахунок поїздки не входить. Решта дванадцятьох 22–23.09 у Брюсселі вже є: приїжджаємо всі разом двома машинами, тож шість ночей у будинку і 11 діб оренди лишаються як були.</p>
-          <div class="task-side"><span class="pill pill-ok">Підтверджено</span><span class="task-when">€990 × 1</span></div>
+          <p>Один учасник<span class="money">, €990</span> — і це окремий бюджет, у розрахунок поїздки не входить. Решта дванадцятьох 22–23.09 у Брюсселі вже є: приїжджаємо всі разом двома машинами, тож шість ночей у будинку і 11 діб оренди лишаються як були.</p>
+          <div class="task-side"><span class="pill pill-ok">Підтверджено</span><span class="task-when money">€990 × 1</span><span class="task-when nomoney">один учасник</span></div>
         </div>
 
       </div>
@@ -1202,14 +1206,14 @@
           <span class="task-no">✓</span>
           <h3>Ліміт 350 км/добу рахується сумарно за строк</h3>
           <p>Підтверджено в прокатника: 350 множаться на 11 діб, а не перевіряються щодня. Для маршруту з чотирма ходовими днями по 1 100 км це принципово — за подобовим розрахунком перепробіг був би 3 000 км.</p>
-          <div class="task-side"><span class="pill pill-ok">Підтверджено</span><span class="task-cost">€81 замість €287</span></div>
+          <div class="task-side"><span class="pill pill-ok">Підтверджено</span><span class="task-cost money">€81 замість €287</span><span class="task-cost nomoney">утричі менше</span></div>
         </div>
 
         <div class="task is-done">
           <span class="task-no">✓</span>
           <h3>Строк оренди — 11 діб із добою запасу з обох боків</h3>
-          <p>Бус беремо 19.09 і здаємо 29.09. Дві зайві доби коштують €112, зате включений ліміт зростає на 700 км і перепробіг падає зі €148 до €81.</p>
-          <div class="task-side"><span class="pill pill-ok">Порахувано</span><span class="task-cost">спокій за €45</span></div>
+          <p>Бус беремо 19.09 і здаємо 29.09. Дві зайві доби<span class="money"> коштують €112</span><span class="nomoney"> платні</span>, зате включений ліміт зростає на 700 км і перепробіг падає<span class="money"> зі €148 до €81</span><span class="nomoney"> майже вдвічі</span>.</p>
+          <div class="task-side"><span class="pill pill-ok">Порахувано</span><span class="task-cost money">спокій за €45</span><span class="task-cost nomoney">дві доби запасу</span></div>
         </div>
 
         <div class="task is-done">
@@ -1222,21 +1226,21 @@
         <div class="task is-done">
           <span class="task-no">✓</span>
           <h3>Платні дороги: одна ділянка на весь маршрут</h3>
-          <p>Державні A4 і A2 безкоштовні для легкових з 2021 року, у Німеччині та Бельгії зборів із легкових немає. Платимо лише на концесійному A4 Kraków–Katowice, по 18 zł на двох пунктах. Паралельна DK94 з’їдає 40 хвилин і того не варта.</p>
-          <div class="task-side"><span class="pill pill-ok">Перевірено</span><span class="task-cost">€30</span></div>
+          <p>Державні A4 і A2 безкоштовні для легкових з 2021 року, у Німеччині та Бельгії зборів із легкових немає. Платимо лише на концесійному A4 Kraków–Katowice, <span class="money">по 18 zł на двох пунктах</span><span class="nomoney">на двох пунктах оплати</span>. Паралельна DK94 з’їдає 40 хвилин і того не варта.</p>
+          <div class="task-side"><span class="pill pill-ok">Перевірено</span><span class="task-cost money">€30</span><span class="task-cost nomoney">одна ділянка</span></div>
         </div>
 
         <div class="task is-done">
           <span class="task-no">✓</span>
           <h3>Стратегія заправки: Німеччину проходимо на запасі</h3>
-          <p>Німеччина — 39% кілометрів і найдорожчий літр: різниця близько 50 центів. Бак Trafic на 80 л, залитий у Польщі замість Німеччини, економить €38.</p>
-          <div class="task-side"><span class="pill pill-ok">Вирішено</span><span class="task-cost">−€38 за бак</span></div>
+          <p>Німеччина — 39% кілометрів і найдорожчий літр<span class="money">: різниця близько 50 центів</span>. Бак Trafic на 80 л варто заливати в Польщі, а не в Німеччині<span class="money">: це економить €38</span>.</p>
+          <div class="task-side"><span class="pill pill-ok">Вирішено</span><span class="task-cost money">−€38 за бак</span><span class="task-cost nomoney">бак у Польщі</span></div>
         </div>
 
         <div class="task is-done">
           <span class="task-no">✓</span>
           <h3>Ціни пального і курс зафіксовані</h3>
-          <p>Середньозважено за маршрутом: дизель €2,01, бензин €1,85. Курс НБУ ₴52,24/€ на 24.08.2026. Джерела — index.minfin, cenypaliw.fyi, ADAC, FOD Economie.</p>
+          <p><span class="money">Середньозважено за маршрутом: дизель €2,01, бензин €1,85. Курс НБУ ₴52,24/€ на 24.08.2026.</span><span class="nomoney">Ціни пального й курс НБУ зафіксовані станом на 24.08.2026.</span> Джерела — index.minfin, cenypaliw.fyi, ADAC, FOD Economie.</p>
           <div class="task-side"><span class="pill pill-ok">Зафіксовано</span><span class="task-when">24.08.2026</span></div>
         </div>
 
@@ -1250,8 +1254,8 @@
         <div class="task is-done">
           <span class="task-no">✓</span>
           <h3>Варіант за квитками вирішений: усі на Premium</h3>
-          <p>Рахунок Odoo виставлений на 12 Premium, тож Basic не бере ніхто: кейноут, обіди, напої та вечірка є в кожного. Заодно з’ясувалося, що €255 — ціна без ПДВ, а з бельгійськими 21% перепустка коштує €308,55.</p>
-          <div class="task-side"><span class="pill pill-ok">За рахунком</span><span class="task-cost">€3 702,60</span></div>
+          <p>Рахунок Odoo виставлений на 12 Premium, тож Basic не бере ніхто: кейноут, обіди, напої та вечірка є в кожного. <span class="money">Заодно з’ясувалося, що €255 — ціна без ПДВ, а з бельгійськими 21% перепустка коштує €308,55.</span><span class="nomoney">Заодно з’ясувалося, що ціна перепустки вказана без ПДВ, а бельгійські 21% додаються зверху.</span></p>
+          <div class="task-side"><span class="pill pill-ok">За рахунком</span><span class="task-cost money">€3 702,60</span><span class="task-cost nomoney">12 Premium</span></div>
         </div>
 
       </div>
@@ -1260,20 +1264,9 @@
   </div>
 
   <!-- ========== 3. УЧАСНИКИ ========== -->
-  <div class="panel is-locked" id="p-people" role="tabpanel" aria-labelledby="tab-people" tabindex="0" hidden>
+  <div class="panel" id="p-people" role="tabpanel" aria-labelledby="tab-people" tabindex="0" hidden>
 
-      <div class="lock">
-        <svg class="lock-ico" width="26" height="32" viewBox="0 0 10 12" fill="none" aria-hidden="true"><path d="M2 5V3.5a3 3 0 016 0V5" stroke="currentColor" stroke-width="1.1"/><rect x=".8" y="5" width="8.4" height="6.4" rx="1.4" fill="currentColor"/></svg>
-        <h2>Учасники — під кодом</h2>
-        <p>Тут прізвища, посади й ролі всіх чотирнадцятьох. Введіть код — і всі три закриті вкладки відкриються разом.</p>
-        <form class="lock-form" autocomplete="off">
-          <input type="password" inputmode="text" placeholder="код" aria-label="Код доступу" autocomplete="off">
-          <button type="submit">Відкрити</button>
-        </form>
-        <span class="err" role="status" aria-live="polite"></span>
-      </div>
-
-
+      
     <section>
       <div class="sec-head">
         <h2>Учасники</h2>
@@ -1330,8 +1323,8 @@
           </thead>
           <tbody>
             <tr><td>Розсадка<span class="sub">буса 9 місць, GX 7</span></td><td>8 у бусі + 4 в GX</td><td>8 + 4 — збігається, борт повний</td></tr>
-            <tr><td>Пальне і оренда<span class="sub">ті самі дві машини, ті самі 4 700 км</span></td><td class="n">€2 981</td><td class="n">€2 981 — без змін</td></tr>
-            <tr><td>Люди, крім квитків<span class="sub">€274 на особу: ночівлі в дорозі, їжа, медстраховка</span></td><td class="n">€3 288</td><td class="n">€3 288 — без змін</td></tr>
+            <tr class="money"><td>Пальне і оренда<span class="sub">ті самі дві машини, ті самі 4 700 км</span></td><td class="n">€2 981</td><td class="n">€2 981 — без змін</td></tr><tr class="nomoney"><td>Пальне і оренда<span class="sub">ті самі дві машини, ті самі 4 700 км</span></td><td class="n">як було</td><td class="n">без змін</td></tr>
+            <tr class="money"><td>Люди, крім квитків<span class="sub">€274 на особу: ночівлі в дорозі, їжа, медстраховка</span></td><td class="n">€3 288</td><td class="n">€3 288 — без змін</td></tr><tr class="nomoney"><td>Люди, крім квитків<span class="sub">ночівлі в дорозі, їжа, медстраховка</span></td><td class="n">як було</td><td class="n">без змін</td></tr>
             <tr class="mark"><td>Перепустки на подію<span class="sub">рахунок виставлений на 12; Мазуренко і Борис у ньому не враховані</span></td><td>на 12 осіб</td><td>потрібно 13, з Борисом — 14</td></tr>
             <tr class="mark"><td>Будинок<span class="sub">ті, хто своїм ходом, живуть з нами</span></td><td>12 місць</td><td>13 місць, з Борисом — 14</td></tr>
             <tr class="mark"><td>Стенд<span class="sub">четверо на стенді плюс Startup village</span></td><td>невідомо, чи буде</td><td>підтверджено, у бюджеті немає</td></tr>
@@ -1346,7 +1339,7 @@
 
       <div class="verdict">
         <h3>Дорога сходиться, подія — ні</h3>
-        <p>Дванадцять у двох машинах — це саме те, на чому стоїть розрахунок: пальне, оренда, ночівлі в дорозі, їжа і страховки не змінюються ні на євро. Розходиться інше — на події буде 13 або 14 людей, а перепустки куплені на 12. Зайвий Premium це €255, зайвий Basic — безкоштовно плюс €45 обідів за три дні.</p>
+        <p>Дванадцять у двох машинах — це саме те, на чому стоїть розрахунок: пальне, оренда, ночівлі в дорозі, їжа і страховки не змінюються ні на євро. Розходиться інше — на події буде 13 або 14 людей, а перепустки куплені на 12. <span class="money">Зайвий Premium це €255, зайвий Basic — безкоштовно плюс €45 обідів за три дні.</span><span class="nomoney">Кожна зайва перепустка — це витрати, яких у розрахунку немає.</span></p>
       </div>
 
       <div class="note">
@@ -1377,7 +1370,7 @@
         </tbody>
       </table>
     </div>
-    <p>Шість ночей у будинку і 11 діб оренди тримаються не на майстер-класі, а на тому, що їдемо всі разом двома машинами: група в Брюсселі з вечора 21.09, і виїхати пізніше окремо ніхто не може. Майстер-клас 22–23.09 — тільки в Кутька, €990, і це окремий бюджет. Що робить решта дванадцятьох ці два дні — відкритий пункт плану.</p>
+    <p>Шість ночей у будинку і 11 діб оренди тримаються не на майстер-класі, а на тому, що їдемо всі разом двома машинами: група в Брюсселі з вечора 21.09, і виїхати пізніше окремо ніхто не може. Майстер-клас 22–23.09 — тільки в Кутька<span class="money">, €990</span>, і це окремий бюджет. Що робить решта дванадцятьох ці два дні — відкритий пункт плану.</p>
   </section>
 
   <section>
@@ -1397,19 +1390,19 @@
     <div class="t-wrap">
       <table>
         <thead>
-          <tr><th>Пальне за маршрутом</th><th class="n">Частка км</th><th class="n">Дизель</th><th class="n">Бензин 95</th></tr>
+          <tr><th>Пальне за маршрутом</th><th class="n">Частка км</th><th class="n money">Дизель</th><th class="n money">Бензин 95</th></tr>
         </thead>
         <tbody>
-          <tr><td>Україна<span class="sub">₴91,90 і ₴80,05 за курсом ₴52,24/€</span></td><td class="n">28%</td><td class="n">€1,76</td><td class="n">€1,53</td></tr>
-          <tr><td>Польща<span class="sub">оцінка на вересень, після повернення ПДВ 23%</span></td><td class="n">24%</td><td class="n">€1,78</td><td class="n">€1,54</td></tr>
-          <tr class="mark"><td>Німеччина<span class="sub">ADAC, найдорожча ділянка</span></td><td class="n">39%</td><td class="n">€2,24</td><td class="n">€2,20</td></tr>
-          <tr><td>Бельгія<span class="sub">трохи нижче офіційного максимуму</span></td><td class="n">10%</td><td class="n">€2,16</td><td class="n">€1,92</td></tr>
-          <tr class="total"><td>Середньозважено за маршрутом</td><td class="n">100%</td><td class="n">€2,01</td><td class="n">€1,85</td></tr>
+          <tr><td>Україна<span class="sub money">₴91,90 і ₴80,05 за курсом ₴52,24/€</span></td><td class="n">28%</td><td class="n money">€1,76</td><td class="n money">€1,53</td></tr>
+          <tr><td>Польща<span class="sub">оцінка на вересень, після повернення ПДВ 23%</span></td><td class="n">24%</td><td class="n money">€1,78</td><td class="n money">€1,54</td></tr>
+          <tr class="mark"><td>Німеччина<span class="sub">ADAC, найдорожча ділянка</span></td><td class="n">39%</td><td class="n money">€2,24</td><td class="n money">€2,20</td></tr>
+          <tr><td>Бельгія<span class="sub">трохи нижче офіційного максимуму</span></td><td class="n">10%</td><td class="n money">€2,16</td><td class="n money">€1,92</td></tr>
+          <tr class="total"><td>Середньозважено за маршрутом</td><td class="n">100%</td><td class="n money">€2,01</td><td class="n money">€1,85</td></tr>
         </tbody>
       </table>
     </div>
-    <p>Німеччина — 39% кілометрів і найдорожчий літр, тож заправлятися треба максимально в Україні та Польщі: різниця з німецькою колонкою близько 50 центів на літрі. Бак Trafic на 80 л, залитий у Польщі замість Німеччини, економить €38.</p>
-    <p>Платних доріг на маршруті майже немає: державні ділянки A4 і A2 безкоштовні для легкових з 2021 року, у Німеччині та Бельгії зборів із легкових немає взагалі. Платити доведеться один раз — на концесійному A4 Kraków–Katowice, по 18 zł на пунктах оплати в Мисловицях і Балицях. Паралельна безкоштовна DK94 з’їдає близько 40 хвилин і того не варта.</p>
+    <p>Німеччина — 39% кілометрів і найдорожчий літр, тож заправлятися треба максимально в Україні та Польщі: різниця з німецькою колонкою відчутна<span class="money">, близько 50 центів на літрі</span>. Бак Trafic на 80 л варто заливати в Польщі, а не в Німеччині<span class="money">: це економить €38</span>.</p>
+    <p>Платних доріг на маршруті майже немає: державні ділянки A4 і A2 безкоштовні для легкових з 2021 року, у Німеччині та Бельгії зборів із легкових немає взагалі. Платити доведеться один раз — на концесійному A4 Kraków–Katowice, <span class="money">по 18 zł </span>на пунктах оплати в Мисловицях і Балицях. Паралельна безкоштовна DK94 з’їдає близько 40 хвилин і того не варта.</p>
   </section>
 
   <section>
@@ -1424,14 +1417,14 @@
           <tr><td>Пробіг бусу<span class="sub">4 400 км маршрут + ~300 км на місці: п’ять поїздок до Expo і назад</span></td><td class="n">4 700 км</td></tr>
           <tr><td>Включено в оренду<span class="sub">350 км × 11 діб, сумарно за строк</span></td><td class="n">3 850 км</td></tr>
           <tr><td>Перепробіг</td><td class="n">850 км</td></tr>
-          <tr class="total"><td>До оплати по ₴500 за 100 км<span class="sub">₴4 250 за курсом ₴52,24/€</span></td><td class="n">€81</td></tr>
+          <tr class="total money"><td>До оплати по ₴500 за 100 км<span class="sub">₴4 250 за курсом ₴52,24/€</span></td><td class="n">€81</td></tr>
         </tbody>
       </table>
     </div>
     <div class="verdict">
       <h3>Ліміт рахується сумарно за весь строк оренди</h3>
-      <p>Підтверджено: 350 км множаться на 11 діб, а не перевіряються кожен день окремо. Для маршруту з чотирма ходовими днями по 1 100 км це принципово — за подобовим розрахунком перепробіг був би 3 000 км, тобто ₴15 000 ≈ €287 замість €81. Це формулювання варто побачити в договорі, але в бюджет іде €81.</p>
-      <p>Запас у дві доби майже окуповує себе: бус беремо 19.09 і здаємо 29.09, це €112 зверху, зате включений ліміт зростає на 700 км і перепробіг падає зі €148 до €81. Чиста ціна спокою — €45.</p>
+      <p>Підтверджено: 350 км множаться на 11 діб, а не перевіряються кожен день окремо. Для маршруту з чотирма ходовими днями по 1 100 км це принципово — за подобовим розрахунком перепробіг був би 3 000 км замість 850<span class="money">, тобто ₴15 000 ≈ €287 замість €81</span>. Це формулювання варто побачити в договорі<span class="money">, але в бюджет іде €81</span>.</p>
+      <p>Запас у дві доби майже окуповує себе: бус беремо 19.09 і здаємо 29.09<span class="money">, це €112 зверху</span>, зате включений ліміт зростає на 700 км і перепробіг падає<span class="money"> зі €148 до €81</span><span class="nomoney"> майже вдвічі</span>.<span class="money"> Чиста ціна спокою — €45.</span></p>
     </div>
   </section>
 
@@ -1440,22 +1433,22 @@
     <div class="t-wrap">
       <table>
         <thead>
-          <tr><th>Машина</th><th class="n">Їде</th><th class="n">Витрата</th><th class="n">Пальне на 4 700 км</th><th class="n">€</th></tr>
+          <tr><th>Машина</th><th class="n">Їде</th><th class="n">Витрата</th><th class="n">Пальне на 4 700 км</th><th class="n money">€</th></tr>
         </thead>
         <tbody>
           <tr>
-            <td>Renault Trafic 1.6 dCi<span class="sub">оренда €56/добу, механіка; 9 місць — 8 пасажирів + водій</span></td>
-            <td class="n">8</td><td class="n">9 л/100</td><td class="n">423 л дизеля</td><td class="n">850</td>
+            <td>Renault Trafic 1.6 dCi<span class="sub"><span class="money">оренда €56/добу, </span>механіка; 9 місць — 8 пасажирів + водій</span></td>
+            <td class="n">8</td><td class="n">9 л/100</td><td class="n">423 л дизеля</td><td class="n money">850</td>
           </tr>
           <tr>
             <td>Lexus GX 450<span class="sub">власний, бензин; 7 місць</span></td>
-            <td class="n">4</td><td class="n">12 л/100</td><td class="n">564 л бензину</td><td class="n">1 044</td>
+            <td class="n">4</td><td class="n">12 л/100</td><td class="n">564 л бензину</td><td class="n money">1 044</td>
           </tr>
-          <tr class="total"><td>Пальне, обидві машини</td><td class="n">12</td><td class="n"></td><td class="n">987 л</td><td class="n">1 894</td></tr>
+          <tr class="total"><td>Пальне, обидві машини</td><td class="n">12</td><td class="n"></td><td class="n">987 л</td><td class="n money">1 894</td></tr>
         </tbody>
       </table>
     </div>
-    <p>Розсадка: <b>8 у бусі, 4 в Lexus</b> — за місцями це не межа ні там, ні там, і вільний ряд у бусі якраз іде під багаж. На трасі при 130 км/год витрата GX піде радше до 14 л/100 — за нинішніх цін це ще €175 понад розрахунок.</p>
+    <p>Розсадка: <b>8 у бусі, 4 в Lexus</b> — за місцями це не межа ні там, ні там, і вільний ряд у бусі якраз іде під багаж. На трасі при 130 км/год витрата GX піде радше до 14 л/100 — це ще витрати понад розрахунок<span class="money">, близько €175</span>.</p>
   </section>
 
 
@@ -1468,7 +1461,7 @@
       <div class="lock">
         <svg class="lock-ico" width="26" height="32" viewBox="0 0 10 12" fill="none" aria-hidden="true"><path d="M2 5V3.5a3 3 0 016 0V5" stroke="currentColor" stroke-width="1.1"/><rect x=".8" y="5" width="8.4" height="6.4" rx="1.4" fill="currentColor"/></svg>
         <h2>Бюджет — під кодом</h2>
-        <p>Тут суми поїздки, рахунок на перепустки і розрахунок на особу. Введіть код — і всі три закриті вкладки відкриються разом.</p>
+        <p>Тут суми поїздки, рахунок на перепустки і розрахунок на особу. Код відкриває цю вкладку, «Витрати» і всі суми в документі.</p>
         <form class="lock-form" autocomplete="off">
           <input type="password" inputmode="text" placeholder="код" aria-label="Код доступу" autocomplete="off">
           <button type="submit">Відкрити</button>
@@ -1581,7 +1574,7 @@
       <div class="lock">
         <svg class="lock-ico" width="26" height="32" viewBox="0 0 10 12" fill="none" aria-hidden="true"><path d="M2 5V3.5a3 3 0 016 0V5" stroke="currentColor" stroke-width="1.1"/><rect x=".8" y="5" width="8.4" height="6.4" rx="1.4" fill="currentColor"/></svg>
         <h2>Витрати — під кодом</h2>
-        <p>Тут фактичні платежі, хто платив і чи зійшлося з планом. Введіть код — і всі три закриті вкладки відкриються разом.</p>
+        <p>Тут фактичні платежі, хто платив і чи зійшлося з планом. Код відкриває цю вкладку, «Бюджет» і всі суми в документі.</p>
         <form class="lock-form" autocomplete="off">
           <input type="password" inputmode="text" placeholder="код" aria-label="Код доступу" autocomplete="off">
           <button type="submit">Відкрити</button>
@@ -1675,8 +1668,8 @@
 
   </div>
   <footer>
-    <span>Розрахунок від 24 серпня 2026. Odoo Experience 24–26.09, Brussels Expo; Premium 3 дні €255 онлайн (€285 на місці), Basic безкоштовно — за даними odoo.com. Майстер-клас 22–23.09 — один учасник, €990, до цього бюджету не входить.</span>
-    <span>До Expo їздимо власними машинами, Parking C — €12 на добу. Платні дороги — лише A4 Kraków–Katowice, тариф Stalexport з 01.04.2026. Зелені карти по ₴1 300 за 15 днів (тарифи не регулюються з 01.01.2025, порівнюйте компанії), медстраховка та ночівлі в дорозі — за фактичними оплатами поїздки на OXP 2025. Оренда: Trafic €56/добу на 11 діб (9 днів поїздки плюс доба запасу до і після), ліміт 350 км/добу, перепробіг ₴500 за 100 км. Витрата: бус 9 л/100 дизеля, GX 450 — 12 л/100 бензину. Ціни пального на 24.08.2026: Україна — index.minfin (₴91,90 дизель, ₴80,05 А95) за курсом НБУ ₴52,24/€; Польща — 7,61 і 6,58 zł за курсом 4,88 zł/€ плюс поправка на повернення ПДВ з вересня; Німеччина — ADAC; Бельгія — офіційні максимуми FOD Economie.</span>
+    <span class="money">Розрахунок від 24 серпня 2026. Odoo Experience 24–26.09, Brussels Expo; Premium 3 дні €255 онлайн (€285 на місці), Basic безкоштовно — за даними odoo.com. Майстер-клас 22–23.09 — один учасник, €990, до цього бюджету не входить.</span><span class="nomoney">Розрахунок від 24 серпня 2026. Odoo Experience 24–26.09, Brussels Expo; Premium 3 дні платний, Basic безкоштовно — за даними odoo.com. Майстер-клас 22–23.09 — один учасник, окремим бюджетом.</span>
+    <span class="money">До Expo їздимо власними машинами, Parking C — €12 на добу. Платні дороги — лише A4 Kraków–Katowice, тариф Stalexport з 01.04.2026. Зелені карти по ₴1 300 за 15 днів (тарифи не регулюються з 01.01.2025, порівнюйте компанії), медстраховка та ночівлі в дорозі — за фактичними оплатами поїздки на OXP 2025. Оренда: Trafic €56/добу на 11 діб (9 днів поїздки плюс доба запасу до і після), ліміт 350 км/добу, перепробіг ₴500 за 100 км. Витрата: бус 9 л/100 дизеля, GX 450 — 12 л/100 бензину. Ціни пального на 24.08.2026: Україна — index.minfin (₴91,90 дизель, ₴80,05 А95) за курсом НБУ ₴52,24/€; Польща — 7,61 і 6,58 zł за курсом 4,88 zł/€ плюс поправка на повернення ПДВ з вересня; Німеччина — ADAC; Бельгія — офіційні максимуми FOD Economie.</span><span class="nomoney">До Expo їздимо власними машинами, Parking C платний. Платні дороги — лише A4 Kraków–Katowice, тариф Stalexport з 01.04.2026. Зелені карти на 15 днів (тарифи не регулюються з 01.01.2025, порівнюйте компанії), медстраховка та ночівлі в дорозі — за фактичними оплатами поїздки на OXP 2025. Оренда: Trafic на 11 діб (9 днів поїздки плюс доба запасу до і після), ліміт 350 км/добу. Витрата: бус 9 л/100 дизеля, GX 450 — 12 л/100 бензину. Ціни пального на 24.08.2026 — джерела: index.minfin (Україна), cenypaliw.fyi (Польща), ADAC (Німеччина), FOD Economie (Бельгія).</span>
   </footer>
 </div>
 
