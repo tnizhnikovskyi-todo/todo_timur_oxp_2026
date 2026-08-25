@@ -1,0 +1,15 @@
+# Воркер без коду — тільки статика зі dist/.
+#
+# Cloudflare веде нові проєкти через Workers, а не Pages, тому деплой іде
+# командою `npx wrangler deploy`. Секція [assets] без ключа `main` означає:
+# скрипта немає, віддавай файли з каталогу як є.
+#
+# Ім'я має збігатися з назвою проєкту в панелі Cloudflare.
+
+name = "todo-timur-oxp-2026"
+compatibility_date = "2026-08-25"
+
+[assets]
+directory = "./dist"
+
+# not_found_handling = "404-page" — сторінка одна, спеціальної обробки не треба.
