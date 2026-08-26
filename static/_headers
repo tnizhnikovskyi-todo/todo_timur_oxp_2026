@@ -2,3 +2,11 @@
   X-Robots-Tag: noindex, nofollow, noarchive, nosnippet
   Referrer-Policy: no-referrer
   X-Content-Type-Options: nosniff
+
+# Документ змінюється по кілька разів на день, і кешована сторінка означає,
+# що людина бачить старі цифри або старий код доступу, не знаючи про це.
+# no-cache не забороняє кеш, а вимагає щоразу перепитати сервер, чи змінилося.
+/
+  Cache-Control: no-cache
+/index.html
+  Cache-Control: no-cache
