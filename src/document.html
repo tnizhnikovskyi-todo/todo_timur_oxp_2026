@@ -288,6 +288,42 @@
   }
   .route-ends b { color: var(--ink); font-weight: 700; }
 
+  /* ---------- посилання на карти ---------- */
+
+  .maplinks { display: grid; gap: 0.5rem; margin-top: 1.2rem; }
+  .maplink {
+    display: flex; align-items: baseline; gap: 0.9rem;
+    padding: 0.7rem 0.9rem;
+    border: 1px solid var(--rule);
+    border-radius: 10px;
+    background: var(--surface);
+    color: var(--ink);
+    text-decoration: none;
+  }
+  .maplink:hover { border-color: var(--accent); background: var(--surface-sunk); }
+  .maplink .when {
+    flex: 0 0 auto; min-width: 5rem;
+    font-family: var(--mono); font-size: 0.72rem; font-weight: 600;
+    color: var(--ink-soft); white-space: nowrap;
+  }
+  .maplink .what { flex: 1 1 auto; min-width: 0; }
+  .maplink .what b { display: block; font-size: 0.9rem; font-weight: 700; }
+  .maplink .what span {
+    display: block; margin-top: 0.15rem;
+    font-size: 0.78rem; color: var(--ink-soft);
+  }
+  .maplink .km {
+    flex: 0 0 auto;
+    font-family: var(--mono); font-size: 0.76rem; font-weight: 600;
+    color: var(--accent); white-space: nowrap;
+  }
+
+  @media (max-width: 560px) {
+    .maplink { flex-wrap: wrap; gap: 0.3rem 0.8rem; }
+    .maplink .when { min-width: 0; }
+    .maplink .what { flex-basis: 100%; }
+  }
+
   /* ---------- смуга пробігу ---------- */
 
   .mbar {
@@ -1438,6 +1474,33 @@
         <span><b>Київ</b> → Львів → Краковець → Краків → <b>Вроцлав</b></span>
         <span>Дрезден → Кельн → Ейндговен → <b>Niel</b></span>
       </div>
+    </div>
+    <div class="maplinks">
+      <a class="maplink" href="https://www.google.com/maps/dir/?api=1&amp;travelmode=driving&amp;origin=Kyiv,+Ukraine&amp;destination=Wroclaw,+Poland&amp;waypoints=Lviv,+Ukraine%7CKrakovets,+Ukraine%7CRzeszow,+Poland%7CKrakow,+Poland" target="_blank" rel="noreferrer">
+        <span class="when">19–20.09</span>
+        <span class="what"><b>Київ → Краковець → Вроцлав</b><span>Львів, Краковець, Ряшів, Краків — A4 без об’їздів</span></span>
+        <span class="km">1 100 км ↗</span>
+      </a>
+      <a class="maplink" href="https://www.google.com/maps/dir/?api=1&amp;travelmode=driving&amp;origin=Wroclaw,+Poland&amp;destination=Kerkstraat+23,+2845+Niel,+Belgium&amp;waypoints=Dresden,+Germany%7CCologne,+Germany%7CVenlo,+Netherlands%7CEindhoven,+Netherlands%7CAntwerp,+Belgium" target="_blank" rel="noreferrer">
+        <span class="when">21.09</span>
+        <span class="what"><b>Вроцлав → Niel</b><span>Дрезден, Кельн, Венло, Ейндговен, Антверпен — в обхід брюссельського рингу</span></span>
+        <span class="km">1 100 км ↗</span>
+      </a>
+      <a class="maplink" href="https://www.google.com/maps/dir/?api=1&amp;travelmode=driving&amp;origin=Kerkstraat+23,+2845+Niel,+Belgium&amp;destination=Brussels+Expo,+Place+de+Belgique+1,+1020+Brussels,+Belgium" target="_blank" rel="noreferrer">
+        <span class="when">22–26.09</span>
+        <span class="what"><b>Niel → Brussels Expo</b><span>Kerkstraat 23 → Place de Belgique, по A12; так п’ять днів підряд</span></span>
+        <span class="km">~30 км ↗</span>
+      </a>
+      <a class="maplink" href="https://www.google.com/maps/dir/?api=1&amp;travelmode=driving&amp;origin=Kerkstraat+23,+2845+Niel,+Belgium&amp;destination=Wroclaw,+Poland&amp;waypoints=Antwerp,+Belgium%7CEindhoven,+Netherlands%7CVenlo,+Netherlands%7CCologne,+Germany%7CDresden,+Germany" target="_blank" rel="noreferrer">
+        <span class="when">27.09</span>
+        <span class="what"><b>Niel → Вроцлав</b><span>той самий шлях у зворотному порядку</span></span>
+        <span class="km">1 100 км ↗</span>
+      </a>
+      <a class="maplink" href="https://www.google.com/maps/dir/?api=1&amp;travelmode=driving&amp;origin=Wroclaw,+Poland&amp;destination=Kyiv,+Ukraine&amp;waypoints=Krakow,+Poland%7CRzeszow,+Poland%7CKrakovets,+Ukraine%7CLviv,+Ukraine" target="_blank" rel="noreferrer">
+        <span class="when">28.09</span>
+        <span class="what"><b>Вроцлав → Київ</b><span>Краків, Ряшів, Краковець, Львів</span></span>
+        <span class="km">1 100 км ↗</span>
+      </a>
     </div>
     <div class="t-wrap">
       <table>
