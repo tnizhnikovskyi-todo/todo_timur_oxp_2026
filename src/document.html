@@ -340,6 +340,12 @@
     white-space: nowrap; overflow: hidden;
   }
   .m-inc { flex: 3850 1 0; background: var(--surface-sunk); color: var(--ink); }
+  /* Друга смуга того ж типу — поділ бюджету на «до виїзду» і «в дорозі».
+     Колір беремо не акцентний: акцент у .m-over означає перевитрату,
+     а тут обидві частини однаково планові. */
+  .m-pre  { flex: 7769 1 0; background: var(--surface-sunk); color: var(--ink); }
+  .m-trip { flex: 6156 1 0; background: color-mix(in srgb, var(--flag) 14%, var(--surface)); color: var(--ink); border-left: 1px solid var(--rule-strong); }
+
   .m-over { flex: 850 1 0; background: color-mix(in srgb, var(--accent) 20%, var(--surface)); color: var(--ink); border-left: 1px solid var(--rule-strong); }
 
   /* ---------- таблиці ---------- */
@@ -826,13 +832,13 @@
     <p class="lede">Десять днів, дві машини, будинок на всіх. Тут план дій, маршрут, запланований бюджет і облік фактичних витрат. Майстер-клас 22–23.09 — тільки в Кутька, окремим бюджетом.</p>
 
     <div class="meta-row">
-      <span class="money">Бюджет плану <b>€13 659</b></span>
+      <span class="money">Бюджет плану <b>€13 925</b></span>
       <span class="money">Витрачено <b>€441</b></span>
       <span>До виїзду <b class="js-days">26 днів</b></span>
       <span class="money">Курс НБУ <b>₴52,24/€</b></span>
       <span>Склад <b>13</b></span>
       <span>Ціни на <b>24.08.2026</b></span>
-      <span>Оновлено <b class="js-updated">02.09.2026</b></span>
+      <span>Оновлено <b class="js-updated">09.09.2026</b></span>
     </div>
   </header>
 
@@ -843,9 +849,9 @@
       <button class="tab" type="button" role="tab" id="tab-people" aria-controls="p-people" aria-selected="false" tabindex="-1">Учасники <span class="cnt">13</span></button>
       <button class="tab" type="button" role="tab" id="tab-route" aria-controls="p-route" aria-selected="false" tabindex="-1">Маршрут</button>
       <button class="tab" type="button" role="tab" id="tab-budget" aria-controls="p-budget" aria-selected="false" tabindex="-1"><svg class="lk" viewBox="0 0 10 12" fill="none" aria-hidden="true"><path d="M2 5V3.5a3 3 0 016 0V5" stroke="currentColor" stroke-width="1.3"/><rect x=".8" y="5" width="8.4" height="6.4" rx="1.4" fill="currentColor"/></svg>Бюджет</button>
-      <button class="tab" type="button" role="tab" id="tab-spend" aria-controls="p-spend" aria-selected="false" tabindex="-1"><svg class="lk" viewBox="0 0 10 12" fill="none" aria-hidden="true"><path d="M2 5V3.5a3 3 0 016 0V5" stroke="currentColor" stroke-width="1.3"/><rect x=".8" y="5" width="8.4" height="6.4" rx="1.4" fill="currentColor"/></svg>Витрати <span class="cnt">1</span></button>
+      <button class="tab" type="button" role="tab" id="tab-spend" aria-controls="p-spend" aria-selected="false" tabindex="-1"><svg class="lk" viewBox="0 0 10 12" fill="none" aria-hidden="true"><path d="M2 5V3.5a3 3 0 016 0V5" stroke="currentColor" stroke-width="1.3"/><rect x=".8" y="5" width="8.4" height="6.4" rx="1.4" fill="currentColor"/></svg>Витрати <span class="cnt">2</span></button>
       <button class="tab" type="button" role="tab" id="tab-kitchen" aria-controls="p-kitchen" aria-selected="false" tabindex="-1">Кухня</button>
-      <button class="tab" type="button" role="tab" id="tab-docs"  aria-controls="p-docs"  aria-selected="false" tabindex="-1">Документи і бронювання <span class="cnt">1</span></button>
+      <button class="tab" type="button" role="tab" id="tab-docs"  aria-controls="p-docs"  aria-selected="false" tabindex="-1">Документи і бронювання <span class="cnt">3</span></button>
     </div>
   </div>
 
@@ -857,11 +863,11 @@
         <h2>План дій</h2>
         <span class="eyebrow">24 відкритих пунктів</span>
       </div>
-      <p>Порядок тут не за темами, а за тим, що від чого залежить. Дорога вирішена повністю — виїзд, кордон, перша ночівля, — усе це в «Пройдено», а маршрут перерахований під Краковець і Вроцлав. Нагорі лишився один пункт: чим зайняті дванадцятеро 22–23.09. Строки шести пунктів, що стояли на 31.08 і 01.09, уже минули — перенесені на 04.09, і далі відкладати їх нема куди.</p>
+      <p>Порядок тут не за темами, а за тим, що від чого залежить. Дорога вирішена повністю — виїзд, кордон, перша ночівля, — усе це в «Пройдено», а маршрут перерахований під Краковець і Вроцлав. Нагорі лишився один пункт: чим зайняті дванадцятеро 22–23.09 — він висить уже тиждень. До виїзду десять днів, тому всі прострочені строки зсунуті в межі 10–12.09: далі відкладати нема куди, а 16.09 — уже останній рубіж для страховок і зелених карт.</p>
 
       <div class="stats">
-        <div class="stat is-accent"><span class="k">Вирішити сьогодні</span><span class="v">1</span><span class="s">чим зайняті 22–23.09</span></div>
-        <div class="stat"><span class="k">Усього відкрито</span><span class="v">24</span><span class="s">станом на <span class="js-updated">02.09.2026</span></span></div>
+        <div class="stat is-accent"><span class="k">Вирішити негайно</span><span class="v">1</span><span class="s">чим зайняті 22–23.09</span></div>
+        <div class="stat"><span class="k">Усього відкрито</span><span class="v">24</span><span class="s">станом на <span class="js-updated">09.09.2026</span></span></div>
         <div class="stat"><span class="k">До виїзду</span><span class="v js-days">26 днів</span><span class="s">виїзд 19.09, 22:00</span></div>
         <div class="stat is-accent money"><span class="k">Не в бюджеті</span><span class="v">€175</span><span class="s">LEZ, якщо бус Euro 5</span></div><div class="stat is-accent nomoney"><span class="k">Поза бюджетом</span><span class="v">2</span><span class="s">обіди 22–23.09, LEZ</span></div>
       </div>
@@ -873,8 +879,8 @@
 
     <section>
       <div class="sub-head">
-        <h3>Вирішити сьогодні</h3>
-        <span class="eyebrow">рішення топів</span>
+        <h3>Вирішити негайно</h3>
+        <span class="eyebrow">рішення топів · прострочено тиждень</span>
       </div>
       <div class="plan">
 
@@ -884,7 +890,7 @@
           <p>На майстер-класі тільки Кутько — отже дванадцять людей два дні в Брюсселі без програми. Частину займе монтаж стенду, але не два повні дні на дванадцятьох. Тут же спливає діра в бюджеті: обіди цих двох днів рахувалися як включені в майстер-клас, а тепер їх немає<span class="money"> — це ще близько €360 на групу</span>.</p>
           <div class="task-side">
             <span class="pill pill-block">Порожні дні</span>
-            <span class="task-when">сьогодні</span>
+            <span class="task-when">до 10.09</span>
             <span class="task-cost money">+€360 обіди</span>
           </div>
         </div>
@@ -895,7 +901,7 @@
     <section>
       <div class="sub-head">
         <h3>Блокує решту</h3>
-        <span class="eyebrow">до 05.09</span>
+        <span class="eyebrow">до 11.09</span>
       </div>
       <div class="plan">
 
@@ -905,7 +911,7 @@
           <p>Бронь оформлена на 12 гостей, а житиме 13: дванадцять нашим транспортом плюс Мазуренко. Airbnb рахує і ціну, і правила саме за кількістю гостей, тож зайвий гість — це або доплата, або проблема на заїзді. Написати Valerie і зафіксувати відповідь у переписці, а не на словах.</p>
           <div class="task-side">
             <span class="pill pill-block">Блокує</span>
-            <span class="task-when">до 05.09</span>
+            <span class="task-when">до 11.09</span>
             <span class="task-cost">13 замість 12</span>
           </div>
         </div>
@@ -916,7 +922,7 @@
           <p>Найдовший за строками пункт і головна причина, чому склад досі не остаточний. Починати відразу — саме це визначає, хто фізично їде.</p>
           <div class="task-side">
             <span class="pill pill-block">Блокує</span>
-            <span class="task-when">до 05.09</span>
+            <span class="task-when">до 11.09</span>
             <span class="task-cost">—</span>
           </div>
         </div>
@@ -927,7 +933,7 @@
     <section>
       <div class="sub-head">
         <h3>Цього тижня</h3>
-        <span class="eyebrow">до 04.09</span>
+        <span class="eyebrow">до 12.09</span>
       </div>
       <div class="plan">
 
@@ -937,7 +943,7 @@
           <p>Trafic 1.6 dCi буває і Euro 5, і Euro 6. Спитати в прокатника рік і норму, перевірити на lez.brussels. Якщо Euro 5 — <span class="money">day-pass ≈ €35 × 5 в’їздів = €175, і цього в бюджеті немає.</span><span class="nomoney">потрібен day-pass на кожен із п’яти в’їздів, і цього в бюджеті немає.</span> Бензиновий GX 450 проходить без питань.</p>
           <div class="task-side">
             <span class="pill pill-flag">Перевірити</span>
-            <span class="task-when">до 04.09</span>
+            <span class="task-when">до 11.09</span>
             <span class="task-cost money">ризик €175</span>
           </div>
         </div>
@@ -948,7 +954,7 @@
           <p>Trafic на 11 діб, 19.09–29.09. Ключове формулювання — 350 км/добу рахуються сумарно за строк, а не щодня: <span class="money">різниця €81 проти €287 перепробігу.</span><span class="nomoney">перепробіг виходить утричі менший.</span> Це має бути в тексті договору, а не на словах.</p>
           <div class="task-side">
             <span class="pill pill-todo">Не почато</span>
-            <span class="task-when">до 04.09</span>
+            <span class="task-when">до 11.09</span>
             <span class="task-cost money">€616</span>
           </div>
         </div>
@@ -959,7 +965,7 @@
           <p>Знижений ПДВ 8% діє до 31.08. У розрахунку вже закладено повернення до 23% з вересня. Якщо програму продовжать — пальне вийде<span class="money"> приблизно на €50</span> дешевше; перерахувати першого числа.</p>
           <div class="task-side">
             <span class="pill pill-flag">Перевірити</span>
-            <span class="task-when">сьогодні</span>
+            <span class="task-when">до 10.09</span>
             <span class="task-cost money">−€50</span>
           </div>
         </div>
@@ -970,7 +976,7 @@
           <p>Потрібно щонайменше три місяці після повернення — тобто дійсний щонайменше до кінця грудня. На тринадцятьох людей майже завжди знаходиться один такий паспорт, а оформлення нового — це тижні, не дні.</p>
           <div class="task-side">
             <span class="pill pill-flag">Перевірити</span>
-            <span class="task-when">до 04.09</span>
+            <span class="task-when">до 11.09</span>
             <span class="task-cost">—</span>
           </div>
         </div>
@@ -981,7 +987,7 @@
           <p>Trafic — близько 1,97 м висоти, а підземні паркінги часто обмежені 1,90. Питання ставити господарю разом із бронюванням: два паркомісця нам мало, якщо в одне бус фізично не заїде.</p>
           <div class="task-side">
             <span class="pill pill-flag">Разом із бронею</span>
-            <span class="task-when">до 04.09</span>
+            <span class="task-when">до 11.09</span>
             <span class="task-cost">—</span>
           </div>
         </div>
@@ -992,7 +998,7 @@
           <p>У бюджеті відповідальний за стенд — Якшин, але його немає в списку тих, хто їде. На стенді стоять Коврижних, Адаменко, Джошкун і Мазуренко: хтось із них має відповідати і за монтаж, і за матеріали.</p>
           <div class="task-side">
             <span class="pill pill-block">Рішення</span>
-            <span class="task-when">до 04.09</span>
+            <span class="task-when">до 11.09</span>
             <span class="task-cost">—</span>
           </div>
         </div>
@@ -1003,7 +1009,7 @@
     <section>
       <div class="sub-head">
         <h3>До виїзду</h3>
-        <span class="eyebrow">03.09 — 19.09</span>
+        <span class="eyebrow">11.09 — 19.09</span>
       </div>
       <div class="plan">
 
@@ -1013,7 +1019,7 @@
           <p>Бюджет стенду ведеться окремо, а тут уже виготовлення зі строком. Готове має бути до 18.09, бо везеться своїм транспортом і має влізти в машину разом із речами. Після 10 вересня встигнути буде важко.</p>
           <div class="task-side">
             <span class="pill pill-todo">Не почато</span>
-            <span class="task-when">до 03.09</span>
+            <span class="task-when">до 11.09</span>
             <span class="task-cost">у бюджеті стенду</span>
           </div>
         </div>
@@ -1035,7 +1041,7 @@
           <p><span class="money">У рахунку на перепустки €643 податку.</span><span class="nomoney">У рахунку на перепустки є бельгійський ПДВ.</span> Для неєвропейської компанії повернення ПДВ можливе не завжди й потребує окремої процедури зі строками — питання до фінансового блоку: Семенюк, Дерев’янко, Литвинчук. Якщо повертається, це мінус<span class="money"> €643</span> з бюджету; якщо ні, сума лишається в ньому назавжди.</p>
           <div class="task-side">
             <span class="pill pill-flag">До бухгалтерії</span>
-            <span class="task-when">до 07.09</span>
+            <span class="task-when">до 12.09</span>
             <span class="task-cost money">−€643?</span>
           </div>
         </div>
@@ -1046,7 +1052,7 @@
           <p>Довіреність від прокатника, зелена карта на бус і дозвіл на в’їзд до ЄС. Частина компаній узагалі не випускає машини за кордон — з’ясувати до оплати оренди, а не після.</p>
           <div class="task-side">
             <span class="pill pill-todo">Не почато</span>
-            <span class="task-when">до 07.09</span>
+            <span class="task-when">до 12.09</span>
             <span class="task-cost money">€155</span>
           </div>
         </div>
@@ -1068,7 +1074,7 @@
           <p>Маршрут іде через Дрезден і Кельн, а там Umweltzone з обов’язковою зеленою наліпкою — вона потрібна й іноземним авто. Якщо йдемо не об’їзною, без неї в’їзд у місто це штраф. Сама наліпка коштує<span class="money"> €6–20 залежно від сервісу</span><span class="nomoney"> дрібні гроші</span>, але оформлення й доставка займають час.</p>
           <div class="task-side">
             <span class="pill pill-flag">Перевірити</span>
-            <span class="task-when">до 07.09</span>
+            <span class="task-when">до 12.09</span>
             <span class="task-cost money">≈€30 на дві</span>
           </div>
         </div>
@@ -1079,19 +1085,19 @@
           <p>Це заморожені суми на чиїйсь особистій карті — за бус зазвичай кілька сотень євро, за житло теж буває. Треба знати, чиї карти, які суми і коли повертаються. У бюджеті цього рядка немає, бо це не витрата, але гроші реально виймаються з обігу на місяць.</p>
           <div class="task-side">
             <span class="pill pill-todo">Не почато</span>
-            <span class="task-when">до 07.09</span>
+            <span class="task-when">до 12.09</span>
             <span class="task-cost">поза бюджетом</span>
           </div>
         </div>
 
         <div class="task">
           <span class="task-no">17</span>
-          <h3>Забронювати дві ночівлі в дорозі</h3>
-          <p>Місто вирішене — <b>Вроцлав</b>, обидва рази: 20.09 туди і 27.09 назад. <span class="money">Орієнтир з факту 2025 — €19 з особи за ніч, Катовіце, 556 zł на групу.</span><span class="nomoney">Орієнтир — факт 2025 року в Катовіце.</span> Потрібне паркування на дві машини, бус — 1,97 м висоти. Вересневі вихідні на тринадцятьох самі себе не забронюють, тому раніше, а не «до 12.09».</p>
+          <h3>Забронювати зворотну ночівлю у Вроцлаві</h3>
+          <p>Ніч туди закрита: Aparthotel Symphony на Krakowska 35, <span class="money">786,60 zł оплачено 02.09 — €181 замість €228 за планом</span><span class="nomoney">оплачено 02.09, дешевше за план</span>. Лишилася зворотна, <b>27–28.09</b> — найпростіше той самий готель, якщо будуть місця. Потрібне паркування на дві машини, бус — 1,97 м висоти.</p>
           <div class="task-side">
-            <span class="pill pill-block">Місто відоме</span>
-            <span class="task-when">до 05.09</span>
-            <span class="task-cost money">€456</span>
+            <span class="pill pill-block">Половина закрита</span>
+            <span class="task-when">до 12.09</span>
+            <span class="task-cost money">€228</span>
           </div>
         </div>
 
@@ -1101,7 +1107,7 @@
           <p>15 днів, категорія «легковий». Тарифи не регулюються МТСБУ з 2025 року, розкид<span class="money"> ₴800–1 600</span><span class="nomoney"> між компаніями великий</span> — варто порівняти кілька компаній.</p>
           <div class="task-side">
             <span class="pill pill-todo">Не почато</span>
-            <span class="task-when">до 15.09</span>
+            <span class="task-when">до 16.09</span>
             <span class="task-cost money">€25</span>
           </div>
         </div>
@@ -1112,7 +1118,7 @@
           <p><span class="money">Покриття €30 000 — за фактом 2025 це ₴290 з особи.</span><span class="nomoney">Стандартне покриття, як у 2025 році.</span> Саме дванадцять: ті, хто добирається своїм ходом, оформлюють страховки собі самі. Оформлюється швидко, але без неї не пускають на кордоні, тож не лишати на останній день.</p>
           <div class="task-side">
             <span class="pill pill-todo">Не почато</span>
-            <span class="task-when">до 15.09</span>
+            <span class="task-when">до 16.09</span>
             <span class="task-cost money">€72</span>
           </div>
         </div>
@@ -1123,7 +1129,7 @@
           <p>Аптечка, знак аварійної зупинки, вогнегасник і світловідбивні жилети — у Бельгії жилет у салоні обов’язковий, і бажано на кожного, хто може вийти на дорогу. Штрафи дрібні, але зупинка з порожнім боксом коштує часу на кордоні.</p>
           <div class="task-side">
             <span class="pill pill-todo">Не почато</span>
-            <span class="task-when">до 15.09</span>
+            <span class="task-when">до 16.09</span>
             <span class="task-cost">—</span>
           </div>
         </div>
@@ -1134,7 +1140,7 @@
           <p>Тринадцять людей, шість вечерь у будинку і обіди на події: комусь потрібне безлактозне, комусь без глютену, у когось астма. Список потрібен і для замовлень їжі, і для аптечки в машині.</p>
           <div class="task-side">
             <span class="pill pill-todo">Не почато</span>
-            <span class="task-when">до 15.09</span>
+            <span class="task-when">до 16.09</span>
             <span class="task-cost">—</span>
           </div>
         </div>
@@ -1359,7 +1365,7 @@
         <h2>Учасники</h2>
         <span class="eyebrow">12 своїм транспортом + 1</span>
       </div>
-      <p>Склад остаточний: тринадцять осіб. Дванадцять їдуть двома нашими машинами — це рівно та розсадка, на якій стоїть розрахунок. Ігор Мазуренко добирається своїм ходом, але живе з нами.</p>
+      <p>Склад остаточний: тринадцять осіб. Дванадцять їдуть двома нашими машинами — це рівно та розсадка, на якій стоїть розрахунок. Ігор Мазуренко добирається літаком із Подгориці, назад через Будапешт, але живе з нами.<span class="money"> Квитки на €242 — до відшкодування, заявка затверджена 07.09.</span></p>
 
       <div class="stats">
         <div class="stat"><span class="k">Двома машинами</span><span class="v">12</span><span class="s">8 у бусі + 4 в GX, повний борт</span></div>
@@ -1385,7 +1391,7 @@
             <tr><td class="n">10</td><td>Звірік Юлія</td><td>Маркетолог<span class="sub">Marketing</span></td><td>Відеомейкінг</td><td><span class="pill pill-ok">Їде</span></td></tr>
             <tr><td class="n">11</td><td>Лавренко Владислав</td><td>Розробник Odoo і 1C<span class="sub">Супровід проєктів BAS</span></td><td>—</td><td><span class="pill pill-ok">Їде</span></td></tr>
             <tr><td class="n">12</td><td>Горай Альона</td><td>Рекрутер<span class="sub">HR</span></td><td>—</td><td><span class="pill pill-ok">Їде</span></td></tr>
-            <tr class="mark"><td class="n">13</td><td>Мазуренко Ігор</td><td>Менеджер з продажів<span class="sub">Продажі</span></td><td>Робота на стенді</td><td><span class="pill pill-flag">Своїм ходом</span></td></tr>
+            <tr class="mark"><td class="n">13</td><td>Мазуренко Ігор</td><td>Менеджер з продажів<span class="sub">Продажі</span></td><td>Робота на стенді</td><td><span class="pill pill-flag">Літаком</span><span class="sub">Подгориця → Брюссель, назад через Будапешт<span class="money">; €242, до відшкодування</span></span></td></tr>
           </tbody>
         </table>
       </div>
@@ -1599,15 +1605,71 @@
           <tr><td>Перепустки на подію<span class="sub">Premium €255 без ПДВ; Basic безкоштовно</span></td><td class="n">1 785</td><td class="n">3 060</td></tr>
           <tr class="mark"><td>ПДВ 21%<span class="sub">бельгійський, у рахунку окремим рядком</span></td><td class="n">375</td><td class="n">643</td></tr>
           <tr><td>Обіди для тих, хто на Basic<span class="sub">3 дні × €15 × 5 осіб</span></td><td class="n">225</td><td class="n">—</td></tr>
-          <tr><td>Дорога, житло, їжа, транспорт<span class="sub">однаково в обох варіантах</span></td><td class="n">8 714</td><td class="n">8 714</td></tr>
-          <tr class="sum"><td>Усього</td><td class="n">€11 099</td><td class="n">€12 417</td></tr>
-          <tr class="total"><td>На особу</td><td class="n">€925</td><td class="n">€1 035</td></tr>
-          <tr><td>Ризики<span class="sub">10% запасу на непередбачене</span></td><td class="n">1 110</td><td class="n">1 242</td></tr>
-          <tr class="sum"><td>Усього з ризиками</td><td class="n">€12 209<span class="sub">€1 017 на особу</span></td><td class="n">€13 659<span class="sub">€1 138 на особу</span></td></tr>
+          <tr><td>Дорога, житло, їжа, транспорт<span class="sub">однаково в обох варіантах; тут же авіа Мазуренка €242</span></td><td class="n">8 956</td><td class="n">8 956</td></tr>
+          <tr class="sum"><td>Усього</td><td class="n">€11 341</td><td class="n">€12 659</td></tr>
+          <tr class="total"><td>На особу<span class="sub">з тринадцяти учасників</span></td><td class="n">€873</td><td class="n">€974</td></tr>
+          <tr><td>Ризики<span class="sub">10% запасу на непередбачене</span></td><td class="n">1 134</td><td class="n">1 266</td></tr>
+          <tr class="sum"><td>Усього з ризиками</td><td class="n">€12 475<span class="sub">€960 на особу</span></td><td class="n">€13 925<span class="sub">€1 071 на особу</span></td></tr>
         </tbody>
       </table>
     </div>
     <p>З ПДВ різниця між варіантами виросла до <b>€1 450</b>, бо податок нараховується саме на Premium. Але вибір уже зроблений рахунком: усі дванадцять на Premium, тобто кейноут, обіди, напої та вечірка є в кожного і докуповувати обіди не треба. <span class="pick">Дванадцять — остаточно:</span> Мазуренко на події буде, але перепустку собі вирішує на місці. Лишилося одне питання — чи можна повернути ці €643 бельгійського ПДВ як неєвропейська компанія; сума варта запитання до бухгалтерії.</p>
+  </section>
+
+  <section>
+    <div class="sec-head"><h2>До виїзду і в дорозі</h2><span class="eyebrow">€7 769 до 19.09 · €6 156 у дорозі</span></div>
+    <p>Той самий бюджет, поділений не за статтями, а за тим, коли гроші йдуть з рахунку. До виїзду це передоплати й документи, які без них нікуди не поїдеш; у дорозі — пальне, їжа й дрібне на місці.</p>
+
+    <div class="mbar">
+      <div class="m-pre">До виїзду €7 769 · 56%</div>
+      <div class="m-trip">У дорозі €6 156 · 44%</div>
+    </div>
+
+    <div class="stats">
+      <div class="stat"><span class="k">Оплачено</span><span class="v">€622</span><span class="s">житло і Вроцлав · ₴32 468</span></div>
+      <div class="stat is-accent"><span class="k">Ще до виїзду</span><span class="v">€7 147</span><span class="s">₴373 359 за 10 днів</span></div>
+      <div class="stat"><span class="k">У дорозі</span><span class="v">€6 156</span><span class="s">з резервом · €513 на кожного з 12</span></div>
+      <div class="stat"><span class="k">Найбільший платіж</span><span class="v">€3 703</span><span class="s">перепустки з ПДВ, за рахунком</span></div>
+    </div>
+
+    <div class="t-wrap">
+      <table>
+        <thead><tr><th>До виїзду — до 19.09</th><th class="n">€</th><th>Коли</th></tr></thead>
+        <tbody>
+          <tr><td>Перепустки Premium<span class="sub">12 × €255 без ПДВ</span></td><td class="n">3 060</td><td class="d">за строком рахунку</td></tr>
+          <tr class="mark"><td>ПДВ 21% на перепустки<span class="sub">той самий рахунок Odoo</span></td><td class="n">643</td><td class="d">за строком рахунку</td></tr>
+          <tr><td>Житло в Niel, 6 ночей<span class="sub">передоплата ₴23 025 пройшла 28.08; залишок ₴91 335</span></td><td class="n">2 500</td><td class="d">залишок — строк Airbnb</td></tr>
+          <tr><td>Оренда бусу, 11 діб<span class="sub">оплата при отриманні 19.09; депозит — окремо, уточнити</span></td><td class="n">616</td><td class="d">19.09</td></tr>
+          <tr><td>Ночівлі у Вроцлаві, 2 ночі<span class="sub">20.09 оплачено 02.09 — 786,60 zł; 27.09 ще не заброньовано</span></td><td class="n">456</td><td class="d">при бронюванні</td></tr>
+          <tr><td>Дозвіл на виїзд, зелена карта, КАСКО<span class="sub">по бусу, через прокатника</span></td><td class="n">155</td><td class="d">до 12.09</td></tr>
+          <tr><td>Медстраховки на 12<span class="sub">без них не пускають на кордоні</span></td><td class="n">72</td><td class="d">до 16.09</td></tr>
+          <tr><td>Зелена карта на GX<span class="sub">15 днів, категорія «легковий»</span></td><td class="n">25</td><td class="d">до 16.09</td></tr>
+          <tr><td>Авіа Мазуренка<span class="sub">Подгориця → Брюссель → Будапешт → Подгориця; квитки куплені, заявка затверджена 07.09</span></td><td class="n">242</td><td class="d">до виплати</td></tr>
+          <tr class="total"><td>Разом до виїзду<span class="sub">€598 на особу з тринадцяти · ₴405 853</span></td><td class="n">7 769</td><td class="d">56% бюджету</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="t-wrap">
+      <table>
+        <thead><tr><th>У дорозі та на місці — 19–28.09</th><th class="n">€</th><th>Де</th></tr></thead>
+        <tbody>
+          <tr><td>Їжа, 10 днів<span class="sub">€230 на особу; за Premium обіди події включені</span></td><td class="n">2 760</td><td class="d">весь маршрут</td></tr>
+          <tr><td>Пальне, обидві машини<span class="sub">987 л на 4 700 км кожна</span></td><td class="n">1 839</td><td class="d">заправки</td></tr>
+          <tr><td>Паркування<span class="sub">Parking C 5 днів × 2 машини = 120; біля будинку 60</span></td><td class="n">180</td><td class="d">Брюссель, Niel</td></tr>
+          <tr class="mark"><td>Перепробіг бусу<span class="sub">850 км понад ліміт, ₴500 за 100 км</span></td><td class="n">81</td><td class="d">при здачі 29.09</td></tr>
+          <tr><td>Платні дороги, Польща<span class="sub">A4 Kraków–Katowice, 36 zł на машину в бік</span></td><td class="n">30</td><td class="d">каси на A4</td></tr>
+          <tr class="total"><td>Разом у дорозі<span class="sub">без резерву</span></td><td class="n">4 890</td><td class="d">36% бюджету</td></tr>
+          <tr class="mark"><td>Резерв на непередбачене<span class="sub">10% — LEZ day-pass, дрібний ремонт, витратні; витрачається в дорозі</span></td><td class="n">1 266</td><td class="d">за потреби</td></tr>
+          <tr class="sum"><td>Усього в дорозі<span class="sub">€513 на кожного з дванадцяти в машинах · ₴321 589</span></td><td class="n">€6 156</td><td class="d">44% бюджету</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="note">
+      <p><b>Що це означає на практиці.</b> Більша половина бюджету йде до того, як хтось сів у машину, і за наступні десять днів треба провести <b>€7 147</b> — це передусім рахунок на перепустки (€3 703), залишок за житло (₴91 335) і відшкодування Мазуренку (₴12 620). У дорозі на руках потрібно вже менше — €4 890 плюс резерв, і це переважно готівка й картка на заправках, у кафе та на паркінгах.</p>
+      <p><b>Два рядки поділені за припущенням, а не за фактом.</b> Оренда бусу стоїть «до виїзду», бо платимо при отриманні 19.09 — якщо прокатник вимагає передоплату раніше або блокує депозит, це треба знати заздалегідь. Залишок за житло Airbnb списує «ближче до заїзду»: якщо це станеться після 19.09, €1 748 переїдуть у праву колонку.</p>
+    </div>
   </section>
 
   <section>
@@ -1669,15 +1731,16 @@
           <tr><td>Машини</td><td class="n">2 926</td><td class="n">2 926</td></tr>
           <tr><td>Будинок, 6 ночей</td><td class="n">2 500</td><td class="n">2 500</td></tr>
           <tr><td>Люди, крім квитків<span class="sub">€274 × 12</span></td><td class="n">3 288</td><td class="n">3 288</td></tr>
-          <tr class="total"><td>Підсумок — три таблиці вище</td><td class="n">8 714</td><td class="n">8 714</td></tr>
+          <tr><td>Авіа Мазуренка<span class="sub">Подгориця — Брюссель — Будапешт — Подгориця, до відшкодування</span></td><td class="n">242</td><td class="n">242</td></tr>
+          <tr class="total"><td>Підсумок — усе, крім квитків на подію</td><td class="n">8 956</td><td class="n">8 956</td></tr>
           <tr><td>Перепустки на подію<span class="sub">Premium €255 без ПДВ × 7 або × 12</span></td><td class="n">1 785</td><td class="n">3 060</td></tr>
           <tr class="mark"><td>ПДВ 21% на перепустки<span class="sub">бельгійський, у рахунку Odoo</span></td><td class="n">375</td><td class="n">643</td></tr>
           <tr><td>Обіди тим, хто на Basic<span class="sub">3 дні × €15 × 5 осіб</span></td><td class="n">225</td><td class="n">—</td></tr>
-          <tr class="sum"><td>Усього<span class="sub">курс НБУ ₴52,24/€ на 24.08.2026</span></td><td class="n">€11 099<span class="sub">₴579 812</span></td><td class="n">€12 417<span class="sub">₴648 664</span></td></tr>
+          <tr class="sum"><td>Усього<span class="sub">курс НБУ ₴52,24/€ на 24.08.2026</span></td><td class="n">€11 341<span class="sub">₴592 454</span></td><td class="n">€12 659<span class="sub">₴661 306</span></td></tr>
         </tbody>
       </table>
     </div>
-    <p>Три таблиці вище — лише те, що не залежить від квитків: €8 714. Перепустки й обіди для тих, хто на Basic, додаються зверху і дають підсумок зі зведення вгорі вкладки. Запас на непередбачене сюди не входить — він окремим рядком у таблиці вгорі вкладки: 10%, тобто €12 209 і €13 659 з ризиками. Саме з нього й покриваються витратні матеріали, дрібний ремонт і LEZ day-pass, якщо бус виявиться Euro 5.</p>
+    <p>Усе вище — лише те, що не залежить від квитків на подію: €8 956, разом з авіа Мазуренка. Перепустки й обіди для тих, хто на Basic, додаються зверху і дають підсумок зі зведення вгорі вкладки. Запас на непередбачене сюди не входить — він окремим рядком у таблиці вгорі вкладки: 10%, тобто €12 475 і €13 925 з ризиками. Саме з нього й покриваються витратні матеріали, дрібний ремонт і LEZ day-pass, якщо бус виявиться Euro 5.</p>
   </section>
 
 
@@ -1703,12 +1766,13 @@
         <h2>Витрати</h2>
         <span class="eyebrow">факт проти плану</span>
       </div>
-      <p>Сюди пишемо кожен платіж, щойно він пройшов. Бюджет на сусідній вкладці лишається незмінним планом — саме проти нього тут і рахується різниця, тож видно не «скільки витрачено», а «чи вкладаємося».</p>
+      <p>Сюди пишемо кожен платіж, щойно він пройшов. Бюджет на сусідній вкладці лишається незмінним планом — саме проти нього тут і рахується різниця, тож видно не «скільки витрачено», а «чи вкладаємося». Поділ на «до виїзду» і «в дорозі» — там же, у «Бюджеті»: до 19.09 треба провести €7 147, решта витрачається вже в дорозі.</p>
 
       <div class="stats">
-        <div class="stat"><span class="k">Бюджет плану</span><span class="v">€13 659</span><span class="s">12 Premium, із ризиками</span></div>
-        <div class="stat is-accent"><span class="k">Витрачено</span><span class="v">€441</span><span class="s">1 запис · ₴23 025</span></div>
-        <div class="stat"><span class="k">Лишається</span><span class="v">€13 218</span><span class="s">97% бюджету</span></div>
+        <div class="stat"><span class="k">Бюджет плану</span><span class="v">€13 925</span><span class="s">12 Premium, із ризиками</span></div>
+        <div class="stat is-accent"><span class="k">Витрачено</span><span class="v">€622</span><span class="s">2 записи · ₴32 468</span></div>
+        <div class="stat is-accent"><span class="k">Ще до виїзду</span><span class="v">€7 147</span><span class="s">з €13 303, що лишилися</span></div>
+        <div class="stat"><span class="k">У дорозі</span><span class="v">€6 156</span><span class="s">решта, з резервом</span></div>
         <div class="stat"><span class="k">Найближчий платіж</span><span class="v">€3 703</span><span class="s">перепустки; далі ₴91 335 за житло</span></div>
       </div>
 
@@ -1730,12 +1794,13 @@
           <tbody>
             <tr><td>Машини<span class="sub">пальне, оренда, страховки, паркування</span></td><td class="n">2 926</td><td class="n">—</td><td class="n">—</td></tr>
             <tr><td>Житло в Niel<span class="sub">6 ночей, 21–27.09, Airbnb — заброньовано</span></td><td class="n">2 500</td><td class="n">2 189</td><td class="n"><span class="pick">−311</span></td></tr>
-            <tr><td>Люди, крім квитків<span class="sub">ночівлі в дорозі, їжа, медстраховка</span></td><td class="n">3 288</td><td class="n">—</td><td class="n">—</td></tr>
+            <tr><td>Люди, крім квитків<span class="sub">ночівлі в дорозі, їжа, медстраховка</span></td><td class="n">3 288</td><td class="n">181<span class="sub">ночівля 20.09</span></td><td class="n">—</td></tr>
             <tr><td>Перепустки на подію<span class="sub">12 × Premium €255 без ПДВ</span></td><td class="n">3 060</td><td class="n">—</td><td class="n">—</td></tr>
             <tr class="mark"><td>ПДВ 21% на перепустки<span class="sub">бельгійський, у рахунку Odoo</span></td><td class="n">643</td><td class="n">—</td><td class="n">—</td></tr>
-            <tr class="total"><td>База</td><td class="n">12 417</td><td class="n">—</td><td class="n">—</td></tr>
-            <tr class="mark"><td>Запас на непередбачене<span class="sub">10% — сюди ж LEZ day-pass, дрібний ремонт, витратні</span></td><td class="n">1 242</td><td class="n">—</td><td class="n">—</td></tr>
-            <tr class="sum"><td>Усього</td><td class="n">€13 659</td><td class="n">€441<span class="sub">оплачено</span></td><td class="n">€13 218<span class="sub">лишається</span></td></tr>
+            <tr><td>Авіа Мазуренка<span class="sub">квитки куплені, заявка затверджена 07.09</span></td><td class="n">242</td><td class="n">—<span class="sub">до виплати</span></td><td class="n">—</td></tr>
+            <tr class="total"><td>База</td><td class="n">12 659</td><td class="n">—</td><td class="n">—</td></tr>
+            <tr class="mark"><td>Запас на непередбачене<span class="sub">10% — сюди ж LEZ day-pass, дрібний ремонт, витратні</span></td><td class="n">1 266</td><td class="n">—</td><td class="n">—</td></tr>
+            <tr class="sum"><td>Усього</td><td class="n">€13 925</td><td class="n">€622<span class="sub">оплачено</span></td><td class="n">€13 303<span class="sub">лишається</span></td></tr>
           </tbody>
         </table>
       </div>
@@ -1744,7 +1809,7 @@
     <section>
       <div class="sub-head">
         <h3>Журнал витрат</h3>
-        <span class="eyebrow">1 платіж і 1 очікується</span>
+        <span class="eyebrow">2 платежі, 3 очікуються</span>
       </div>
       <div class="t-wrap">
         <table>
@@ -1753,7 +1818,10 @@
           </thead>
           <tbody>
             <tr><td class="d"><b>28.08</b></td><td>Житло</td><td>Airbnb, помешкання в Niel — передоплата<span class="sub">бронь 21–27.09, господар Valerie</span></td><td class="n">₴23 025,11<span class="sub">≈€441</span></td><td class="d">Mastercard ···2643</td><td class="d">є в застосунку</td></tr>
+            <tr><td class="d"><b>02.09</b></td><td>Ночівля в дорозі</td><td>Booking, Aparthotel Symphony Krakowska 35 — Вроцлав, ніч 20–21.09<span class="sub">оплачено повністю, 786,60 zł за курсом 12,0048 ₴/zł</span></td><td class="n">₴9 442,98<span class="sub">≈€181 · план €228</span></td><td class="d">Visa ···5637</td><td class="d">є в застосунку</td></tr>
             <tr class="mark"><td class="d">строк Airbnb</td><td>Житло</td><td>Залишок за помешкання<span class="sub">до сплати ближче до заїзду</span></td><td class="n">₴91 334,80<span class="sub">≈€1 748</span></td><td class="d">—</td><td class="d">—</td></tr>
+            <tr class="mark"><td class="d">затверджено 07.09</td><td>Авіа Мазуренка</td><td>Відшкодування квитків Подгориця — Брюссель — Будапешт — Подгориця<span class="sub">Ryanair із Подгориці лише пн, ср, пт, тому назад через Будапешт: 100,38 + 57,54 + 84,14</span></td><td class="n">₴12 620,00<span class="sub">€242,06</span></td><td class="d">заявка на оплату</td><td class="d">заявка в Odoo</td></tr>
+            <tr class="mark"><td class="d">не заброньовано</td><td>Ночівля в дорозі</td><td>Вроцлав, ніч 27–28.09 — зворотна<span class="sub">той самий готель, якщо будуть місця</span></td><td class="n">≈€228<span class="sub">за планом</span></td><td class="d">—</td><td class="d">—</td></tr>
           </tbody>
         </table>
       </div>
@@ -1780,7 +1848,7 @@
     <section>
       <div class="sec-head">
         <h2>Документи і бронювання</h2>
-        <span class="eyebrow">1 бронь</span>
+        <span class="eyebrow">3 позиції</span>
       </div>
       <p>Місце для самих документів: підтверджень броні, страхових полісів, договору оренди, дозволів. Складаємо їх тут, щоб у поїздці не шукати по чатах і пошті.</p>
 
@@ -1797,7 +1865,13 @@
             </tr>
             <tr><td>Оренда Trafic<span class="sub">19–29.09</span></td><td>договір, ліміт 350 км/добу сумарно за строк</td><td><span class="pill pill-todo">Немає</span></td></tr>
             <tr><td>Перепустки Premium<span class="sub">12 × Odoo Experience</span></td><td>рахунок виставлений, оплата в строк</td><td><span class="pill pill-block">Рахунок</span></td></tr>
-            <tr><td>Ночівлі в дорозі<span class="sub">20.09 і 27.09</span></td><td>дві броні з паркуванням на дві машини</td><td><span class="pill pill-todo">Немає</span></td></tr>
+            <tr>
+              <td>Ночівля туди<span class="sub">Booking</span></td>
+              <td><b>Aparthotel Symphony Krakowska 35 by INA</b>, Вроцлав<span class="sub">Krakowska 35, 50-424 · ніч нд 20.09 → пн 21.09 · заїзд 15:00–00:00, виїзд 08:00–10:00 · час прибуття вказано 13:00–14:00</span></td>
+              <td><span class="pill pill-ok">Оплачено</span><span class="sub money">786,60 zł ≈ ₴9 443 ≈ €181, Visa ···5637 від 02.09</span><span class="sub nomoney">оплачено повністю 02.09</span></td>
+            </tr>
+            <tr><td>Ночівля назад<span class="sub">27.09</span></td><td>Вроцлав, ніч 27–28.09 — бронь із паркуванням на дві машини</td><td><span class="pill pill-todo">Немає</span></td></tr>
+            <tr><td>Авіа Мазуренка<span class="sub">3 квитки</span></td><td>Подгориця → Брюссель 20.09-ті, назад через Будапешт<span class="sub">Ryanair із Подгориці лише пн, ср, пт — прямого зворотного немає</span></td><td><span class="pill pill-ok">Куплено</span><span class="sub money">€242,06 ≈ ₴12 620, заявка затверджена 07.09</span><span class="sub nomoney">заявка на відшкодування затверджена 07.09</span></td></tr>
             <tr><td>Поліси й дозволи<span class="sub">зелені карти, КАСКО, медстраховки, дозвіл на виїзд авто</span></td><td>складаємо тут, коли будуть</td><td><span class="pill pill-todo">Немає</span></td></tr>
           </tbody>
         </table>
