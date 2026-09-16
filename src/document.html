@@ -288,6 +288,29 @@
   }
   .route-ends b { color: var(--ink); font-weight: 700; }
 
+  /* ---------- точки збору ---------- */
+
+  .pickups { display: grid; gap: 1px; background: var(--rule); border: 1px solid var(--rule); border-radius: 14px; overflow: hidden; }
+  .pickup {
+    display: flex; align-items: baseline; gap: 0.9rem;
+    padding: 0.85rem 1rem; background: var(--surface);
+  }
+  .pickup.is-final { background: var(--accent-soft); }
+  .pickup .no {
+    flex: 0 0 auto; min-width: 2.6rem;
+    font-family: var(--mono); font-size: 0.72rem; font-weight: 700;
+    color: var(--ink-soft); white-space: nowrap;
+  }
+  .pickup.is-final .no { color: var(--accent); }
+  .pickup .where { flex: 1 1 auto; min-width: 0; }
+  .pickup .where b { display: block; font-size: 0.92rem; }
+  .pickup .where span { display: block; margin-top: 0.15rem; font-size: 0.8rem; color: var(--ink-soft); }
+
+  @media (max-width: 560px) {
+    .pickup { flex-wrap: wrap; gap: 0.25rem 0.8rem; }
+    .pickup .where { flex-basis: 100%; }
+  }
+
   /* ---------- посилання на карти ---------- */
 
   .maplinks { display: grid; gap: 0.5rem; margin-top: 1.2rem; }
@@ -838,7 +861,7 @@
       <span class="money">Курс НБУ <b>₴52,24/€</b></span>
       <span>Склад <b>13</b></span>
       <span>Ціни на <b>24.08.2026</b></span>
-      <span>Оновлено <b class="js-updated">09.09.2026</b></span>
+      <span>Оновлено <b class="js-updated">16.09.2026</b></span>
     </div>
   </header>
 
@@ -863,12 +886,12 @@
         <h2>План дій</h2>
         <span class="eyebrow">24 відкритих пунктів</span>
       </div>
-      <p>Порядок тут не за темами, а за тим, що від чого залежить. Дорога вирішена повністю — виїзд, кордон, перша ночівля, — усе це в «Пройдено», а маршрут перерахований під Краковець і Вроцлав. Нагорі лишився один пункт: чим зайняті дванадцятеро 22–23.09 — він висить уже тиждень. До виїзду десять днів, тому всі прострочені строки зсунуті в межі 10–12.09: далі відкладати нема куди, а 16.09 — уже останній рубіж для страховок і зелених карт.</p>
+      <p>Порядок тут не за темами, а за тим, що від чого залежить. Дорога вирішена повністю — виїзд, кордон, перша ночівля, — усе це в «Пройдено», а маршрут перерахований під Краковець і Вроцлав. Нагорі лишився один пункт: чим зайняті дванадцятеро 22–23.09 — він висить уже два тижні. <b>До виїзду три дні</b>, тому все, що лишилося, стоїть на 17–18.09: 18.09 — останній робочий день, коли ще реально встигнути зі страховками, зеленими картами й реєстрацією в LEZ.</p>
 
       <div class="stats">
         <div class="stat is-accent"><span class="k">Вирішити негайно</span><span class="v">1</span><span class="s">чим зайняті 22–23.09</span></div>
-        <div class="stat"><span class="k">Усього відкрито</span><span class="v">24</span><span class="s">станом на <span class="js-updated">09.09.2026</span></span></div>
-        <div class="stat"><span class="k">До виїзду</span><span class="v js-days">26 днів</span><span class="s">виїзд 19.09, 22:00</span></div>
+        <div class="stat"><span class="k">Усього відкрито</span><span class="v">24</span><span class="s">станом на <span class="js-updated">16.09.2026</span></span></div>
+        <div class="stat"><span class="k">До виїзду</span><span class="v js-days">26 днів</span><span class="s">збір 19.09, 21:00</span></div>
         <div class="stat is-accent money"><span class="k">Не в бюджеті</span><span class="v">€175</span><span class="s">LEZ, якщо бус Euro 5</span></div><div class="stat is-accent nomoney"><span class="k">Поза бюджетом</span><span class="v">2</span><span class="s">обіди 22–23.09, LEZ</span></div>
       </div>
 
@@ -880,7 +903,7 @@
     <section>
       <div class="sub-head">
         <h3>Вирішити негайно</h3>
-        <span class="eyebrow">рішення топів · прострочено тиждень</span>
+        <span class="eyebrow">рішення топів · три дні до виїзду</span>
       </div>
       <div class="plan">
 
@@ -890,7 +913,7 @@
           <p>На майстер-класі тільки Кутько — отже дванадцять людей два дні в Брюсселі без програми. Частину займе монтаж стенду, але не два повні дні на дванадцятьох. Тут же спливає діра в бюджеті: обіди цих двох днів рахувалися як включені в майстер-клас, а тепер їх немає<span class="money"> — це ще близько €360 на групу</span>.</p>
           <div class="task-side">
             <span class="pill pill-block">Порожні дні</span>
-            <span class="task-when">до 10.09</span>
+            <span class="task-when">негайно</span>
             <span class="task-cost money">+€360 обіди</span>
           </div>
         </div>
@@ -901,7 +924,7 @@
     <section>
       <div class="sub-head">
         <h3>Блокує решту</h3>
-        <span class="eyebrow">до 11.09</span>
+        <span class="eyebrow">17.09</span>
       </div>
       <div class="plan">
 
@@ -911,7 +934,7 @@
           <p>Бронь оформлена на 12 гостей, а житиме 13: дванадцять нашим транспортом плюс Мазуренко. Airbnb рахує і ціну, і правила саме за кількістю гостей, тож зайвий гість — це або доплата, або проблема на заїзді. Написати Valerie і зафіксувати відповідь у переписці, а не на словах.</p>
           <div class="task-side">
             <span class="pill pill-block">Блокує</span>
-            <span class="task-when">до 11.09</span>
+            <span class="task-when">17.09</span>
             <span class="task-cost">13 замість 12</span>
           </div>
         </div>
@@ -922,7 +945,7 @@
           <p>Найдовший за строками пункт і головна причина, чому склад досі не остаточний. Починати відразу — саме це визначає, хто фізично їде.</p>
           <div class="task-side">
             <span class="pill pill-block">Блокує</span>
-            <span class="task-when">до 11.09</span>
+            <span class="task-when">17.09</span>
             <span class="task-cost">—</span>
           </div>
         </div>
@@ -933,7 +956,7 @@
     <section>
       <div class="sub-head">
         <h3>Цього тижня</h3>
-        <span class="eyebrow">до 12.09</span>
+        <span class="eyebrow">17.09</span>
       </div>
       <div class="plan">
 
@@ -943,7 +966,7 @@
           <p>Trafic 1.6 dCi буває і Euro 5, і Euro 6. Спитати в прокатника рік і норму, перевірити на lez.brussels. Якщо Euro 5 — <span class="money">day-pass ≈ €35 × 5 в’їздів = €175, і цього в бюджеті немає.</span><span class="nomoney">потрібен day-pass на кожен із п’яти в’їздів, і цього в бюджеті немає.</span> Бензиновий GX 450 проходить без питань.</p>
           <div class="task-side">
             <span class="pill pill-flag">Перевірити</span>
-            <span class="task-when">до 11.09</span>
+            <span class="task-when">17.09</span>
             <span class="task-cost money">ризик €175</span>
           </div>
         </div>
@@ -954,7 +977,7 @@
           <p>Trafic на 11 діб, 19.09–29.09. Ключове формулювання — 350 км/добу рахуються сумарно за строк, а не щодня: <span class="money">різниця €81 проти €287 перепробігу.</span><span class="nomoney">перепробіг виходить утричі менший.</span> Це має бути в тексті договору, а не на словах.</p>
           <div class="task-side">
             <span class="pill pill-todo">Не почато</span>
-            <span class="task-when">до 11.09</span>
+            <span class="task-when">17.09</span>
             <span class="task-cost money">€616</span>
           </div>
         </div>
@@ -965,7 +988,7 @@
           <p>Знижений ПДВ 8% діє до 31.08. У розрахунку вже закладено повернення до 23% з вересня. Якщо програму продовжать — пальне вийде<span class="money"> приблизно на €50</span> дешевше; перерахувати першого числа.</p>
           <div class="task-side">
             <span class="pill pill-flag">Перевірити</span>
-            <span class="task-when">до 10.09</span>
+            <span class="task-when">негайно</span>
             <span class="task-cost money">−€50</span>
           </div>
         </div>
@@ -976,7 +999,7 @@
           <p>Потрібно щонайменше три місяці після повернення — тобто дійсний щонайменше до кінця грудня. На тринадцятьох людей майже завжди знаходиться один такий паспорт, а оформлення нового — це тижні, не дні.</p>
           <div class="task-side">
             <span class="pill pill-flag">Перевірити</span>
-            <span class="task-when">до 11.09</span>
+            <span class="task-when">17.09</span>
             <span class="task-cost">—</span>
           </div>
         </div>
@@ -987,7 +1010,7 @@
           <p>Trafic — близько 1,97 м висоти, а підземні паркінги часто обмежені 1,90. Питання ставити господарю разом із бронюванням: два паркомісця нам мало, якщо в одне бус фізично не заїде.</p>
           <div class="task-side">
             <span class="pill pill-flag">Разом із бронею</span>
-            <span class="task-when">до 11.09</span>
+            <span class="task-when">17.09</span>
             <span class="task-cost">—</span>
           </div>
         </div>
@@ -998,7 +1021,7 @@
           <p>У бюджеті відповідальний за стенд — Якшин, але його немає в списку тих, хто їде. На стенді стоять Коврижних, Адаменко, Джошкун і Мазуренко: хтось із них має відповідати і за монтаж, і за матеріали.</p>
           <div class="task-side">
             <span class="pill pill-block">Рішення</span>
-            <span class="task-when">до 11.09</span>
+            <span class="task-when">17.09</span>
             <span class="task-cost">—</span>
           </div>
         </div>
@@ -1009,7 +1032,7 @@
     <section>
       <div class="sub-head">
         <h3>До виїзду</h3>
-        <span class="eyebrow">11.09 — 19.09</span>
+        <span class="eyebrow">17.09 — 19.09</span>
       </div>
       <div class="plan">
 
@@ -1019,7 +1042,7 @@
           <p>Бюджет стенду ведеться окремо, а тут уже виготовлення зі строком. Готове має бути до 18.09, бо везеться своїм транспортом і має влізти в машину разом із речами. Після 10 вересня встигнути буде важко.</p>
           <div class="task-side">
             <span class="pill pill-todo">Не почато</span>
-            <span class="task-when">до 11.09</span>
+            <span class="task-when">17.09</span>
             <span class="task-cost">у бюджеті стенду</span>
           </div>
         </div>
@@ -1041,7 +1064,7 @@
           <p><span class="money">У рахунку на перепустки €643 податку.</span><span class="nomoney">У рахунку на перепустки є бельгійський ПДВ.</span> Для неєвропейської компанії повернення ПДВ можливе не завжди й потребує окремої процедури зі строками — питання до фінансового блоку: Семенюк, Дерев’янко, Литвинчук. Якщо повертається, це мінус<span class="money"> €643</span> з бюджету; якщо ні, сума лишається в ньому назавжди.</p>
           <div class="task-side">
             <span class="pill pill-flag">До бухгалтерії</span>
-            <span class="task-when">до 12.09</span>
+            <span class="task-when">17.09</span>
             <span class="task-cost money">−€643?</span>
           </div>
         </div>
@@ -1052,7 +1075,7 @@
           <p>Довіреність від прокатника, зелена карта на бус і дозвіл на в’їзд до ЄС. Частина компаній узагалі не випускає машини за кордон — з’ясувати до оплати оренди, а не після.</p>
           <div class="task-side">
             <span class="pill pill-todo">Не почато</span>
-            <span class="task-when">до 12.09</span>
+            <span class="task-when">17.09</span>
             <span class="task-cost money">€155</span>
           </div>
         </div>
@@ -1074,7 +1097,7 @@
           <p>Маршрут іде через Дрезден і Кельн, а там Umweltzone з обов’язковою зеленою наліпкою — вона потрібна й іноземним авто. Якщо йдемо не об’їзною, без неї в’їзд у місто це штраф. Сама наліпка коштує<span class="money"> €6–20 залежно від сервісу</span><span class="nomoney"> дрібні гроші</span>, але оформлення й доставка займають час.</p>
           <div class="task-side">
             <span class="pill pill-flag">Перевірити</span>
-            <span class="task-when">до 12.09</span>
+            <span class="task-when">17.09</span>
             <span class="task-cost money">≈€30 на дві</span>
           </div>
         </div>
@@ -1085,7 +1108,7 @@
           <p>Це заморожені суми на чиїйсь особистій карті — за бус зазвичай кілька сотень євро, за житло теж буває. Треба знати, чиї карти, які суми і коли повертаються. У бюджеті цього рядка немає, бо це не витрата, але гроші реально виймаються з обігу на місяць.</p>
           <div class="task-side">
             <span class="pill pill-todo">Не почато</span>
-            <span class="task-when">до 12.09</span>
+            <span class="task-when">17.09</span>
             <span class="task-cost">поза бюджетом</span>
           </div>
         </div>
@@ -1096,7 +1119,7 @@
           <p>Ніч туди закрита: Aparthotel Symphony на Krakowska 35, <span class="money">786,60 zł оплачено 02.09 — €181 замість €228 за планом</span><span class="nomoney">оплачено 02.09, дешевше за план</span>. Лишилася зворотна, <b>27–28.09</b> — найпростіше той самий готель, якщо будуть місця. Потрібне паркування на дві машини, бус — 1,97 м висоти.</p>
           <div class="task-side">
             <span class="pill pill-block">Половина закрита</span>
-            <span class="task-when">до 12.09</span>
+            <span class="task-when">17.09</span>
             <span class="task-cost money">€228</span>
           </div>
         </div>
@@ -1107,7 +1130,7 @@
           <p>15 днів, категорія «легковий». Тарифи не регулюються МТСБУ з 2025 року, розкид<span class="money"> ₴800–1 600</span><span class="nomoney"> між компаніями великий</span> — варто порівняти кілька компаній.</p>
           <div class="task-side">
             <span class="pill pill-todo">Не почато</span>
-            <span class="task-when">до 16.09</span>
+            <span class="task-when">18.09</span>
             <span class="task-cost money">€25</span>
           </div>
         </div>
@@ -1118,7 +1141,7 @@
           <p><span class="money">Покриття €30 000 — за фактом 2025 це ₴290 з особи.</span><span class="nomoney">Стандартне покриття, як у 2025 році.</span> Саме дванадцять: ті, хто добирається своїм ходом, оформлюють страховки собі самі. Оформлюється швидко, але без неї не пускають на кордоні, тож не лишати на останній день.</p>
           <div class="task-side">
             <span class="pill pill-todo">Не почато</span>
-            <span class="task-when">до 16.09</span>
+            <span class="task-when">18.09</span>
             <span class="task-cost money">€72</span>
           </div>
         </div>
@@ -1129,7 +1152,7 @@
           <p>Аптечка, знак аварійної зупинки, вогнегасник і світловідбивні жилети — у Бельгії жилет у салоні обов’язковий, і бажано на кожного, хто може вийти на дорогу. Штрафи дрібні, але зупинка з порожнім боксом коштує часу на кордоні.</p>
           <div class="task-side">
             <span class="pill pill-todo">Не почато</span>
-            <span class="task-when">до 16.09</span>
+            <span class="task-when">18.09</span>
             <span class="task-cost">—</span>
           </div>
         </div>
@@ -1140,7 +1163,7 @@
           <p>Тринадцять людей, шість вечерь у будинку і обіди на події: комусь потрібне безлактозне, комусь без глютену, у когось астма. Список потрібен і для замовлень їжі, і для аптечки в машині.</p>
           <div class="task-side">
             <span class="pill pill-todo">Не почато</span>
-            <span class="task-when">до 16.09</span>
+            <span class="task-when">18.09</span>
             <span class="task-cost">—</span>
           </div>
         </div>
@@ -1217,9 +1240,9 @@
 
         <div class="task is-done">
           <span class="task-no">✓</span>
-          <h3>Виїзд — субота 19.09 о 22:00</h3>
-          <p>Бус беремо з 19.09, тобто перша доба оренди вже оплачена, і вечірній старт не коштує нічого зверху. Їдемо ніч за кермом змінами, кордон проходимо ранком 20.09, коли черга менша за денну. Комендантську годину враховано — це рішення топів. Ніч у дорозі економить готель: платимо тільки за Вроцлав.</p>
-          <div class="task-side"><span class="pill pill-ok">Вирішено</span><span class="task-when">19.09, 22:00</span></div>
+          <h3>Виїзд — субота 19.09, збір о 21:00</h3>
+          <p>Бус беремо з 19.09, тобто перша доба оренди вже оплачена, і вечірній старт не коштує нічого зверху. Збір о <b>21:00 на АЗК KLO у Стоянці</b> — коло по Києву з точками збору перед тим, точки на вкладці «Маршрут». Їдемо ніч за кермом змінами, кордон проходимо ранком 20.09, коли черга менша за денну. Комендантську годину враховано — це рішення топів. Ніч у дорозі економить готель: платимо тільки за Вроцлав.</p>
+          <div class="task-side"><span class="pill pill-ok">Вирішено</span><span class="task-when">19.09, 21:00</span></div>
         </div>
 
         <div class="task is-done">
@@ -1444,12 +1467,57 @@
   <div class="panel" id="p-route" role="tabpanel" aria-labelledby="tab-route" tabindex="0" hidden>
 
   <section>
+    <div class="sec-head"><h2>Точки збору, 19.09</h2><span class="eyebrow">збір 21:00 · АЗК KLO, Стоянка</span></div>
+    <p>Машина проходить Київ і забирає своїх, останній сідає перед Стоянкою. На АЗК KLO сходяться всі — і ті, кого везли, і ті, хто приїжджає туди сам. Звідти стартуємо разом.</p>
+
+    <div class="pickups">
+      <div class="pickup">
+        <span class="no">1</span>
+        <span class="where"><b>вул. Зарічна, 1г</b><span>Маша й Андрій — звідси машина починає коло</span></span>
+      </div>
+      <div class="pickup">
+        <span class="no">2</span>
+        <span class="where"><b>Дніпровська набережна, 18а</b><span>Тимур</span></span>
+      </div>
+      <div class="pickup">
+        <span class="no">3</span>
+        <span class="where"><b>вулиця Центральна, 21 — офіс</b><span>Катя та Ігор стартують з офісу</span></span>
+      </div>
+      <div class="pickup">
+        <span class="no">4</span>
+        <span class="where"><b>Олесь — останній перед Стоянкою</b><span>з дому або десь по дорозі: точку ще вирішуємо</span></span>
+      </div>
+      <div class="pickup is-final">
+        <span class="no">21:00</span>
+        <span class="where"><b>АЗК KLO, Стоянка — збір і старт</b><span>Олексій і Лавренко приїжджають одразу сюди. Далі по Житомирській трасі забираємо Джамілю</span></span>
+      </div>
+    </div>
+
+    <div class="maplinks">
+      <a class="maplink" href="https://maps.app.goo.gl/1tgz5mB9GoA2miqw5" target="_blank" rel="noreferrer">
+        <span class="when">точка</span>
+        <span class="what"><b>АЗК KLO, Стоянка</b><span>саме та точка, що в чаті — відкрити на карті</span></span>
+        <span class="km">21:00 ↗</span>
+      </a>
+      <a class="maplink" href="https://www.google.com/maps/dir/?api=1&amp;travelmode=driving&amp;origin=%D0%B2%D1%83%D0%BB.+%D0%97%D0%B0%D1%80%D1%96%D1%87%D0%BD%D0%B0,+1%D0%B3,+%D0%9A%D0%B8%D1%97%D0%B2&amp;destination=KLO,+%D0%A1%D1%82%D0%BE%D1%8F%D0%BD%D0%BA%D0%B0,+%D0%9A%D0%B8%D1%97%D0%B2%D1%81%D1%8C%D0%BA%D0%B0+%D0%BE%D0%B1%D0%BB%D0%B0%D1%81%D1%82%D1%8C&amp;waypoints=%D0%94%D0%BD%D1%96%D0%BF%D1%80%D0%BE%D0%B2%D1%81%D1%8C%D0%BA%D0%B0+%D0%BD%D0%B0%D0%B1%D0%B5%D1%80%D0%B5%D0%B6%D0%BD%D0%B0,+18%D0%B0,+%D0%9A%D0%B8%D1%97%D0%B2%7C%D0%B2%D1%83%D0%BB%D0%B8%D1%86%D1%8F+%D0%A6%D0%B5%D0%BD%D1%82%D1%80%D0%B0%D0%BB%D1%8C%D0%BD%D0%B0,+21,+%D0%9A%D0%B8%D1%97%D0%B2" target="_blank" rel="noreferrer">
+        <span class="when">коло</span>
+        <span class="what"><b>Зарічна → набережна → офіс → Стоянка</b><span>маршрут збору без точки Олеся — додати, коли визначимось</span></span>
+        <span class="km">на карті ↗</span>
+      </a>
+    </div>
+
+    <div class="note">
+      <p><b>21:00 — це збір, не старт із дому.</b> Щоб бути на Стоянці о 21:00, коло по місту треба починати щонайменше за півтори години, тобто близько 19:30. Субота ввечері — не пік, але чотири точки плюс Стоянка в одну ходку складаються швидко. Дві незакриті дрібниці: точка Олеся і те, звідки саме забираємо Джамілю на Житомирській трасі.</p>
+    </div>
+  </section>
+
+  <section>
     <div class="sec-head"><h2>Десять днів</h2><span class="eyebrow">ніч за кермом · 2 в готелі · 6 у Niel</span></div>
     <div class="t-wrap">
       <table>
         <thead><tr><th>День</th><th>Що відбувається</th><th>Ніч</th></tr></thead>
         <tbody>
-          <tr><td class="d"><b>19.09</b> сб</td><td>Виїзд із Києва о <b>22:00</b>. Ніч за кермом, змінами<span class="sub">комендантську годину враховано — рішення топів</span></td><td class="d">у дорозі</td></tr>
+          <tr><td class="d"><b>19.09</b> сб</td><td>Збір на АЗК KLO у Стоянці о <b>21:00</b>, старт одразу. Ніч за кермом, змінами<span class="sub">коло по Києву починаємо близько 19:30; комендантську годину враховано</span></td><td class="d">у дорозі</td></tr>
           <tr><td class="d"><b>20.09</b> нд</td><td><b>Краковець</b> уранці, далі на Вроцлав — ~1 100 км від Києва<span class="sub">ранкова черга менша за денну; у Вроцлаві по обіді за польським часом</span></td><td class="d">готель, Вроцлав</td></tr>
           <tr><td class="d"><b>21.09</b> пн</td><td>Вроцлав → Niel, ~1 100 км. Заселення надвечір<span class="sub">Kerkstraat 23; від Кельна йдемо через Нідерланди, обходячи брюссельський ринг</span></td><td class="d">будинок</td></tr>
           <tr><td class="d"><b>22.09</b> вт</td><td>Кутько — майстер-клас, день 1. Решта — стенд і підготовка<span class="sub">програму на дванадцятьох ще не складено; до Брюсселя і назад, ~60 км</span></td><td class="d">будинок</td></tr>
@@ -2003,7 +2071,7 @@
       var nodes = document.querySelectorAll(".js-days");
       if (!nodes.length) return;
 
-      var departure = new Date(2026, 8, 19);          // 19 вересня 2026, 22:00
+      var departure = new Date(2026, 8, 19);          // 19 вересня 2026, збір 21:00
       var now = new Date();
       var today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
       var days = Math.round((departure - today) / 86400000);
