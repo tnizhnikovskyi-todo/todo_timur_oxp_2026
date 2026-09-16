@@ -366,8 +366,8 @@
   /* Друга смуга того ж типу — поділ бюджету на «до виїзду» і «в дорозі».
      Колір беремо не акцентний: акцент у .m-over означає перевитрату,
      а тут обидві частини однаково планові. */
-  .m-pre  { flex: 7766 1 0; background: var(--surface-sunk); color: var(--ink); }
-  .m-trip { flex: 6129 1 0; background: color-mix(in srgb, var(--flag) 14%, var(--surface)); color: var(--ink); border-left: 1px solid var(--rule-strong); }
+  .m-pre  { flex: 4063 1 0; background: var(--surface-sunk); color: var(--ink); }
+  .m-trip { flex: 5759 1 0; background: color-mix(in srgb, var(--flag) 14%, var(--surface)); color: var(--ink); border-left: 1px solid var(--rule-strong); }
 
   .m-over { flex: 850 1 0; background: color-mix(in srgb, var(--accent) 20%, var(--surface)); color: var(--ink); border-left: 1px solid var(--rule-strong); }
 
@@ -855,7 +855,7 @@
     <p class="lede">Десять днів, дві машини, будинок на всіх. Тут план дій, маршрут, запланований бюджет і облік фактичних витрат. Майстер-клас 22–23.09 — тільки в Кутька, окремим бюджетом.</p>
 
     <div class="meta-row">
-      <span class="money">Бюджет плану <b>€13 895</b></span>
+      <span class="money">Бюджет плану <b>€9 822</b></span>
       <span class="money">Витрачено <b>€441</b></span>
       <span>До виїзду <b class="js-days">26 днів</b></span>
       <span class="money">Курс НБУ <b>₴52,24/€</b></span>
@@ -1061,11 +1061,11 @@
         <div class="task">
           <span class="task-no">12</span>
           <h3>Оплатити рахунок на 12 Premium</h3>
-          <p><span class="money">Рахунок Odoo виставлений: 12 × €255 плюс ПДВ 21% — €3 702,60.</span><span class="nomoney">Рахунок Odoo на 12 Premium виставлений.</span> Дванадцять — остаточна кількість: варіант із Basic знятий, розподіляти нікого не треба. Мазуренко вирішує свою перепустку на місці.<span class="money"> Варто пам’ятати, що на місці Premium коштує €285 замість €255.</span></p>
+          <p><span class="money">Рахунок Odoo виставлений: 12 × €255 плюс ПДВ 21% — €3 702,60.</span><span class="nomoney">Рахунок Odoo на 12 Premium виставлений.</span> Дванадцять — остаточна кількість: варіант із Basic знятий, розподіляти нікого не треба. Мазуренко вирішує свою перепустку на місці.<span class="money"> Варто пам’ятати, що на місці Premium коштує €285 замість €255.</span> Платіж іде окремим бюджетом і у вкладку «Бюджет» не входить.</p>
           <div class="task-side">
             <span class="pill pill-block">Рахунок виставлений</span>
             <span class="task-when">за строком рахунку</span>
-            <span class="task-cost money">€3 703</span>
+            <span class="task-cost money">€3 703 поза бюджетом</span>
           </div>
         </div>
 
@@ -1378,7 +1378,7 @@
           <span class="task-no">✓</span>
           <h3>Варіант за квитками вирішений: усі на Premium</h3>
           <p>Рахунок Odoo виставлений на 12 Premium, тож Basic не бере ніхто: кейноут, обіди, напої та вечірка є в кожного. <span class="money">Заодно з’ясувалося, що €255 — ціна без ПДВ, а з бельгійськими 21% перепустка коштує €308,55.</span><span class="nomoney">Заодно з’ясувалося, що ціна перепустки вказана без ПДВ, а бельгійські 21% додаються зверху.</span></p>
-          <div class="task-side"><span class="pill pill-ok">За рахунком</span><span class="task-cost money">€3 702,60</span><span class="task-cost nomoney">12 Premium</span></div>
+          <div class="task-side"><span class="pill pill-ok">За рахунком</span><span class="task-cost money">€3 702,60 окремо</span><span class="task-cost nomoney">12 Premium, окремий бюджет</span></div>
         </div>
 
       </div>
@@ -1667,60 +1667,41 @@
 
 
   <section>
-    <div class="sec-head"><h2>Перепустки: рахунок на 12 Premium</h2><span class="eyebrow">ПДВ 21% зверху</span></div>
+    <div class="sec-head"><h2>Перепустки — окремий бюджет</h2><span class="eyebrow">не входять у суми нижче</span></div>
     <div class="note">
-      <p><b>€255 — це ціна без ПДВ.</b> У рахунку від Odoo до неї додається бельгійський ПДВ 21%: 12 перепусток це €3 060 плюс €643 податку, разом <b>€3 702,60</b>. У попередньому розрахунку цих €643 не було взагалі. Заодно рахунок знімає питання варіанта — виставлений він на дванадцять Premium, тобто Basic ні для кого не беремо.</p>
+      <p><b>Перепустки на подію виведені з бюджету поїздки</b> — як стенд і майстер-клас. Рахунок від Odoo: 12 × Premium по €255 без ПДВ = €3 060, плюс бельгійський ПДВ 21% €643, разом <b>€3 702,60</b>. Він оплачується окремо, тож усі цифри на цій вкладці — це дорога, житло, їжа й машини, без квитків на подію.</p>
     </div>
-    <div class="t-wrap">
-      <table>
-        <thead>
-          <tr><th></th><th class="n">7 Premium + 5 Basic<span class="sub">не беремо</span></th><th class="n">12 Premium<span class="sub">за рахунком</span></th></tr>
-        </thead>
-        <tbody>
-          <tr><td>Перепустки на подію<span class="sub">Premium €255 без ПДВ; Basic безкоштовно</span></td><td class="n">1 785</td><td class="n">3 060</td></tr>
-          <tr class="mark"><td>ПДВ 21%<span class="sub">бельгійський, у рахунку окремим рядком</span></td><td class="n">375</td><td class="n">643</td></tr>
-          <tr><td>Обіди для тих, хто на Basic<span class="sub">3 дні × €15 × 5 осіб</span></td><td class="n">225</td><td class="n">—</td></tr>
-          <tr><td>Дорога, житло, їжа, транспорт<span class="sub">однаково в обох варіантах; тут же авіа Мазуренка €242</span></td><td class="n">8 929</td><td class="n">8 929</td></tr>
-          <tr class="sum"><td>Усього</td><td class="n">€11 314</td><td class="n">€12 632</td></tr>
-          <tr class="total"><td>На особу<span class="sub">з тринадцяти учасників</span></td><td class="n">€870</td><td class="n">€972</td></tr>
-          <tr><td>Ризики<span class="sub">10% запасу на непередбачене</span></td><td class="n">1 131</td><td class="n">1 263</td></tr>
-          <tr class="sum"><td>Усього з ризиками</td><td class="n">€12 445<span class="sub">€957 на особу</span></td><td class="n">€13 895<span class="sub">€1 069 на особу</span></td></tr>
-        </tbody>
-      </table>
-    </div>
-    <p>З ПДВ різниця між варіантами виросла до <b>€1 450</b>, бо податок нараховується саме на Premium. Але вибір уже зроблений рахунком: усі дванадцять на Premium, тобто кейноут, обіди, напої та вечірка є в кожного і докуповувати обіди не треба. <span class="pick">Дванадцять — остаточно:</span> Мазуренко на події буде, але перепустку собі вирішує на місці. Лишилося одне питання — чи можна повернути ці €643 бельгійського ПДВ як неєвропейська компанія; сума варта запитання до бухгалтерії.</p>
+    <p>Дві речі, які варто пам’ятати попри це. Перше: <span class="pick">дванадцять Premium — остаточно</span>, рахунок виставлений саме так, тобто кейноут, обіди, напої та вечірка є в кожного і докуповувати обіди на дні події не треба; Мазуренко на події буде, але перепустку собі вирішує на місці. Друге: чи можна повернути <b>€643</b> бельгійського ПДВ як неєвропейська компанія — сума варта запитання до бухгалтерії, навіть якщо вона вже не в цьому бюджеті.</p>
   </section>
 
   <section>
-    <div class="sec-head"><h2>До виїзду і в дорозі</h2><span class="eyebrow">€7 766 до 19.09 · €6 129 у дорозі</span></div>
-    <p>Той самий бюджет, поділений не за статтями, а за тим, коли гроші йдуть з рахунку. До виїзду це передоплати й документи, які без них нікуди не поїдеш; у дорозі — пальне, їжа й дрібне на місці.</p>
+    <div class="sec-head"><h2>До виїзду і в дорозі</h2><span class="eyebrow">€4 063 до 19.09 · €5 759 у дорозі</span></div>
+    <p>Той самий бюджет, поділений не за статтями, а за тим, коли гроші йдуть з рахунку. До виїзду це передоплати й документи, які без них нікуди не поїдеш; у дорозі — пальне, їжа й дрібне на місці. Перепустки на подію сюди не входять — вони окремим бюджетом.</p>
 
     <div class="mbar">
-      <div class="m-pre">До виїзду €7 766 · 56%</div>
-      <div class="m-trip">У дорозі €6 129 · 44%</div>
+      <div class="m-pre">До виїзду €4 063 · 41%</div>
+      <div class="m-trip">У дорозі €5 759 · 59%</div>
     </div>
 
     <div class="stats">
       <div class="stat"><span class="k">Оплачено</span><span class="v">€622</span><span class="s">житло і Вроцлав · ₴32 468</span></div>
-      <div class="stat is-accent"><span class="k">Ще до виїзду</span><span class="v">€7 144</span><span class="s">₴373 203 за три дні</span></div>
-      <div class="stat"><span class="k">У дорозі</span><span class="v">€6 129</span><span class="s">з резервом · €511 на кожного з 12</span></div>
-      <div class="stat"><span class="k">Найбільший платіж</span><span class="v">€3 703</span><span class="s">перепустки з ПДВ, за рахунком</span></div>
+      <div class="stat is-accent"><span class="k">Ще до виїзду</span><span class="v">€3 441</span><span class="s">₴179 758 за три дні</span></div>
+      <div class="stat"><span class="k">У дорозі</span><span class="v">€5 759</span><span class="s">з резервом · €480 на кожного з 12</span></div>
+      <div class="stat"><span class="k">Найбільший платіж</span><span class="v">€1 748</span><span class="s">залишок за житло, ₴91 335</span></div>
     </div>
 
     <div class="t-wrap">
       <table>
         <thead><tr><th>До виїзду — до 19.09</th><th class="n">€</th><th>Коли</th></tr></thead>
         <tbody>
-          <tr><td>Перепустки Premium<span class="sub">12 × €255 без ПДВ</span></td><td class="n">3 060</td><td class="d">за строком рахунку</td></tr>
-          <tr class="mark"><td>ПДВ 21% на перепустки<span class="sub">той самий рахунок Odoo</span></td><td class="n">643</td><td class="d">за строком рахунку</td></tr>
           <tr><td>Житло в Niel, 6 ночей<span class="sub">передоплата ₴23 025 пройшла 28.08; залишок ₴91 335</span></td><td class="n">2 500</td><td class="d">залишок — строк Airbnb</td></tr>
           <tr><td>Оренда бусу, 11 діб<span class="sub">₴32 032 за договором, оплата при видачі 19.09 об 11:00; застава €750 понад це</span></td><td class="n">613</td><td class="d">19.09</td></tr>
           <tr><td>Ночівлі у Вроцлаві, 2 ночі<span class="sub">20.09 оплачено 02.09 — 786,60 zł; 27.09 ще не заброньовано</span></td><td class="n">456</td><td class="d">при бронюванні</td></tr>
-          <tr><td>Дозвіл на виїзд, зелена карта, КАСКО<span class="sub">по бусу, через прокатника</span></td><td class="n">155</td><td class="d">до 12.09</td></tr>
-          <tr><td>Медстраховки на 12<span class="sub">без них не пускають на кордоні</span></td><td class="n">72</td><td class="d">до 16.09</td></tr>
-          <tr><td>Зелена карта на GX<span class="sub">15 днів, категорія «легковий»</span></td><td class="n">25</td><td class="d">до 16.09</td></tr>
+          <tr><td>Дозвіл на виїзд, зелена карта, КАСКО<span class="sub">по бусу, через прокатника</span></td><td class="n">155</td><td class="d">негайно</td></tr>
+          <tr><td>Медстраховки на 12<span class="sub">без них не пускають на кордоні</span></td><td class="n">72</td><td class="d">до 18.09</td></tr>
+          <tr><td>Зелена карта на GX<span class="sub">15 днів, категорія «легковий»</span></td><td class="n">25</td><td class="d">до 18.09</td></tr>
           <tr><td>Авіа Мазуренка<span class="sub">Подгориця → Брюссель → Будапешт → Подгориця; квитки куплені, заявка затверджена 07.09</span></td><td class="n">242</td><td class="d">до виплати</td></tr>
-          <tr class="total"><td>Разом до виїзду<span class="sub">€597 на особу з тринадцяти · ₴405 696</span></td><td class="n">7 766</td><td class="d">56% бюджету</td></tr>
+          <tr class="total"><td>Разом до виїзду<span class="sub">€313 на особу з тринадцяти · ₴212 251</span></td><td class="n">4 063</td><td class="d">41% бюджету</td></tr>
         </tbody>
       </table>
     </div>
@@ -1734,15 +1715,15 @@
           <tr><td>Паркування<span class="sub">Parking C 5 днів × 2 машини = 120; біля будинку 60</span></td><td class="n">180</td><td class="d">Брюссель, Niel</td></tr>
           <tr class="mark"><td>Перепробіг бусу<span class="sub">850 км понад ліміт, ₴350 за 100 км за договором</span></td><td class="n">57</td><td class="d">при здачі 30.09</td></tr>
           <tr><td>Платні дороги, Польща<span class="sub">A4 Kraków–Katowice, 36 zł на машину в бік</span></td><td class="n">30</td><td class="d">каси на A4</td></tr>
-          <tr class="total"><td>Разом у дорозі<span class="sub">без резерву</span></td><td class="n">4 866</td><td class="d">35% бюджету</td></tr>
-          <tr class="mark"><td>Резерв на непередбачене<span class="sub">10% — LEZ day-pass, дрібний ремонт, витратні; витрачається в дорозі</span></td><td class="n">1 263</td><td class="d">за потреби</td></tr>
-          <tr class="sum"><td>Усього в дорозі<span class="sub">€511 на кожного з дванадцяти в машинах · ₴320 179</span></td><td class="n">€6 129</td><td class="d">44% бюджету</td></tr>
+          <tr class="total"><td>Разом у дорозі<span class="sub">без резерву</span></td><td class="n">4 866</td><td class="d">50% бюджету</td></tr>
+          <tr class="mark"><td>Резерв на непередбачене<span class="sub">10% — LEZ day-pass, дрібний ремонт, витратні; витрачається в дорозі</span></td><td class="n">893</td><td class="d">за потреби</td></tr>
+          <tr class="sum"><td>Усього в дорозі<span class="sub">€480 на кожного з дванадцяти в машинах · ₴300 850</span></td><td class="n">€5 759</td><td class="d">59% бюджету</td></tr>
         </tbody>
       </table>
     </div>
 
     <div class="note">
-      <p><b>Що це означає на практиці.</b> Більша половина бюджету йде до того, як хтось сів у машину, і за три дні, що лишилися, треба провести <b>€7 144</b> — це передусім рахунок на перепустки (€3 703), залишок за житло (₴91 335) і відшкодування Мазуренку (₴12 620). У дорозі на руках потрібно вже менше — €4 866 плюс резерв, і це переважно готівка й картка на заправках, у кафе та на паркінгах.</p>
+      <p><b>Що це означає на практиці.</b> Без перепусток центр ваги перемістився: тепер більша частина бюджету витрачається вже в дорозі. До виїзду за три дні лишилося провести <b>€3 441</b> — це залишок за житло (₴91 335) і відшкодування Мазуренку (₴12 620). У дорозі потрібно €4 866 плюс резерв, і це переважно готівка й картка на заправках, у кафе та на паркінгах.</p>
       <p><b>Один рядок поділений за припущенням.</b> Залишок за житло Airbnb списує «ближче до заїзду»: якщо це станеться після 19.09, €1 748 переїдуть у праву колонку. По бусу питання знято — договір каже видачу 19.09 об 11:00, і там же платиться і оренда, і застава €750, яка в бюджет не входить, бо повертається.</p>
     </div>
   </section>
@@ -1804,39 +1785,36 @@
     <div class="t-wrap t-final">
       <table>
         <thead>
-          <tr><th>Зведення</th><th class="n">7 Premium</th><th class="n">12 Premium</th></tr>
+          <tr><th>Зведення</th><th class="n">€</th><th class="n">На особу</th></tr>
         </thead>
         <tbody>
-          <tr><td>Машини</td><td class="n">2 899</td><td class="n">2 899</td></tr>
-          <tr><td>Будинок, 6 ночей</td><td class="n">2 500</td><td class="n">2 500</td></tr>
-          <tr><td>Люди, крім квитків<span class="sub">€274 × 12</span></td><td class="n">3 288</td><td class="n">3 288</td></tr>
-          <tr><td>Авіа Мазуренка<span class="sub">Подгориця — Брюссель — Будапешт — Подгориця, до відшкодування</span></td><td class="n">242</td><td class="n">242</td></tr>
-          <tr class="total"><td>Підсумок — усе, крім квитків на подію</td><td class="n">8 929</td><td class="n">8 929</td></tr>
-          <tr><td>Перепустки на подію<span class="sub">Premium €255 без ПДВ × 7 або × 12</span></td><td class="n">1 785</td><td class="n">3 060</td></tr>
-          <tr class="mark"><td>ПДВ 21% на перепустки<span class="sub">бельгійський, у рахунку Odoo</span></td><td class="n">375</td><td class="n">643</td></tr>
-          <tr><td>Обіди тим, хто на Basic<span class="sub">3 дні × €15 × 5 осіб</span></td><td class="n">225</td><td class="n">—</td></tr>
-          <tr class="sum"><td>Усього<span class="sub">курс НБУ ₴52,24/€ на 24.08.2026</span></td><td class="n">€11 314<span class="sub">₴591 043</span></td><td class="n">€12 632<span class="sub">₴659 896</span></td></tr>
+          <tr><td>Машини<span class="sub">оренда, пальне, страховки, паркінги</span></td><td class="n">2 899</td><td class="n">223</td></tr>
+          <tr><td>Будинок, 6 ночей<span class="sub">Niel, 21–27.09</span></td><td class="n">2 500</td><td class="n">192</td></tr>
+          <tr><td>Люди, крім квитків<span class="sub">€274 × 12 — готелі, їжа, страховки</span></td><td class="n">3 288</td><td class="n">253</td></tr>
+          <tr><td>Авіа Мазуренка<span class="sub">Подгориця — Брюссель — Будапешт — Подгориця</span></td><td class="n">242</td><td class="n">19</td></tr>
+          <tr class="total"><td>База</td><td class="n">8 929</td><td class="n">687</td></tr>
+          <tr class="mark"><td>Резерв на непередбачене<span class="sub">10%</span></td><td class="n">893</td><td class="n">69</td></tr>
+          <tr class="sum"><td>Усього<span class="sub">на тринадцятьох; курс НБУ ₴52,24/€ на 24.08.2026</span></td><td class="n">€9 822<span class="sub">₴513 101</span></td><td class="n">€756</td></tr>
         </tbody>
       </table>
     </div>
     <div class="t-wrap">
       <table>
         <thead>
-          <tr><th>Статті за часом<span class="sub">варіант 12 Premium</span></th><th class="n">До виїзду</th><th class="n">У дорозі</th><th class="n">Разом</th></tr>
+          <tr><th>Статті за часом<span class="sub">без перепусток на подію</span></th><th class="n">До виїзду</th><th class="n">У дорозі</th><th class="n">Разом</th></tr>
         </thead>
         <tbody>
-          <tr><td>Перепустки з ПДВ</td><td class="n">3 703</td><td class="n">—</td><td class="n">3 703</td></tr>
           <tr><td>Житло в Niel, 6 ночей</td><td class="n">2 500</td><td class="n">—</td><td class="n">2 500</td></tr>
           <tr><td>Машини<span class="sub">оренда і страховки — до, пальне й паркінги — в дорозі</span></td><td class="n">793</td><td class="n">2 106</td><td class="n">2 899</td></tr>
           <tr><td>Люди, крім квитків<span class="sub">готелі й страховки — до, їжа — в дорозі</span></td><td class="n">528</td><td class="n">2 760</td><td class="n">3 288</td></tr>
           <tr><td>Авіа Мазуренка</td><td class="n">242</td><td class="n">—</td><td class="n">242</td></tr>
-          <tr class="total"><td>База</td><td class="n">7 766</td><td class="n">4 866</td><td class="n">12 632</td></tr>
-          <tr class="mark"><td>Резерв 10%<span class="sub">витрачається в дорозі</span></td><td class="n">—</td><td class="n">1 263</td><td class="n">1 263</td></tr>
-          <tr class="sum"><td>Усього<span class="sub">56% до виїзду, 44% у дорозі</span></td><td class="n">€7 766</td><td class="n">€6 129</td><td class="n">€13 895</td></tr>
+          <tr class="total"><td>База</td><td class="n">4 063</td><td class="n">4 866</td><td class="n">8 929</td></tr>
+          <tr class="mark"><td>Резерв 10%<span class="sub">витрачається в дорозі</span></td><td class="n">—</td><td class="n">893</td><td class="n">893</td></tr>
+          <tr class="sum"><td>Усього<span class="sub">41% до виїзду, 59% у дорозі</span></td><td class="n">€4 063</td><td class="n">€5 759</td><td class="n">€9 822</td></tr>
         </tbody>
       </table>
     </div>
-    <p>Усе вище — лише те, що не залежить від квитків на подію: €8 929, разом з авіа Мазуренка. Перепустки й обіди для тих, хто на Basic, додаються зверху і дають підсумок зі зведення вгорі вкладки. Запас на непередбачене сюди не входить — він окремим рядком у таблиці вгорі вкладки: 10%, тобто €12 445 і €13 895 з ризиками. Саме з нього й покриваються витратні матеріали, дрібний ремонт і LEZ day-pass, якщо бус виявиться Euro 5.</p>
+    <p>Це весь бюджет поїздки: <b>€8 929</b> бази плюс 10% резерву — <b>€9 822</b>, або €756 на людину з тринадцяти. Перепустки на подію (€3 703), стенд і майстер-клас ведуться окремо і сюди не входять. З резерву покриваються витратні матеріали, дрібний ремонт і LEZ day-pass, якщо бус виявиться Euro 5.</p>
   </section>
 
 
@@ -1862,14 +1840,14 @@
         <h2>Витрати</h2>
         <span class="eyebrow">факт проти плану</span>
       </div>
-      <p>Сюди пишемо кожен платіж, щойно він пройшов. Бюджет на сусідній вкладці лишається незмінним планом — саме проти нього тут і рахується різниця, тож видно не «скільки витрачено», а «чи вкладаємося». Поділ на «до виїзду» і «в дорозі» — там же, у «Бюджеті»: до 19.09 треба провести €7 144, решта витрачається вже в дорозі.</p>
+      <p>Сюди пишемо кожен платіж, щойно він пройшов. Бюджет на сусідній вкладці лишається незмінним планом — саме проти нього тут і рахується різниця, тож видно не «скільки витрачено», а «чи вкладаємося». Поділ на «до виїзду» і «в дорозі» — там же, у «Бюджеті»: до 19.09 треба провести €3 441, решта витрачається вже в дорозі.</p>
 
       <div class="stats">
-        <div class="stat"><span class="k">Бюджет плану</span><span class="v">€13 895</span><span class="s">12 Premium, із ризиками</span></div>
+        <div class="stat"><span class="k">Бюджет плану</span><span class="v">€9 822</span><span class="s">без перепусток, із резервом</span></div>
         <div class="stat is-accent"><span class="k">Витрачено</span><span class="v">€622</span><span class="s">2 записи · ₴32 468</span></div>
-        <div class="stat is-accent"><span class="k">Ще до виїзду</span><span class="v">€7 144</span><span class="s">з €13 273, що лишилися</span></div>
-        <div class="stat"><span class="k">У дорозі</span><span class="v">€6 129</span><span class="s">решта, з резервом</span></div>
-        <div class="stat"><span class="k">Найближчий платіж</span><span class="v">€3 703</span><span class="s">перепустки; далі ₴91 335 за житло</span></div>
+        <div class="stat is-accent"><span class="k">Ще до виїзду</span><span class="v">€3 441</span><span class="s">з €9 200, що лишилися</span></div>
+        <div class="stat"><span class="k">У дорозі</span><span class="v">€5 759</span><span class="s">решта, з резервом</span></div>
+        <div class="stat"><span class="k">Найближчий платіж</span><span class="v">€1 748</span><span class="s">₴91 335 — залишок за житло</span></div>
       </div>
 
       <div class="note">
@@ -1880,7 +1858,7 @@
     <section>
       <div class="sub-head">
         <h3>План і факт за статтями</h3>
-        <span class="eyebrow">варіант 12 Premium</span>
+        <span class="eyebrow">без перепусток на подію</span>
       </div>
       <div class="t-wrap">
         <table>
@@ -1891,12 +1869,10 @@
             <tr><td>Машини<span class="sub">пальне, оренда, страховки, паркування</span></td><td class="n">2 899</td><td class="n">—</td><td class="n">—</td></tr>
             <tr><td>Житло в Niel<span class="sub">6 ночей, 21–27.09, Airbnb — заброньовано</span></td><td class="n">2 500</td><td class="n">2 189</td><td class="n"><span class="pick">−311</span></td></tr>
             <tr><td>Люди, крім квитків<span class="sub">ночівлі в дорозі, їжа, медстраховка</span></td><td class="n">3 288</td><td class="n">181<span class="sub">ночівля 20.09</span></td><td class="n">—</td></tr>
-            <tr><td>Перепустки на подію<span class="sub">12 × Premium €255 без ПДВ</span></td><td class="n">3 060</td><td class="n">—</td><td class="n">—</td></tr>
-            <tr class="mark"><td>ПДВ 21% на перепустки<span class="sub">бельгійський, у рахунку Odoo</span></td><td class="n">643</td><td class="n">—</td><td class="n">—</td></tr>
             <tr><td>Авіа Мазуренка<span class="sub">квитки куплені, заявка затверджена 07.09</span></td><td class="n">242</td><td class="n">—<span class="sub">до виплати</span></td><td class="n">—</td></tr>
-            <tr class="total"><td>База</td><td class="n">12 632</td><td class="n">—</td><td class="n">—</td></tr>
-            <tr class="mark"><td>Запас на непередбачене<span class="sub">10% — сюди ж LEZ day-pass, дрібний ремонт, витратні</span></td><td class="n">1 263</td><td class="n">—</td><td class="n">—</td></tr>
-            <tr class="sum"><td>Усього</td><td class="n">€13 895</td><td class="n">€622<span class="sub">оплачено</span></td><td class="n">€13 273<span class="sub">лишається</span></td></tr>
+            <tr class="total"><td>База</td><td class="n">8 929</td><td class="n">—</td><td class="n">—</td></tr>
+            <tr class="mark"><td>Запас на непередбачене<span class="sub">10% — сюди ж LEZ day-pass, дрібний ремонт, витратні</span></td><td class="n">893</td><td class="n">—</td><td class="n">—</td></tr>
+            <tr class="sum"><td>Усього</td><td class="n">€9 822</td><td class="n">€622<span class="sub">оплачено</span></td><td class="n">€9 200<span class="sub">лишається</span></td></tr>
           </tbody>
         </table>
       </div>
