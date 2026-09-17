@@ -311,6 +311,61 @@
     .pickup .where { flex-basis: 100%; }
   }
 
+  /* ---------- сесії події ---------- */
+  /* Розгортання на <details>, без скрипта: працює і без JS, і з клавіатури. */
+
+  .ses-list {
+    display: grid; gap: 1px;
+    background: var(--rule); border: 1px solid var(--rule);
+    border-radius: 14px; overflow: hidden;
+  }
+  .ses, .ses-fixed { background: var(--surface); }
+  .ses-fixed { background: var(--surface-sunk); }
+
+  .ses > summary, .ses-fixed {
+    display: flex; align-items: baseline; gap: 0.9rem;
+    padding: 0.8rem 1rem;
+    list-style: none;
+  }
+  .ses > summary { cursor: pointer; }
+  .ses > summary::-webkit-details-marker { display: none; }
+  .ses > summary:hover { background: var(--surface-sunk); }
+  .ses > summary::after {
+    content: "+"; flex: 0 0 auto; width: 1rem; text-align: center;
+    font-family: var(--mono); font-size: 0.95rem; color: var(--ink-faint);
+  }
+  .ses[open] > summary::after { content: "−"; color: var(--accent); }
+  .ses-fixed::after { content: ""; flex: 0 0 auto; width: 1rem; }
+
+  .ses-t {
+    flex: 0 0 auto; min-width: 3.4rem;
+    font-family: var(--mono); font-size: 0.74rem; font-weight: 700;
+    color: var(--ink-soft);
+  }
+  .ses-n { flex: 1 1 auto; min-width: 0; font-size: 0.9rem; font-weight: 600; }
+  .ses-r {
+    flex: 0 0 auto;
+    font-family: var(--mono); font-size: 0.72rem; color: var(--ink-faint);
+    white-space: nowrap;
+  }
+  /* Розкриття задаємо самі, а не покладаємось на стилі браузера: у <details>
+     всередині grid-контейнера Chromium лишає вміст видимим при open=false. */
+  .ses:not([open]) .ses-body { display: none; }
+
+  .ses-body {
+    padding: 0 1rem 0.9rem 5.3rem;
+    font-size: 0.85rem; color: var(--ink-soft);
+  }
+  .ses-body p { margin: 0 0 0.35rem; }
+  .ses-body p:last-child { margin-bottom: 0; }
+  .ses-body b { color: var(--ink); font-weight: 600; }
+
+  @media (max-width: 620px) {
+    .ses > summary, .ses-fixed { flex-wrap: wrap; gap: 0.3rem 0.8rem; }
+    .ses-n { flex-basis: 100%; order: 3; }
+    .ses-body { padding-left: 1rem; }
+  }
+
   /* ---------- посилання на карти ---------- */
 
   .maplinks { display: grid; gap: 0.5rem; margin-top: 1.2rem; }
@@ -1543,8 +1598,8 @@
           <tr><td class="d"><b>21.09</b> пн</td><td>Вроцлав → Niel, ~1 100 км. Заселення надвечір<span class="sub">Kerkstraat 23; від Кельна йдемо через Нідерланди, обходячи брюссельський ринг</span></td><td class="d">будинок</td></tr>
           <tr><td class="d"><b>22.09</b> вт</td><td>Кутько — майстер-клас, день 1. Решта — стенд і підготовка<span class="sub">програму на дванадцятьох ще не складено; до Брюсселя і назад, ~60 км</span></td><td class="d">будинок</td></tr>
           <tr><td class="d"><b>23.09</b> ср</td><td>Кутько — майстер-клас, день 2. Решта — монтаж стенду<span class="sub">за регламентом Odoo монтаж напередодні події; до Брюсселя і назад, ~60 км</span></td><td class="d">будинок</td></tr>
-          <tr><td class="d"><b>24.09</b> чт</td><td>Odoo Experience, день 1 — кейноут о <b>08:00</b>, далі до 23:00<span class="sub">виїзд із Niel близько 06:45 · обід 12:00 · вечеря з open bar 18:00 і концерти до 22:00 — за кермом назад той, хто не п’є</span></td><td class="d">будинок</td></tr>
-          <tr><td class="d"><b>25.09</b> пт</td><td>Odoo Experience, день 2 — кейноут, частина 2, о 08:00; день закінчується о 17:00<span class="sub">Niel → Heysel і назад, ~60 км</span></td><td class="d">будинок</td></tr>
+          <tr><td class="d"><b>24.09</b> чт</td><td>Odoo Experience, день 1 — кейноут о <b>08:30</b>, далі до 23:00<span class="sub">виїзд із Niel близько 07:15 · обід 12:00 · вечеря з open bar 18:00 і концерти до 22:00 — за кермом назад той, хто не п’є</span></td><td class="d">будинок</td></tr>
+          <tr><td class="d"><b>25.09</b> пт</td><td>Odoo Experience, день 2 — кейноут, частина 2, о 08:30; день закінчується о 17:00<span class="sub">Niel → Heysel і назад, ~60 км</span></td><td class="d">будинок</td></tr>
           <tr class="mark"><td class="d"><b>26.09</b> сб</td><td>Odoo Experience, день 3 — <b>або вільний день</b><span class="sub">в агенді на сайті сесій на суботу немає; уточнюємо в організатора</span></td><td class="d">будинок</td></tr>
           <tr><td class="d"><b>27.09</b> нд</td><td>Niel → Вроцлав, ~1 100 км<span class="sub">Дрезден лишав би на 28.09 близько 1 370 км — за день не проїхати</span></td><td class="d">готель, Вроцлав</td></tr>
           <tr><td class="d"><b>28.09</b> пн</td><td>Вроцлав → Київ, ~1 100 км</td><td class="d">—</td></tr>
@@ -1676,53 +1731,72 @@
       <div class="stat"><span class="k">Учасників</span><span class="v">45 000+</span><span class="s">зі 150 країн</span></div>
       <div class="stat"><span class="k">Доповідей</span><span class="v">400+</span><span class="s">15 локацій паралельно</span></div>
       <div class="stat"><span class="k">Експонентів</span><span class="v">400+</span><span class="s">ми серед них</span></div>
-      <div class="stat is-accent"><span class="k">Кейноут</span><span class="v">08:00</span><span class="s">24.09, Odoo 20</span></div>
+      <div class="stat is-accent"><span class="k">Кейноут</span><span class="v">08:30</span><span class="s">24.09, Odoo 20</span></div>
     </div>
   </section>
 
   <section>
-    <div class="sec-head"><h2>Четвер, 24.09</h2><span class="eyebrow">08:00 – 23:00 · 165 сесій</span></div>
-    <p>Найдовший день події: починається кейноутом о восьмій і закінчується концертами об одинадцятій вечора. У кожному часовому слоті паралельно йде близько п’ятнадцяти доповідей у різних залах — нижче в кожному рядку по кілька прикладів із програми, щоб було видно характер слота.</p>
-    <div class="t-wrap">
-      <table>
-        <thead><tr><th>Час</th><th>Що відбувається</th><th>Де</th></tr></thead>
-        <tbody>
-          <tr class="mark"><td class="d"><b>08:00</b></td><td><b>Кейноут — Unveiling Odoo 20</b><span class="sub">Fabien Pinckaers, засновник і CEO. Транслюється у три зали одночасно</span></td><td class="d">Auditorium 4000 · 2000 · Hall 7.A</td></tr>
-          <tr><td class="d">09:00</td><td>Починаються паралельні сесії<span class="sub">приклад: Zero-Click Gmail Integration for Odoo CRM</span></td><td class="d">Hall 6.C</td></tr>
-          <tr><td class="d">11:00</td><td>Продуктові й бізнесові доповіді<span class="sub">What’s new in POS Retail? · об 11:30 — Building Your Business in the Age of AI</span></td><td class="d">Hall 6.D · Hall 7.A</td></tr>
-          <tr class="mark"><td class="d"><b>12:00</b></td><td><b>Обід</b> — включений у Premium, сесії при цьому не зупиняються<span class="sub">What’s new in JavaScript? · From Startup to International Retail: Scaling 50+ POS with Odoo</span></td><td class="d">Auditorium 2000 A · Hall 6.C</td></tr>
-          <tr><td class="d">13:00</td><td>Кейси впроваджень<span class="sub">о 13:30 — Choosing Odoo Over SAP · Digital Sovereignty: From Buzzword to Business Decision</span></td><td class="d">Hall 6.A · Hall 7.A</td></tr>
-          <tr><td class="d">14:00</td><td>Новинки версії<span class="sub">What’s new in AI? · Building Heat Treatment Plants in Odoo</span></td><td class="d">Auditorium 4000 A · Hall 6.A</td></tr>
-          <tr><td class="d">15:00</td><td>Технічні й галузеві<span class="sub">о 15:30 — Odoo Security 101 · Best Practices for Successful Odoo Implementations in Manufacturing</span></td><td class="d">Hall 6.D · Hall 6.A</td></tr>
-          <tr><td class="d">16:00</td><td>Логістика і склад<span class="sub">From Inventory to True WMS</span></td><td class="d">Hall 6.A</td></tr>
-          <tr><td class="d">17:00</td><td>Останні доповіді дня<span class="sub">Integration Ardis &amp; Odoo</span></td><td class="d">Hall 6.A</td></tr>
-          <tr class="mark"><td class="d"><b>18:00</b></td><td><b>Вечеря й open bar</b><span class="sub">включено в Premium</span></td><td class="d">майданчик</td></tr>
-          <tr><td class="d">19:00</td><td>Концерт — The Juliets</td><td class="d">сцена</td></tr>
-          <tr><td class="d">20:00</td><td>Концерт — Omdat Het Kan &amp; Average Rob</td><td class="d">сцена</td></tr>
-          <tr><td class="d">21:00</td><td>Концерт — First Class Flamingo<span class="sub">до 22:00; майданчик працює до 23:00</span></td><td class="d">сцена</td></tr>
-        </tbody>
-      </table>
+    <div class="sec-head"><h2>Четвер, 24.09</h2><span class="eyebrow">08:30 – 23:00 · 165 сесій</span></div>
+    <p>Найдовший день: кейноут о пів на дев’яту, далі до п’ятнадцяти доповідей паралельно в кожному слоті, а ввечері вечеря й три концерти. Нижче — вибрані сесії; <b>натисніть на рядок</b>, щоб побачити спікера, потік і посилання на сторінку доповіді. Повна програма — на сайті події.</p>
+    <div class="ses-list">
+      <details class="ses">
+        <summary><span class="ses-t">08:30</span><span class="ses-n">Opening Keynote — Unveiling Odoo 20</span><span class="ses-r">Aud. 4000 · 2000 · 7.A</span></summary>
+        <div class="ses-body"><p><b>Fabien Pinckaers, засновник і CEO Odoo</b></p><p>Потік: Keynote</p><p>Показують нову версію, яку випускають просто під час події. Іде одночасно у трьох залах — місця вистачить, але це найперша точка дня.</p><p><a href="https://www.odoo.com/uk_UA/event/odoo-experience-2026-9099/track/opening-keynote-unveiling-odoo-20-auditorium-4000-auditorium-2000-hall-7-a-10881" target="_blank" rel="noreferrer">Сторінка доповіді на сайті ↗</a></p></div>
+      </details>
+      <details class="ses">
+        <summary><span class="ses-t">11:30</span><span class="ses-n">Zero-Click Gmail Integration for Odoo CRM</span><span class="ses-r">Hall 6.A</span></summary>
+        <div class="ses-body"><p><b>Simon Stappen, Much. Consulting</b></p><p>Потік: CRM · технічний</p><p>Повністю автоматичне логування пошти в CRM.</p><p><a href="https://www.odoo.com/uk_UA/event/odoo-experience-2026-9099/track/zero-click-gmail-integration-for-odoo-crm-fully-automated-email-logging-10380" target="_blank" rel="noreferrer">Сторінка доповіді на сайті ↗</a></p></div>
+      </details>
+      <details class="ses">
+        <summary><span class="ses-t">11:30</span><span class="ses-n">What’s new in Projects?</span><span class="ses-r">Auditorium 4000 A</span></summary>
+        <div class="ses-body"><p><b>Barbara Arias, Odoo</b></p><p>Потік: Projects</p><p><a href="https://www.odoo.com/uk_UA/event/odoo-experience-2026-9099/track/what-s-new-in-projects-9866" target="_blank" rel="noreferrer">Сторінка доповіді на сайті ↗</a></p></div>
+      </details>
+      <details class="ses">
+        <summary><span class="ses-t">11:30</span><span class="ses-n">What’s new in Helpdesk?</span><span class="ses-r">Auditorium 4000 B</span></summary>
+        <div class="ses-body"><p><b>André Pirovano, Odoo</b></p><p>Потік: Helpdesk</p><p><a href="https://www.odoo.com/uk_UA/event/odoo-experience-2026-9099/track/what-s-new-in-helpdesk-9878" target="_blank" rel="noreferrer">Сторінка доповіді на сайті ↗</a></p></div>
+      </details>
+      <details class="ses">
+        <summary><span class="ses-t">11:30</span><span class="ses-n">What’s new in POS Retail?</span><span class="ses-r">Auditorium 2000 B</span></summary>
+        <div class="ses-body"><p><b>Marion Cocina, Odoo</b></p><p>Потік: Retail</p><p><a href="https://www.odoo.com/uk_UA/event/odoo-experience-2026-9099/track/what-s-new-in-pos-retail-9854" target="_blank" rel="noreferrer">Сторінка доповіді на сайті ↗</a></p></div>
+      </details>
+      <div class="ses-fixed"><span class="ses-t">12:00</span><span class="ses-n">Обід — включений у Premium; сесії не зупиняються</span><span class="ses-r">майданчик</span></div>
+      <details class="ses">
+        <summary><span class="ses-t">13:30</span><span class="ses-n">Building Drone Engines with Odoo</span><span class="ses-r">Auditorium 500</span></summary>
+        <div class="ses-body"><p><b>Callum Grimes · Li Malone · Gery Rupelska</b></p><p>Потік: Manufacturing</p><p>Виробничий кейс: від складності до зрозумілого процесу.</p><p><a href="https://www.odoo.com/uk_UA/event/odoo-experience-2026-9099/track/building-drone-engines-with-odoo-from-complexity-to-clarity-10594" target="_blank" rel="noreferrer">Сторінка доповіді на сайті ↗</a></p></div>
+      </details>
+      <details class="ses">
+        <summary><span class="ses-t">13:30</span><span class="ses-n">From Paperwork to People: How Odoo Reimagined HR</span><span class="ses-r">Hall 7.B</span></summary>
+        <div class="ses-body"><p><b>Kim Buehler, Braintec</b></p><p>Потік: HR</p><p><a href="https://www.odoo.com/uk_UA/event/odoo-experience-2026-9099/track/from-paperwork-to-people-how-odoo-reimagined-hr-9278" target="_blank" rel="noreferrer">Сторінка доповіді на сайті ↗</a></p></div>
+      </details>
+      <div class="ses-fixed"><span class="ses-t">18:00</span><span class="ses-n">Вечеря й open bar — включено в Premium</span><span class="ses-r">майданчик</span></div>
+      <div class="ses-fixed"><span class="ses-t">19:00</span><span class="ses-n">Концерт — The Juliets</span><span class="ses-r">сцена</span></div>
+      <div class="ses-fixed"><span class="ses-t">20:00</span><span class="ses-n">Концерт — Omdat Het Kan &amp; Average Rob</span><span class="ses-r">сцена</span></div>
+      <div class="ses-fixed"><span class="ses-t">21:00</span><span class="ses-n">Концерт — First Class Flamingo, до 22:00</span><span class="ses-r">сцена</span></div>
     </div>
   </section>
 
   <section>
-    <div class="sec-head"><h2>П’ятниця, 25.09</h2><span class="eyebrow">08:00 – 17:00 · 162 сесії</span></div>
+    <div class="sec-head"><h2>П’ятниця, 25.09</h2><span class="eyebrow">08:30 – 17:00 · 162 сесії</span></div>
     <p>Друга частина кейноуту зранку, далі звичайний конференційний день. Вечірньої програми немає — усе закінчується о п’ятій.</p>
-    <div class="t-wrap">
-      <table>
-        <thead><tr><th>Час</th><th>Що відбувається</th><th>Де</th></tr></thead>
-        <tbody>
-          <tr class="mark"><td class="d"><b>08:00</b></td><td><b>Кейноут — Unveiling Odoo 20, частина 2</b></td><td class="d">Auditorium 4000</td></tr>
-          <tr><td class="d">09:00</td><td>Сесії відновлюються<span class="sub">How to handle 250 000 Dropshipping Products in Odoo</span></td><td class="d">Hall 6.A</td></tr>
-          <tr><td class="d">11:00</td><td>Склад і відвантаження<span class="sub">Smarter picking, faster shipping</span></td><td class="d">Hall 6.B</td></tr>
-          <tr class="mark"><td class="d"><b>12:00</b></td><td><b>Обід</b><span class="sub">паралельно: How VOSS, a Multinational SAP-Centric Company, Successfully Deployed Odoo</span></td><td class="d">Hall 6.A</td></tr>
-          <tr><td class="d">13:00</td><td>Фінанси й автоматизація<span class="sub">Automating Bank Reconciliation in Odoo with EBICS · о 13:30 — Building smarter flows with Odoo AI &amp; Studio</span></td><td class="d">Hall 6.A · Auditorium 4000 C</td></tr>
-          <tr><td class="d">14:00</td><td>Бухгалтерія для великих<span class="sub">Mastering Enterprise Accounting</span></td><td class="d">Hall 6.A</td></tr>
-          <tr><td class="d">15:00</td><td>Мультикомпанійність і фронтенд<span class="sub">Multi-Company accounting across 27 companies in France · Advanced reactivity in owl 3</span></td><td class="d">Hall 6.A · Auditorium 4000 A</td></tr>
-          <tr><td class="d">16:00</td><td>Інвентаризація<span class="sub">Inventory counts in Odoo</span></td><td class="d">Hall 6.A</td></tr>
-          <tr><td class="d">17:00</td><td>Фінальні доповіді<span class="sub">Accounting Is Not a Phase</span></td><td class="d">Hall 6.A</td></tr>
-        </tbody>
-      </table>
+    <div class="ses-list">
+      <details class="ses">
+        <summary><span class="ses-t">08:30</span><span class="ses-n">Opening Keynote — Unveiling Odoo 20, частина 2</span><span class="ses-r">Auditorium 4000</span></summary>
+        <div class="ses-body"><p><b>Fabien Pinckaers, Odoo</b></p><p>Потік: Keynote</p><p>Продовження четвергового кейноуту — друга половина новин версії.</p><p><a href="https://www.odoo.com/uk_UA/event/odoo-experience-2026-9099/track/opening-keynote-unveiling-odoo-20-2-2-10885" target="_blank" rel="noreferrer">Сторінка доповіді на сайті ↗</a></p></div>
+      </details>
+      <details class="ses">
+        <summary><span class="ses-t">11:00</span><span class="ses-n">What’s new in Website?</span><span class="ses-r">Auditorium 4000 A</span></summary>
+        <div class="ses-body"><p><b>Damien Mertens · Lebon Lionel, Odoo</b></p><p>Потік: Website</p><p><a href="https://www.odoo.com/uk_UA/event/odoo-experience-2026-9099/track/what-s-new-in-website-10529" target="_blank" rel="noreferrer">Сторінка доповіді на сайті ↗</a></p></div>
+      </details>
+      <details class="ses">
+        <summary><span class="ses-t">11:00</span><span class="ses-n">What’s new in Studio?</span><span class="ses-r">Auditorium 4000 C</span></summary>
+        <div class="ses-body"><p><b>Jordan Kendziora, Odoo</b></p><p>Потік: Studio</p><p><a href="https://www.odoo.com/uk_UA/event/odoo-experience-2026-9099/track/what-s-new-in-studio-9865" target="_blank" rel="noreferrer">Сторінка доповіді на сайті ↗</a></p></div>
+      </details>
+      <details class="ses">
+        <summary><span class="ses-t">11:30</span><span class="ses-n">What’s new in CRM?</span><span class="ses-r">Auditorium 4000 A</span></summary>
+        <div class="ses-body"><p><b>Luc Nailis, Odoo</b></p><p>Потік: CRM</p><p><a href="https://www.odoo.com/uk_UA/event/odoo-experience-2026-9099/track/what-s-new-in-crm-10517" target="_blank" rel="noreferrer">Сторінка доповіді на сайті ↗</a></p></div>
+      </details>
+      <div class="ses-fixed"><span class="ses-t">12:00</span><span class="ses-n">Обід — включений у Premium</span><span class="ses-r">майданчик</span></div>
+      <div class="ses-fixed"><span class="ses-t">17:00</span><span class="ses-n">Кінець дня — вечірньої програми немає</span><span class="ses-r">—</span></div>
     </div>
   </section>
 
@@ -1769,8 +1843,8 @@
     <div class="sec-head"><h2>Що з цього випливає для нас</h2><span class="eyebrow">висновки, не дані сайту</span></div>
 
     <div class="verdict">
-      <h3>Кейноут о 08:00, а не о пів на дев’яту</h3>
-      <p>З Niel до Heysel ~30 км по A12, і це ранковий пік у бік Брюсселя. Щоб бути на місці до восьмої, виїжджати треба близько <b>06:45</b>, а прокидатися відповідно. Це стосується обох днів — 24.09 і 25.09, кейноут обидва рази о восьмій.</p>
+      <h3>Кейноут о 08:30 — виїзд із Niel близько 07:15</h3>
+      <p>З Niel до Heysel ~30 км по A12, і це ранковий пік у бік Брюсселя. Щоб бути на місці до пів на дев’яту, виїжджати треба близько <b>07:15</b>, а прокидатися відповідно. Це стосується обох днів — 24.09 і 25.09, кейноут обидва рази о 08:30.</p>
     </div>
 
     <div class="verdict">
