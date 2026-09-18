@@ -368,6 +368,12 @@
 
   /* ---------- програма події ---------- */
 
+  /* День, який уже минув, гасне сам — дату знає браузер, а не автор. */
+  tr.is-past td { opacity: 0.45; }
+  tr.is-past td.d b::after { content: " ✓"; color: var(--ok); }
+  tr.is-today td { background: var(--accent-soft); }
+  tr.is-today td.d b { color: var(--accent); }
+
   .prog-bar {
     display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem;
     margin: 1.1rem 0 0.9rem;
@@ -2591,6 +2597,38 @@
       });
 
       render();
+    })();
+    /* ---------- що вже минуло ---------- */
+    /* Дні поїздки й дні події гаснуть самі, щойно настає наступний: це
+       вирішує календар у браузері, а не хтось уручну. */
+    (function () {
+      var now = new Date();
+      var today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+
+      function dayOf(cell) {
+        var m = (cell.textContent || "").match(/(\d{2})\.(\d{2})/);
+        if (!m) return null;
+        return new Date(2026, parseInt(m[2], 10) - 1, parseInt(m[1], 10));
+      }
+
+      var rows = document.querySelectorAll("#p-route tbody tr");
+      for (var i = 0; i < rows.length; i++) {
+        var c = rows[i].cells[0];
+        if (!c || c.className.indexOf("d") < 0) continue;
+        var d = dayOf(c);
+        if (!d) continue;
+        if (d < today) rows[i].classList.add("is-past");
+        else if (d.getTime() === today.getTime()) rows[i].classList.add("is-today");
+      }
+
+      /* Програма події відкривається на сьогоднішньому дні, якщо ми в 24–26.09 */
+      if (today.getFullYear() === 2026 && today.getMonth() === 8) {
+        var dd = today.getDate();
+        if (dd >= 24 && dd <= 26) {
+          var btn = document.querySelector('.prog-day[data-day="' + dd + '"]');
+          if (btn) btn.click();
+        }
+      }
     })();
   })();
 </script>
