@@ -314,10 +314,27 @@
   /* ---------- сесії події ---------- */
   /* Розгортання на <details>, без скрипта: працює і без JS, і з клавіатури. */
 
-  .ses-list {
+  /* Список іде слотами: рішення дня — не «яку доповідь послухати», а
+     «яку з шістнадцяти о тій самій годині», тож час стоїть заголовком
+     групи, а не колонкою в кожному рядку. */
+  .ses-list { display: grid; gap: 1.15rem; }
+  .slot-body {
     display: grid; gap: 1px;
     background: var(--rule); border: 1px solid var(--rule);
     border-radius: 14px; overflow: hidden;
+  }
+  .slot-h {
+    display: flex; align-items: baseline; flex-wrap: wrap; gap: 0.2rem 0.7rem;
+    padding: 0 0.15rem 0.4rem;
+  }
+  .slot-t {
+    font-family: var(--mono); font-size: 0.95rem; font-weight: 700;
+    color: var(--ink); letter-spacing: -0.01em;
+  }
+  .slot-n { font-family: var(--mono); font-size: 0.72rem; color: var(--ink-faint); }
+  .slot-clash {
+    font-size: 0.72rem; font-weight: 600; color: var(--warn);
+    background: var(--warn-soft); border-radius: 999px; padding: 0.1rem 0.5rem;
   }
   .ses, .ses-fixed { background: var(--surface); }
   .ses-fixed { background: var(--surface-sunk); }
@@ -337,6 +354,8 @@
   .ses[open] > summary::after { content: "−"; color: var(--accent); }
   .ses-fixed::after { content: ""; flex: 0 0 auto; width: 1rem; }
 
+  /* У згрупованому списку зліва стоїть тривалість: час уже в заголовку
+     слота, а от 30 хвилин чи дві години — видно тільки тут. */
   .ses-t {
     flex: 0 0 auto; min-width: 3.4rem;
     font-family: var(--mono); font-size: 0.74rem; font-weight: 700;
@@ -992,7 +1011,7 @@
       <button class="tab" type="button" role="tab" id="tab-budget" aria-controls="p-budget" aria-selected="false" tabindex="-1"><svg class="lk" viewBox="0 0 10 12" fill="none" aria-hidden="true"><path d="M2 5V3.5a3 3 0 016 0V5" stroke="currentColor" stroke-width="1.3"/><rect x=".8" y="5" width="8.4" height="6.4" rx="1.4" fill="currentColor"/></svg>Бюджет</button>
       <button class="tab" type="button" role="tab" id="tab-spend" aria-controls="p-spend" aria-selected="false" tabindex="-1"><svg class="lk" viewBox="0 0 10 12" fill="none" aria-hidden="true"><path d="M2 5V3.5a3 3 0 016 0V5" stroke="currentColor" stroke-width="1.3"/><rect x=".8" y="5" width="8.4" height="6.4" rx="1.4" fill="currentColor"/></svg>Витрати <span class="cnt">3</span></button>
       <button class="tab" type="button" role="tab" id="tab-kitchen" aria-controls="p-kitchen" aria-selected="false" tabindex="-1">Кухня</button>
-      <button class="tab" type="button" role="tab" id="tab-docs"  aria-controls="p-docs"  aria-selected="false" tabindex="-1">Документи і бронювання <span class="cnt">5</span></button>
+      <button class="tab" type="button" role="tab" id="tab-docs"  aria-controls="p-docs"  aria-selected="false" tabindex="-1">Документи і бронювання <span class="cnt">9</span></button>
     </div>
   </div>
 
@@ -1004,7 +1023,7 @@
         <h2>План дій</h2>
         <span class="eyebrow">26 відкритих пунктів</span>
       </div>
-      <p>Порядок тут не за темами, а за тим, що від чого залежить. Дорога вирішена повністю — виїзд, кордон, перша ночівля, — усе це в «Пройдено», а маршрут перерахований під Краковець і Вроцлав. Нагорі три пункти. Перший — Прокопенко, додана в склад за два дні до виїзду: вона їде з Нідерландів, тож лишаються перепустка і те, з якого числа вона з нами. Другий з’явився разом із підтвердженням броні бусу: виїзд за кордон у прокатника — <b>окрема послуга</b>, і в нашому підтвердженні її немає. Третій висить уже два тижні — чим зайняті дванадцятеро 22–23.09. <b>До виїзду два дні</b>, тому все, що лишилося, стоїть на 17–18.09: 18.09 — останній робочий день, коли ще реально встигнути зі страховками, зеленими картами й реєстрацією в LEZ.</p>
+      <p>Порядок тут не за темами, а за тим, що від чого залежить. Дорога вирішена повністю — виїзд, кордон, перша ночівля, — усе це в «Пройдено», а маршрут перерахований під Краковець і Вроцлав. Нагорі чотири пункти. Мазуренко сідає в Шарлеруа о 22:45 — це 100 км від Niel, і хтось має по нього поїхати. Прокопенко додана в склад за два дні до виїзду: вона їде з Нідерландів, тож лишаються перепустка і те, з якого числа вона з нами. Бот для нотаток досі без господаря. І чим зайняті дванадцятеро 22–23.09 — питання висить уже два тижні. <b>Виїзд завтра</b>, тож усе інше стоїть на сьогодні й ранок 19.09: після видачі бусу об 11:00 змінити вже нічого не вийде.</p>
 
       <div class="stats">
         <div class="stat is-accent"><span class="k">Вирішити негайно</span><span class="v">4</span><span class="s">Шарлеруа, перепустка, нотатки, 22–23.09</span></div>
@@ -1076,7 +1095,7 @@
     <section>
       <div class="sub-head">
         <h3>Блокує решту</h3>
-        <span class="eyebrow">17.09</span>
+        <span class="eyebrow">18.09</span>
       </div>
       <div class="plan">
 
@@ -1086,7 +1105,7 @@
           <p>Бронь оформлена на 12 гостей, а житиме <b>14</b>: дванадцять нашим транспортом, Мазуренко літаком і Прокопенко. Airbnb рахує і ціну, і правила саме за кількістю гостей, тож двоє зайвих — це або доплата, або проблема на заїзді за два дні до виїзду. Написати Valerie і зафіксувати відповідь у переписці, а не на словах.</p>
           <div class="task-side">
             <span class="pill pill-block">Блокує</span>
-            <span class="task-when">17.09</span>
+            <span class="task-when">18.09</span>
             <span class="task-cost">14 замість 12</span>
           </div>
         </div>
@@ -1097,7 +1116,7 @@
           <p>Найдовший за строками пункт і головна причина, чому склад досі не остаточний. Починати відразу — саме це визначає, хто фізично їде.</p>
           <div class="task-side">
             <span class="pill pill-block">Блокує</span>
-            <span class="task-when">17.09</span>
+            <span class="task-when">18.09</span>
             <span class="task-cost">—</span>
           </div>
         </div>
@@ -1108,7 +1127,7 @@
     <section>
       <div class="sub-head">
         <h3>Цього тижня</h3>
-        <span class="eyebrow">17.09</span>
+        <span class="eyebrow">18.09</span>
       </div>
       <div class="plan">
 
@@ -1118,7 +1137,7 @@
           <p>Trafic 1.6 dCi буває і Euro 5, і Euro 6. Спитати в прокатника рік і норму, перевірити на lez.brussels. Якщо Euro 5 — <span class="money">day-pass ≈ €35 × 5 в’їздів = €175, і цього в бюджеті немає.</span><span class="nomoney">потрібен day-pass на кожен із п’яти в’їздів, і цього в бюджеті немає.</span> Бензиновий GX 450 проходить без питань.</p>
           <div class="task-side">
             <span class="pill pill-flag">Перевірити</span>
-            <span class="task-when">17.09</span>
+            <span class="task-when">18.09</span>
             <span class="task-cost money">ризик €175</span>
           </div>
         </div>
@@ -1148,10 +1167,10 @@
         <div class="task">
           <span class="task-no">10</span>
           <h3>Перевірити строк дії закордонних паспортів</h3>
-          <p>Потрібно щонайменше три місяці після повернення — тобто дійсний щонайменше до кінця грудня. На чотирнадцятьох людей майже завжди знаходиться один такий паспорт, а оформлення нового — це тижні, не дні.</p>
+          <p>Потрібно щонайменше три місяці після повернення — тобто дійсний щонайменше до кінця грудня. На чотирнадцятьох людей майже завжди знаходиться один такий паспорт, а оформлення нового — це тижні, не дні. 18.09 у групі нагадали: решта документів у Марії, але закордонний паспорт кожен везе свій.</p>
           <div class="task-side">
             <span class="pill pill-flag">Перевірити</span>
-            <span class="task-when">17.09</span>
+            <span class="task-when">18.09</span>
             <span class="task-cost">—</span>
           </div>
         </div>
@@ -1162,7 +1181,7 @@
           <p>Trafic — близько 1,97 м висоти, а підземні паркінги часто обмежені 1,90. Питання ставити господарю разом із бронюванням: два паркомісця нам мало, якщо в одне бус фізично не заїде.</p>
           <div class="task-side">
             <span class="pill pill-flag">Разом із бронею</span>
-            <span class="task-when">17.09</span>
+            <span class="task-when">18.09</span>
             <span class="task-cost">—</span>
           </div>
         </div>
@@ -1173,7 +1192,7 @@
           <p>У бюджеті відповідальний за стенд — Якшин, але його немає в списку тих, хто їде. На стенді стоять Коврижних, Адаменко, Джошкун і Мазуренко: хтось із них має відповідати і за монтаж, і за матеріали.</p>
           <div class="task-side">
             <span class="pill pill-block">Рішення</span>
-            <span class="task-when">17.09</span>
+            <span class="task-when">19.09</span>
             <span class="task-cost">—</span>
           </div>
         </div>
@@ -1205,7 +1224,7 @@
           <p>Бюджет стенду ведеться окремо, а тут уже виготовлення зі строком. Готове має бути до 18.09, бо везеться своїм транспортом і має влізти в машину разом із речами. Після 10 вересня встигнути буде важко.</p>
           <div class="task-side">
             <span class="pill pill-todo">Не почато</span>
-            <span class="task-when">17.09</span>
+            <span class="task-when">18.09</span>
             <span class="task-cost">у бюджеті стенду</span>
           </div>
         </div>
@@ -1227,7 +1246,7 @@
           <p><span class="money">У рахунку на перепустки €643 податку.</span><span class="nomoney">У рахунку на перепустки є бельгійський ПДВ.</span> Для неєвропейської компанії повернення ПДВ можливе не завжди й потребує окремої процедури зі строками — питання до фінансового блоку: Семенюк, Дерев’янко, Литвинчук. Якщо повертається, це мінус<span class="money"> €643</span> з бюджету; якщо ні, сума лишається в ньому назавжди.</p>
           <div class="task-side">
             <span class="pill pill-flag">До бухгалтерії</span>
-            <span class="task-when">17.09</span>
+            <span class="task-when">19.09</span>
             <span class="task-cost money">−€643?</span>
           </div>
         </div>
@@ -1238,7 +1257,7 @@
           <p>Маршрут іде через Дрезден і Кельн, а там Umweltzone з обов’язковою зеленою наліпкою — вона потрібна й іноземним авто. Якщо йдемо не об’їзною, без неї в’їзд у місто це штраф. Сама наліпка коштує<span class="money"> €6–20 залежно від сервісу</span><span class="nomoney"> дрібні гроші</span>, але оформлення й доставка займають час.</p>
           <div class="task-side">
             <span class="pill pill-flag">Перевірити</span>
-            <span class="task-when">17.09</span>
+            <span class="task-when">19.09</span>
             <span class="task-cost money">≈€30 на дві</span>
           </div>
         </div>
@@ -1249,7 +1268,7 @@
           <p>По бусу сума відома з договору — <span class="money">застава-франшиза €750</span><span class="nomoney">застава-франшиза</span>, і це водночас межа нашої відповідальності за стандартного страхування. Лишилося вирішити, з чиєї картки вона блокується і хто відповідає за повернення. По житлу депозит ще не з’ясований. У бюджеті цих сум немає, бо вони повертаються, але з обігу виймаються на місяць.</p>
           <div class="task-side">
             <span class="pill pill-todo">Не почато</span>
-            <span class="task-when">17.09</span>
+            <span class="task-when">19.09</span>
             <span class="task-cost">поза бюджетом</span>
           </div>
         </div>
@@ -1260,7 +1279,7 @@
           <p>Ніч туди закрита: Aparthotel Symphony на <a class="addr" href="https://www.google.com/maps/search/?api=1&amp;query=Krakowska%2035%2C%2050-424%20Wroc%C5%82aw%2C%20Polska" target="_blank" rel="noreferrer">Krakowska 35</a>, <span class="money">786,60 zł оплачено 02.09 — €181 замість €228 за планом</span><span class="nomoney">оплачено 02.09, дешевше за план</span>. Лишилася зворотна, <b>27–28.09</b> — найпростіше той самий готель, якщо будуть місця. Потрібне паркування на дві машини, бус — 1,97 м висоти.</p>
           <div class="task-side">
             <span class="pill pill-block">Половина закрита</span>
-            <span class="task-when">17.09</span>
+            <span class="task-when">18.09</span>
             <span class="task-cost money">€228</span>
           </div>
         </div>
@@ -1848,7 +1867,7 @@
 
   <section>
     <div class="sec-head"><h2>Програма</h2><span class="eyebrow">432 сесії · 16 залів · 3 дні</span></div>
-    <p>Уся програма конференції, як вона стоїть на сайті події. Фільтруйте за днем, залом і темою або шукайте за назвою й спікером. Перемикач <b>UA/EN</b> міняє мову назв, тем і посад; оригінал усе одно видно в розгорнутій сесії — на бейджах, табло й у застосунку Odoo написано саме його. Натисніть рядок, щоб розгорнути сесію; кнопка <b>«Йду»</b> позначає її вашою — так видно, хто що покриває, коли о тій самій годині йде п’ятнадцять доповідей.</p>
+    <p>Уся програма конференції, як вона стоїть на сайті події. Сесії згруповані за часом початку: в піковий слот 24.09 одночасно йде <b>шістнадцять</b> доповідей у різних залах, і вибір щоразу саме між ними. Фільтруйте за днем, залом і темою або шукайте за назвою й спікером. Перемикач <b>UA/EN</b> міняє мову назв, тем і посад; оригінал усе одно видно в розгорнутій сесії — на бейджах, табло й у застосунку Odoo написано саме його. Натисніть рядок, щоб розгорнути сесію; кнопка <b>«Йду»</b> позначає її вашою — так видно, хто що покриває. Якщо в одному слоті позначено дві — заголовок слота попередить: у двох залах одночасно не побути.</p>
 
     <div class="note">
       <p><b>Опорні точки, яких немає в списку доповідей.</b> 24.09: обід о 12:00, вечеря з open bar о 18:00, концерти 19:00–22:00 — The Juliets, Omdat Het Kan &amp; Average Rob, First Class Flamingo, майданчик до 23:00. 25.09 і 26.09: обід о 12:00, день закінчується о 17:00–17:30.</p>
@@ -2185,7 +2204,7 @@
     <section>
       <div class="sec-head">
         <h2>Документи і бронювання</h2>
-        <span class="eyebrow">5 позицій</span>
+        <span class="eyebrow">9 позицій</span>
       </div>
       <p>Місце для самих документів: підтверджень броні, страхових полісів, договору оренди, дозволів. Складаємо їх тут, щоб у поїздці не шукати по чатах і пошті.</p>
 
@@ -2206,7 +2225,8 @@
               <td><span class="pill pill-ok">Заброньовано</span><span class="sub money">₴32 032 за період, ₴2 912 за добу; застава €750; перепробіг ₴350 за 100 км</span><span class="sub nomoney">підтвердження від прокатника отримано</span></td>
             </tr>
             <tr><td>Виїзд за кордон<span class="sub">до договору оренди</span></td><td>окрема послуга прокатника — погоджено 18.09<span class="sub">довіреність, зелена карта і КАСКО — на руки при видачі 19.09</span></td><td><span class="pill pill-ok">Погоджено</span></td></tr>
-            <tr><td>Перепустки Premium<span class="sub">12 × Odoo Experience</span></td><td>рахунок виставлений, оплата в строк</td><td><span class="pill pill-block">Рахунок</span></td></tr>
+            <tr><td>Оригінали в дорогу<span class="sub">з групи, 18.09</span></td><td>Комплект документів по поїздці — у <b>Марії Привольнєвої</b><span class="sub">закордонний паспорт кожен везе свій</span></td><td><span class="pill pill-ok">Зібрано</span></td></tr>
+                <tr><td>Перепустки Premium<span class="sub">12 × Odoo Experience</span></td><td>рахунок виставлений, оплата в строк</td><td><span class="pill pill-block">Рахунок</span></td></tr>
             <tr>
               <td>Ночівля туди<span class="sub">Booking</span></td>
               <td><b>Aparthotel Symphony <a class="addr" href="https://www.google.com/maps/search/?api=1&amp;query=Krakowska%2035%2C%2050-424%20Wroc%C5%82aw%2C%20Polska" target="_blank" rel="noreferrer">Krakowska 35</a> by INA</b>, Вроцлав<span class="sub"><a class="addr" href="https://www.google.com/maps/search/?api=1&amp;query=Krakowska%2035%2C%2050-424%20Wroc%C5%82aw%2C%20Polska" target="_blank" rel="noreferrer">Krakowska 35</a>, 50-424 · ніч нд 20.09 → пн 21.09 · заїзд 15:00–00:00, виїзд 08:00–10:00 · час прибуття вказано 13:00–14:00</span></td>
@@ -2544,9 +2564,101 @@
         return out.join(", ");
       }
 
+      /* Скільки доповідей іде в кожен слот — рахуємо по всіх даних дня, а не
+         по відфільтрованих: інакше фільтр за залом писав би «сама по собі»
+         там, де насправді змагаються шістнадцять. */
+      var slotIdx = {};
+      for (var si = 0; si < DATA.length; si++) {
+        var sk = DATA[si][D_DAY] + "|" + DATA[si][D_TIME];
+        (slotIdx[sk] = slotIdx[sk] || []).push(si);
+      }
+
+      function durOf(r) { return r[D_DUR] ? r[D_DUR] + " хв" : "—"; }
+
+      /* Дві позначені «Йду» в один час — це не вибір, це прогалина:
+         хтось із двох залів лишиться непокритим. */
+      function markClash(slot) {
+        var idxs = slotIdx[day + "|" + slot.getAttribute("data-time")] || [];
+        var n = 0;
+        for (var i = 0; i < idxs.length; i++) if (mine[DATA[idxs[i]][D_SLUG]]) n++;
+        var el = slot.querySelector(".slot-clash");
+        if (n > 1) {
+          if (!el) {
+            el = document.createElement("span");
+            el.className = "slot-clash";
+            slot.querySelector(".slot-h").appendChild(el);
+          }
+          el.textContent = "позначено " + n + " — розділіться";
+        } else if (el) {
+          el.parentNode.removeChild(el);
+        }
+      }
+
+      function rowFor(i) {
+        var r = DATA[i];
+        var d = document.createElement("details");
+        d.className = "ses" + (mine[r[D_SLUG]] ? " is-mine" : "");
+
+        var sum = document.createElement("summary");
+        var t = document.createElement("span"); t.className = "ses-t"; t.textContent = durOf(r);
+        var n = document.createElement("span"); n.className = "ses-n"; n.textContent = titleOf(i, r);
+        var rm = document.createElement("span"); rm.className = "ses-r"; rm.textContent = r[D_ROOM] || "—";
+        sum.appendChild(t); sum.appendChild(n); sum.appendChild(rm);
+        d.appendChild(sum);
+
+        var body = document.createElement("div");
+        body.className = "ses-body";
+
+        var other = lang === "ua" ? (UA.t[i] ? r[D_TITLE] : "") : (UA.t[i] || "");
+        if (other) {
+          var po = document.createElement("p");
+          po.className = "ses-orig"; po.textContent = other;
+          body.appendChild(po);
+        }
+
+        if (r[D_WHO]) {
+          var p1 = document.createElement("p");
+          var b = document.createElement("b"); b.textContent = whoOf(r);
+          p1.appendChild(b); body.appendChild(p1);
+        }
+
+        if (r[D_TAGS].length) {
+          var tw = document.createElement("div"); tw.className = "ses-tags";
+          r[D_TAGS].forEach(function (tg) {
+            var e = document.createElement("span"); e.className = "ses-tag"; e.textContent = tagOf(tg);
+            tw.appendChild(e);
+          });
+          body.appendChild(tw);
+        }
+
+        var pl = document.createElement("p");
+        var a = document.createElement("a");
+        a.href = BASE + r[D_SLUG]; a.target = "_blank"; a.rel = "noreferrer";
+        a.textContent = "Сторінка доповіді на сайті ↗";
+        pl.appendChild(a); body.appendChild(pl);
+
+        var go = document.createElement("button");
+        go.type = "button"; go.className = "ses-go";
+        go.setAttribute("data-slug", r[D_SLUG]);
+        go.setAttribute("aria-pressed", mine[r[D_SLUG]] ? "true" : "false");
+        go.textContent = mine[r[D_SLUG]] ? "Йду ✓" : "Йду";
+        body.appendChild(go);
+
+        var wtxt = who(r[D_SLUG]);
+        if (wtxt) {
+          var w = document.createElement("div");
+          w.className = "ses-who"; w.textContent = "Також ідуть: " + wtxt;
+          body.appendChild(w);
+        }
+
+        d.appendChild(body);
+        return d;
+      }
+
       function render() {
         var qq = q.toLowerCase(), shown = 0;
         var frag = document.createDocumentFragment();
+        var order = [], bucket = {};
 
         for (var i = 0; i < DATA.length; i++) {
           var r = DATA[i];
@@ -2556,74 +2668,42 @@
           if (onlyMine && !mine[r[D_SLUG]]) continue;
           if (qq && (r[D_TITLE] + " " + (UA.t[i] || "") + " " + r[D_WHO]).toLowerCase().indexOf(qq) < 0) continue;
           shown++;
+          if (!bucket[r[D_TIME]]) { bucket[r[D_TIME]] = []; order.push(r[D_TIME]); }
+          bucket[r[D_TIME]].push(i);
+        }
+        order.sort();
 
-          var d = document.createElement("details");
-          d.className = "ses" + (mine[r[D_SLUG]] ? " is-mine" : "");
+        for (var s = 0; s < order.length; s++) {
+          var time = order[s];
+          var idxs = bucket[time];
+          var total = (slotIdx[day + "|" + time] || idxs).length;
 
-          var sum = document.createElement("summary");
-          var t = document.createElement("span"); t.className = "ses-t"; t.textContent = r[D_TIME];
-          var n = document.createElement("span"); n.className = "ses-n"; n.textContent = titleOf(i, r);
-          var rm = document.createElement("span"); rm.className = "ses-r"; rm.textContent = r[D_ROOM] || "—";
-          sum.appendChild(t); sum.appendChild(n); sum.appendChild(rm);
-          d.appendChild(sum);
+          var slot = document.createElement("div");
+          slot.className = "slot";
+          slot.setAttribute("data-time", time);
 
-          var body = document.createElement("div");
-          body.className = "ses-body";
+          var h = document.createElement("div"); h.className = "slot-h";
+          var st = document.createElement("span"); st.className = "slot-t"; st.textContent = time;
+          var sn = document.createElement("span"); sn.className = "slot-n";
+          sn.textContent = total === 1 ? "сама"
+            : (idxs.length === total ? total + " паралельно"
+                                     : idxs.length + " із " + total + " паралельних");
+          h.appendChild(st); h.appendChild(sn);
+          slot.appendChild(h);
 
-          var other = lang === "ua" ? (UA.t[i] ? r[D_TITLE] : "") : (UA.t[i] || "");
-          if (other) {
-            var po = document.createElement("p");
-            po.className = "ses-orig"; po.textContent = other;
-            body.appendChild(po);
-          }
+          var wrap = document.createElement("div"); wrap.className = "slot-body";
+          for (var k = 0; k < idxs.length; k++) wrap.appendChild(rowFor(idxs[k]));
+          slot.appendChild(wrap);
 
-          if (r[D_WHO]) {
-            var p1 = document.createElement("p");
-            var b = document.createElement("b"); b.textContent = whoOf(r);
-            p1.appendChild(b); body.appendChild(p1);
-          }
-          var p2 = document.createElement("p");
-          p2.textContent = (r[D_DUR] ? r[D_DUR] + " хв" : "") + (r[D_ROOM] ? (r[D_DUR] ? " · " : "") + r[D_ROOM] : "");
-          if (p2.textContent) body.appendChild(p2);
-
-          if (r[D_TAGS].length) {
-            var tw = document.createElement("div"); tw.className = "ses-tags";
-            r[D_TAGS].forEach(function (tg) {
-              var e = document.createElement("span"); e.className = "ses-tag"; e.textContent = tagOf(tg);
-              tw.appendChild(e);
-            });
-            body.appendChild(tw);
-          }
-
-          var pl = document.createElement("p");
-          var a = document.createElement("a");
-          a.href = BASE + r[D_SLUG]; a.target = "_blank"; a.rel = "noreferrer";
-          a.textContent = "Сторінка доповіді на сайті ↗";
-          pl.appendChild(a); body.appendChild(pl);
-
-          var go = document.createElement("button");
-          go.type = "button"; go.className = "ses-go";
-          go.setAttribute("data-slug", r[D_SLUG]);
-          go.setAttribute("aria-pressed", mine[r[D_SLUG]] ? "true" : "false");
-          go.textContent = mine[r[D_SLUG]] ? "Йду ✓" : "Йду";
-          body.appendChild(go);
-
-          var wtxt = who(r[D_SLUG]);
-          if (wtxt) {
-            var w = document.createElement("div");
-            w.className = "ses-who"; w.textContent = "Також ідуть: " + wtxt;
-            body.appendChild(w);
-          }
-
-          d.appendChild(body);
-          frag.appendChild(d);
+          markClash(slot);
+          frag.appendChild(slot);
         }
 
         host.textContent = "";
         host.appendChild(frag);
         document.getElementById("progCount").textContent =
-          shown + " із " + DATA.length + " сесій" + (myDoc ? " · запис спільний" : " · запис лише у цьому браузері");
-      }
+          shown + " із " + DATA.length + " сесій · " + order.length + " слотів" +
+          (myDoc ? " · запис спільний" : " · запис лише у цьому браузері");      }
 
       host.addEventListener("click", function (e) {
         var btn = e.target.closest ? e.target.closest(".ses-go") : null;
@@ -2635,6 +2715,8 @@
         btn.textContent = mine[slug] ? "Йду ✓" : "Йду";
         var d = btn.closest("details");
         if (d) d.classList.toggle("is-mine", !!mine[slug]);
+        var sl = btn.closest(".slot");
+        if (sl) markClash(sl);
       });
 
       [].forEach.call(document.querySelectorAll(".prog-lang"), function (b) {
