@@ -407,6 +407,17 @@
   .ses.is-mine > summary { box-shadow: inset 3px 0 0 var(--accent); }
   .ses-who { margin-top: 0.4rem; font-size: 0.78rem; color: var(--ink-soft); }
 
+  /* Адреса у файлі завжди клікається — домовленість, а не прикраса:
+     у дорозі відкрити карту має бути одним дотиком. */
+  .addr {
+    color: inherit;
+    text-decoration: underline;
+    text-decoration-style: dotted;
+    text-decoration-color: var(--accent);
+    text-underline-offset: 2px;
+  }
+  .addr:hover { color: var(--accent); text-decoration-style: solid; }
+
   /* ---------- посилання на карти ---------- */
 
   .maplinks { display: grid; gap: 0.5rem; margin-top: 1.2rem; }
@@ -1225,7 +1236,7 @@
         <div class="task">
           <span class="task-no">18</span>
           <h3>Забронювати зворотну ночівлю у Вроцлаві</h3>
-          <p>Ніч туди закрита: Aparthotel Symphony на Krakowska 35, <span class="money">786,60 zł оплачено 02.09 — €181 замість €228 за планом</span><span class="nomoney">оплачено 02.09, дешевше за план</span>. Лишилася зворотна, <b>27–28.09</b> — найпростіше той самий готель, якщо будуть місця. Потрібне паркування на дві машини, бус — 1,97 м висоти.</p>
+          <p>Ніч туди закрита: Aparthotel Symphony на <a class="addr" href="https://www.google.com/maps/search/?api=1&amp;query=Krakowska%2035%2C%2050-424%20Wroc%C5%82aw%2C%20Polska" target="_blank" rel="noreferrer">Krakowska 35</a>, <span class="money">786,60 zł оплачено 02.09 — €181 замість €228 за планом</span><span class="nomoney">оплачено 02.09, дешевше за план</span>. Лишилася зворотна, <b>27–28.09</b> — найпростіше той самий готель, якщо будуть місця. Потрібне паркування на дві машини, бус — 1,97 м висоти.</p>
           <div class="task-side">
             <span class="pill pill-block">Половина закрита</span>
             <span class="task-when">17.09</span>
@@ -1385,7 +1396,7 @@
         <div class="task is-done">
           <span class="task-no">✓</span>
           <h3>Житло оплачене повністю</h3>
-          <p>Airbnb, Kerkstraat 23, господар Valerie. Заїзд 21.09 о 12:00, виїзд 27.09 о 12:00 — рівно шість ночей, як і планували. Передоплата пройшла 28.08, залишок списався 11.09.<span class="money"> Разом ₴114 916,14, тобто €2 200: на €300 менше за план. Рахунок був на ₴114 360 — зайві ₴556 набігли на подвійній конверсії банку.</span></p>
+          <p>Airbnb, <a class="addr" href="https://www.google.com/maps/search/?api=1&amp;query=Kerkstraat%2023%2C%202845%20Niel%2C%20Belgi%C3%AB" target="_blank" rel="noreferrer">Kerkstraat 23</a>, господар Valerie. Заїзд 21.09 о 12:00, виїзд 27.09 о 12:00 — рівно шість ночей, як і планували. Передоплата пройшла 28.08, залишок списався 11.09.<span class="money"> Разом ₴114 916,14, тобто €2 200: на €300 менше за план. Рахунок був на ₴114 360 — зайві ₴556 набігли на подвійній конверсії банку.</span></p>
           <div class="task-side"><span class="pill pill-ok">Оплачено</span><span class="task-when">21–27.09</span><span class="task-cost money">₴114 916</span></div>
         </div>
 
@@ -1458,7 +1469,7 @@
         <div class="task is-done">
           <span class="task-no">✓</span>
           <h3>Бус заброньований: договір на 11 діб</h3>
-          <p>Cargorent підтвердив резервування Renault Trafic. Видача <b>19.09 об 11:00</b>, просп. Леоніда Каденюка, 15; повернення <b>30.09 об 11:00</b> туди ж. <span class="money">₴2 912 за добу, ₴32 032 за період — €613, майже точно як у плані (€616).</span><span class="nomoney">Ціна за період майже точно збіглася з планом.</span> Основний водій — Попов, другий — Адаменко; за кермом мають право тільки вони двоє. При отриманні потрібні оригінали паспорта й посвідчення.</p>
+          <p>Cargorent підтвердив резервування Renault Trafic. Видача <b>19.09 об 11:00</b>, <a class="addr" href="https://www.google.com/maps/search/?api=1&amp;query=%D0%BF%D1%80%D0%BE%D1%81%D0%BF%D0%B5%D0%BA%D1%82%20%D0%9B%D0%B5%D0%BE%D0%BD%D1%96%D0%B4%D0%B0%20%D0%9A%D0%B0%D0%B4%D0%B5%D0%BD%D1%8E%D0%BA%D0%B0%2015%2C%20%D0%9A%D0%B8%D1%97%D0%B2" target="_blank" rel="noreferrer">просп. Леоніда Каденюка, 15</a>; повернення <b>30.09 об 11:00</b> туди ж. <span class="money">₴2 912 за добу, ₴32 032 за період — €613, майже точно як у плані (€616).</span><span class="nomoney">Ціна за період майже точно збіглася з планом.</span> Основний водій — Попов, другий — Адаменко; за кермом мають право тільки вони двоє. При отриманні потрібні оригінали паспорта й посвідчення.</p>
           <div class="task-side"><span class="pill pill-ok">Підтверджено</span><span class="task-when">19.09 — 30.09</span><span class="task-cost money">₴32 032</span></div>
         </div>
 
@@ -1611,23 +1622,23 @@
     <div class="pickups">
       <div class="pickup">
         <span class="no">18:50</span>
-        <span class="where"><b>Зарічна, 6к2</b><span>звідси бус починає коло</span></span>
+        <span class="where"><b><a class="addr" href="https://www.google.com/maps/search/?api=1&amp;query=%D0%B2%D1%83%D0%BB%D0%B8%D1%86%D1%8F%20%D0%97%D0%B0%D1%80%D1%96%D1%87%D0%BD%D0%B0%206%D0%BA2%2C%20%D0%9A%D0%B8%D1%97%D0%B2" target="_blank" rel="noreferrer">Зарічна, 6к2</a></b><span>звідси бус починає коло</span></span>
       </div>
       <div class="pickup">
         <span class="no">19:00</span>
-        <span class="where"><b>вулиця Центральна, 21 — офіс</b><span>Ігор Кутько і Катя Задорожна</span></span>
+        <span class="where"><b><a class="addr" href="https://www.google.com/maps/search/?api=1&amp;query=%D0%B2%D1%83%D0%BB%D0%B8%D1%86%D1%8F%20%D0%A6%D0%B5%D0%BD%D1%82%D1%80%D0%B0%D0%BB%D1%8C%D0%BD%D0%B0%2021%2C%20%D0%9A%D0%B8%D1%97%D0%B2" target="_blank" rel="noreferrer">вулиця Центральна, 21</a> — офіс</b><span>Ігор Кутько і Катя Задорожна</span></span>
       </div>
       <div class="pickup">
         <span class="no">19:15</span>
-        <span class="where"><b>Дніпровська набережна, 18а</b><span>Тимур</span></span>
+        <span class="where"><b><a class="addr" href="https://www.google.com/maps/search/?api=1&amp;query=%D0%94%D0%BD%D1%96%D0%BF%D1%80%D0%BE%D0%B2%D1%81%D1%8C%D0%BA%D0%B0%20%D0%BD%D0%B0%D0%B1%D0%B5%D1%80%D0%B5%D0%B6%D0%BD%D0%B0%2018%D0%B0%2C%20%D0%9A%D0%B8%D1%97%D0%B2" target="_blank" rel="noreferrer">Дніпровська набережна, 18а</a></b><span>Тимур</span></span>
       </div>
       <div class="pickup">
         <span class="no">19:30</span>
-        <span class="where"><b>Анни Ахматової, 16Б</b><span>Сергій Коврижних</span></span>
+        <span class="where"><b><a class="addr" href="https://www.google.com/maps/search/?api=1&amp;query=%D0%90%D0%BD%D0%BD%D0%B8%20%D0%90%D1%85%D0%BC%D0%B0%D1%82%D0%BE%D0%B2%D0%BE%D1%97%2016%D0%91%2C%20%D0%9A%D0%B8%D1%97%D0%B2" target="_blank" rel="noreferrer">Анни Ахматової, 16Б</a></b><span>Сергій Коврижних</span></span>
       </div>
       <div class="pickup">
         <span class="no">19:45</span>
-        <span class="where"><b>Сверстюка, 6е</b><span>Альона Горай</span></span>
+        <span class="where"><b><a class="addr" href="https://www.google.com/maps/search/?api=1&amp;query=%D0%B2%D1%83%D0%BB%D0%B8%D1%86%D1%8F%20%D0%84%D0%B2%D0%B3%D0%B5%D0%BD%D0%B0%20%D0%A1%D0%B2%D0%B5%D1%80%D1%81%D1%82%D1%8E%D0%BA%D0%B0%206%D0%B5%2C%20%D0%9A%D0%B8%D1%97%D0%B2" target="_blank" rel="noreferrer">Сверстюка, 6е</a></b><span>Альона Горай</span></span>
       </div>
       <div class="pickup">
         <span class="no">далі</span>
@@ -1635,7 +1646,7 @@
       </div>
       <div class="pickup is-final">
         <span class="no">21:00</span>
-        <span class="where"><b>АЗК KLO, Стоянка — збір і старт</b><span>Олексій Бардаков і Влад Лавренко приїжджають одразу сюди. Далі по Житомирській трасі забираємо Джаміля</span></span>
+        <span class="where"><b><a class="addr" href="https://maps.app.goo.gl/1tgz5mB9GoA2miqw5" target="_blank" rel="noreferrer">АЗК KLO, Стоянка</a> — збір і старт</b><span>Олексій Бардаков і Влад Лавренко приїжджають одразу сюди. Далі по Житомирській трасі забираємо Джаміля</span></span>
       </div>
     </div>
 
@@ -1666,7 +1677,7 @@
         <tbody>
           <tr><td class="d"><b>19.09</b> сб</td><td>Об 11:00 забираємо бус на Каденюка, 15. Коло по Києву з <b>18:50</b>, збір на АЗК KLO у Стоянці о <b>21:00</b>, старт одразу<span class="sub">п’ять адрес за графіком Марії; за кермом Попов і Адаменко, змінами; комендантську годину враховано</span></td><td class="d">у дорозі</td></tr>
           <tr><td class="d"><b>20.09</b> нд</td><td><b>Краковець</b> уранці, далі на Вроцлав — ~1 100 км від Києва<span class="sub">ранкова черга менша за денну; у Вроцлаві по обіді за польським часом</span></td><td class="d">готель, Вроцлав</td></tr>
-          <tr><td class="d"><b>21.09</b> пн</td><td>Вроцлав → Niel, ~1 100 км. Заселення надвечір<span class="sub">Kerkstraat 23; від Кельна йдемо через Нідерланди, обходячи брюссельський ринг</span></td><td class="d">будинок</td></tr>
+          <tr><td class="d"><b>21.09</b> пн</td><td>Вроцлав → Niel, ~1 100 км. Заселення надвечір<span class="sub"><a class="addr" href="https://www.google.com/maps/search/?api=1&amp;query=Kerkstraat%2023%2C%202845%20Niel%2C%20Belgi%C3%AB" target="_blank" rel="noreferrer">Kerkstraat 23</a>; від Кельна йдемо через Нідерланди, обходячи брюссельський ринг</span></td><td class="d">будинок</td></tr>
           <tr><td class="d"><b>22.09</b> вт</td><td>Кутько — майстер-клас, день 1. Решта — стенд і підготовка<span class="sub">програму на дванадцятьох ще не складено; до Брюсселя і назад, ~60 км</span></td><td class="d">будинок</td></tr>
           <tr><td class="d"><b>23.09</b> ср</td><td>Кутько — майстер-клас, день 2. Решта — монтаж стенду<span class="sub">за регламентом Odoo монтаж напередодні події; до Брюсселя і назад, ~60 км</span></td><td class="d">будинок</td></tr>
           <tr><td class="d"><b>24.09</b> чт</td><td>Odoo Experience, день 1 — кейноут о <b>08:30</b>, далі до 23:00<span class="sub">виїзд із Niel близько 07:15 · обід 12:00 · вечеря з open bar 18:00 і концерти до 22:00 — за кермом назад той, хто не п’є</span></td><td class="d">будинок</td></tr>
@@ -1708,7 +1719,7 @@
       </a>
       <a class="maplink" href="https://www.google.com/maps/dir/?api=1&amp;travelmode=driving&amp;origin=Kerkstraat+23,+2845+Niel,+Belgium&amp;destination=Brussels+Expo,+Place+de+Belgique+1,+1020+Brussels,+Belgium" target="_blank" rel="noreferrer">
         <span class="when">22–26.09</span>
-        <span class="what"><b>Niel → Brussels Expo</b><span>Kerkstraat 23 → Place de Belgique, по A12; так п’ять днів підряд</span></span>
+        <span class="what"><b>Niel → Brussels Expo</b><span><a class="addr" href="https://www.google.com/maps/search/?api=1&amp;query=Kerkstraat%2023%2C%202845%20Niel%2C%20Belgi%C3%AB" target="_blank" rel="noreferrer">Kerkstraat 23</a> → Place de Belgique, по A12; так п’ять днів підряд</span></span>
         <span class="km">~30 км ↗</span>
       </a>
       <a class="maplink" href="https://www.google.com/maps/dir/?api=1&amp;travelmode=driving&amp;origin=Kerkstraat+23,+2845+Niel,+Belgium&amp;destination=Wroclaw,+Poland&amp;waypoints=Antwerp,+Belgium%7CEindhoven,+Netherlands%7CVenlo,+Netherlands%7CCologne,+Germany%7CDresden,+Germany" target="_blank" rel="noreferrer">
@@ -1723,7 +1734,7 @@
       </a>
     </div>
     <div class="note">
-      <p><b>Зупинка в Гьорліці.</b> З групи, від Олександра Дідуся: <b>Spremberger Str. 12, 02826 Görlitz</b> — «заїжджати потрібно саме звідси, бо там круг повністю перекритий». Гьорліц стоїть рівно на польсько-німецькому кордоні, відразу за Згожельцем, тобто це по дорозі. Що саме там забираємо, у переписці не сказано — уточнити перед виїздом.</p>
+      <p><b>Зупинка в Гьорліці.</b> З групи, від Олександра Дідуся: <b><a class="addr" href="https://www.google.com/maps/search/?api=1&amp;query=Spremberger%20Str.%2012%2C%2002826%20G%C3%B6rlitz%2C%20Deutschland" target="_blank" rel="noreferrer">Spremberger Str. 12, 02826 Görlitz</a></b> — «заїжджати потрібно саме звідси, бо там круг повністю перекритий». Гьорліц стоїть рівно на польсько-німецькому кордоні, відразу за Згожельцем, тобто це по дорозі. Що саме там забираємо, у переписці не сказано — уточнити перед виїздом.</p>
     </div>
 
     <div class="t-wrap">
@@ -1839,7 +1850,7 @@
     <div class="t-wrap">
       <table>
         <tbody>
-          <tr><td>Машиною<span class="sub">наш варіант: з Niel по A12, ~30 км</span></td><td>кільце R0, з’їзд <b>7a</b> за вказівниками «Expo». Організатор рекомендує <b>паркінг C</b> — з нього є прямий вхід на подію. Паркінг платний і не належить Odoo</td></tr>
+          <tr><td>Машиною<span class="sub">наш варіант: з Niel по A12, ~30 км</span></td><td>до <a class="addr" href="https://www.google.com/maps/search/?api=1&amp;query=Brussels%20Expo%2C%20Place%20de%20Belgique%201%2C%201020%20Brussel%2C%20Belgi%C3%AB" target="_blank" rel="noreferrer">Brussels Expo</a> — кільце R0, з’їзд <b>7a</b> за вказівниками «Expo». Організатор рекомендує <b>паркінг C</b> — з нього є прямий вхід на подію. Паркінг платний і не належить Odoo</td></tr>
           <tr><td>Метро</td><td>станція <b>Heysel</b>, кілька хвилин пішки. Від Брюссель-Південного — лінія 6 у бік Roi Baudouin, 15 хв. Від Центрального — лінія 1 або 5, пересадка на 6 у Beekkant, 20 хв</td></tr>
           <tr><td>Автобус</td><td>14 і 83 — 7 хвилин пішки; 51 — 15 хвилин</td></tr>
           <tr><td>Таксі</td><td>Taxis Verts <b>+32 2 349 49 49</b>, Taxis Bleus <b>+32 2 268 00 00</b></td></tr>
@@ -1963,7 +1974,7 @@
           <tr><td>Зелена карта на GX<span class="sub">15 днів, категорія «легковий»; тарифи з 2025 року не регулюються МТСБУ — розкид ₴800–1 600</span></td><td class="n">25</td><td class="d">до виїзду</td></tr>
           <tr class="total"><td>З них до виїзду</td><td class="n">793</td><td class="d">27% статті</td></tr>
           <tr><td>Пальне, обидві машини<span class="sub">4 700 км на кожну, за цінами на 24.08.2026</span></td><td class="n">1 839</td><td class="d">у дорозі</td></tr>
-          <tr><td>Паркування<span class="sub">Brussels Expo, Parking C: 5 днів × 2 машини × €12 = 120; біля будинку та інше — 60</span></td><td class="n">180</td><td class="d">на місці</td></tr>
+          <tr><td>Паркування<span class="sub"><a class="addr" href="https://www.google.com/maps/search/?api=1&amp;query=Brussels%20Expo%2C%20Place%20de%20Belgique%201%2C%201020%20Brussel%2C%20Belgi%C3%AB" target="_blank" rel="noreferrer">Brussels Expo</a>, Parking C: 5 днів × 2 машини × €12 = 120; біля будинку та інше — 60</span></td><td class="n">180</td><td class="d">на місці</td></tr>
           <tr class="mark"><td>Перепробіг<span class="sub">850 км понад ліміт, ₴350 за 100 км за договором</span></td><td class="n">57</td><td class="d">при здачі 30.09</td></tr>
           <tr><td>Платні дороги, Польща<span class="sub">A4 Kraków–Katowice, єдина платна ділянка: 2 пункти оплати × 18 zł = 36 zł на машину в один бік</span></td><td class="n">30</td><td class="d">каси на A4</td></tr>
           <tr class="total"><td>З них у дорозі</td><td class="n">2 106</td><td class="d">73% статті</td></tr>
@@ -2113,7 +2124,7 @@
           </thead>
           <tbody>
             <tr><td class="d"><b>28.08</b></td><td>Житло</td><td>Airbnb, помешкання в Niel — передоплата<span class="sub">бронь 21–27.09, господар Valerie</span></td><td class="n">₴23 025,11<span class="sub">≈€441</span></td><td class="d">Mastercard ···2643</td><td class="d">є в застосунку</td></tr>
-            <tr><td class="d"><b>02.09</b></td><td>Ночівля в дорозі</td><td>Booking, Aparthotel Symphony Krakowska 35 — Вроцлав, ніч 20–21.09<span class="sub">оплачено повністю, 786,60 zł за курсом 12,0048 ₴/zł</span></td><td class="n">₴9 442,98<span class="sub">≈€181 · план €228</span></td><td class="d">Visa ···5637</td><td class="d">є в застосунку</td></tr>
+            <tr><td class="d"><b>02.09</b></td><td>Ночівля в дорозі</td><td>Booking, Aparthotel Symphony <a class="addr" href="https://www.google.com/maps/search/?api=1&amp;query=Krakowska%2035%2C%2050-424%20Wroc%C5%82aw%2C%20Polska" target="_blank" rel="noreferrer">Krakowska 35</a> — Вроцлав, ніч 20–21.09<span class="sub">оплачено повністю, 786,60 zł за курсом 12,0048 ₴/zł</span></td><td class="n">₴9 442,98<span class="sub">≈€181 · план €228</span></td><td class="d">Visa ···5637</td><td class="d">є в застосунку</td></tr>
             <tr><td class="d"><b>11.09</b></td><td>Житло</td><td>Airbnb, залишок за помешкання — житло оплачене повністю<span class="sub">разом за шість ночей ₴114 916,14; очікували ₴114 360 — різниця ₴556 на подвійній конверсії</span></td><td class="n">₴91 891,03<span class="sub">≈€1 759</span></td><td class="d">Visa ···5637</td><td class="d">є в застосунку</td></tr>
             <tr class="mark"><td class="d">затверджено 07.09</td><td>Авіа Мазуренка</td><td>Відшкодування квитків Подгориця — Брюссель — Будапешт — Подгориця<span class="sub">Ryanair із Подгориці лише пн, ср, пт, тому назад через Будапешт: 100,38 + 57,54 + 84,14</span></td><td class="n">₴12 620,00<span class="sub">€242,06</span></td><td class="d">заявка на оплату</td><td class="d">заявка в Odoo</td></tr>
             <tr class="mark"><td class="d">не заброньовано</td><td>Ночівля в дорозі</td><td>Вроцлав, ніч 27–28.09 — зворотна<span class="sub">той самий готель, якщо будуть місця</span></td><td class="n">≈€228<span class="sub">за планом</span></td><td class="d">—</td><td class="d">—</td></tr>
@@ -2155,19 +2166,19 @@
           <tbody>
             <tr>
               <td>Житло<span class="sub">Airbnb</span></td>
-              <td>Помешкання в <b>Niel</b>, Kerkstraat 23<span class="sub">господар Valerie · заїзд пн 21.09 о 12:00, виїзд нд 27.09 о 12:00 · бронь на 12 гостей</span></td>
+              <td>Помешкання в <b>Niel</b>, <a class="addr" href="https://www.google.com/maps/search/?api=1&amp;query=Kerkstraat%2023%2C%202845%20Niel%2C%20Belgi%C3%AB" target="_blank" rel="noreferrer">Kerkstraat 23</a><span class="sub">господар Valerie · заїзд пн 21.09 о 12:00, виїзд нд 27.09 о 12:00 · бронь на 12 гостей</span></td>
               <td><span class="pill pill-ok">Оплачено</span><span class="sub money">₴23 025 від 28.08 і ₴91 891 від 11.09 — разом ₴114 916</span><span class="sub nomoney">оплачено повністю двома платежами</span></td>
             </tr>
             <tr>
               <td>Оренда Trafic<span class="sub">Cargorent</span></td>
-              <td><b>Renault Trafic</b>, видача 19.09 об 11:00 — повернення 30.09 об 11:00<span class="sub">просп. Леоніда Каденюка, 15 · водії: Попов (основний), Адаменко (другий) · кілометраж 3 850 км за період · при собі оригінали паспорта й посвідчення · гаряча лінія +380 98 000 88 87</span></td>
+              <td><b>Renault Trafic</b>, видача 19.09 об 11:00 — повернення 30.09 об 11:00<span class="sub"><a class="addr" href="https://www.google.com/maps/search/?api=1&amp;query=%D0%BF%D1%80%D0%BE%D1%81%D0%BF%D0%B5%D0%BA%D1%82%20%D0%9B%D0%B5%D0%BE%D0%BD%D1%96%D0%B4%D0%B0%20%D0%9A%D0%B0%D0%B4%D0%B5%D0%BD%D1%8E%D0%BA%D0%B0%2015%2C%20%D0%9A%D0%B8%D1%97%D0%B2" target="_blank" rel="noreferrer">просп. Леоніда Каденюка, 15</a> · водії: Попов (основний), Адаменко (другий) · кілометраж 3 850 км за період · при собі оригінали паспорта й посвідчення · гаряча лінія +380 98 000 88 87</span></td>
               <td><span class="pill pill-ok">Заброньовано</span><span class="sub money">₴32 032 за період, ₴2 912 за добу; застава €750; перепробіг ₴350 за 100 км</span><span class="sub nomoney">підтвердження від прокатника отримано</span></td>
             </tr>
             <tr><td>Виїзд за кордон<span class="sub">до договору оренди</span></td><td>окрема послуга прокатника — погоджено 18.09<span class="sub">довіреність, зелена карта і КАСКО — на руки при видачі 19.09</span></td><td><span class="pill pill-ok">Погоджено</span></td></tr>
             <tr><td>Перепустки Premium<span class="sub">12 × Odoo Experience</span></td><td>рахунок виставлений, оплата в строк</td><td><span class="pill pill-block">Рахунок</span></td></tr>
             <tr>
               <td>Ночівля туди<span class="sub">Booking</span></td>
-              <td><b>Aparthotel Symphony Krakowska 35 by INA</b>, Вроцлав<span class="sub">Krakowska 35, 50-424 · ніч нд 20.09 → пн 21.09 · заїзд 15:00–00:00, виїзд 08:00–10:00 · час прибуття вказано 13:00–14:00</span></td>
+              <td><b>Aparthotel Symphony <a class="addr" href="https://www.google.com/maps/search/?api=1&amp;query=Krakowska%2035%2C%2050-424%20Wroc%C5%82aw%2C%20Polska" target="_blank" rel="noreferrer">Krakowska 35</a> by INA</b>, Вроцлав<span class="sub"><a class="addr" href="https://www.google.com/maps/search/?api=1&amp;query=Krakowska%2035%2C%2050-424%20Wroc%C5%82aw%2C%20Polska" target="_blank" rel="noreferrer">Krakowska 35</a>, 50-424 · ніч нд 20.09 → пн 21.09 · заїзд 15:00–00:00, виїзд 08:00–10:00 · час прибуття вказано 13:00–14:00</span></td>
               <td><span class="pill pill-ok">Оплачено</span><span class="sub money">786,60 zł ≈ ₴9 443 ≈ €181, Visa ···5637 від 02.09</span><span class="sub nomoney">оплачено повністю 02.09</span></td>
             </tr>
             <tr><td>Ночівля назад<span class="sub">27.09</span></td><td>Вроцлав, ніч 27–28.09 — бронь із паркуванням на дві машини</td><td><span class="pill pill-todo">Немає</span></td></tr>
