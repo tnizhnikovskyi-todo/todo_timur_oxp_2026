@@ -829,6 +829,24 @@
   .task.is-done { background: color-mix(in srgb, var(--ok) 5%, var(--surface)); }
   .task.is-done .task-no { color: var(--ok); }
 
+  /* чекліст закупівлі */
+  .chk-list { display: grid; gap: 1px; background: var(--rule); border: 1px solid var(--rule); border-radius: 14px; overflow: hidden; }
+  .chk {
+    display: grid; grid-template-columns: 1.3rem 1fr auto; gap: 0.25rem 0.9rem; align-items: start;
+    background: var(--surface); padding: 0.7rem 1.1rem; cursor: pointer;
+  }
+  .chk input { width: 1.05rem; height: 1.05rem; margin: 0.15rem 0 0; accent-color: var(--accent); cursor: pointer; }
+  .chk .nm { font-weight: 600; }
+  .chk .why { grid-column: 2; font-size: 0.82rem; color: var(--ink-soft); }
+  .chk .qty { grid-column: 3; grid-row: 1 / span 2; font-family: var(--mono); font-size: 0.82rem; font-weight: 600; white-space: nowrap; text-align: right; }
+  .chk:has(input:checked) { background: color-mix(in srgb, var(--ok) 6%, var(--surface)); }
+  .chk:has(input:checked) .nm, .chk:has(input:checked) .qty { color: var(--ink-faint); text-decoration: line-through; }
+  .chk-head { display: flex; align-items: baseline; gap: 0.8rem; margin: 1.6rem 0 0.6rem; }
+  .chk-head h4 { margin: 0; font-size: 1rem; }
+  .chk-head .prog-count { margin: 0; margin-left: auto; }
+  .sub-note { font-size: 0.85rem; color: var(--ink-soft); margin: -0.2rem 0 0.6rem; }
+  .menu td .sub { display: block; }
+
   /* плитки-показники */
 
   .stats {
@@ -1011,6 +1029,7 @@
       <button class="tab" type="button" role="tab" id="tab-budget" aria-controls="p-budget" aria-selected="false" tabindex="-1"><svg class="lk" viewBox="0 0 10 12" fill="none" aria-hidden="true"><path d="M2 5V3.5a3 3 0 016 0V5" stroke="currentColor" stroke-width="1.3"/><rect x=".8" y="5" width="8.4" height="6.4" rx="1.4" fill="currentColor"/></svg>Бюджет</button>
       <button class="tab" type="button" role="tab" id="tab-spend" aria-controls="p-spend" aria-selected="false" tabindex="-1"><svg class="lk" viewBox="0 0 10 12" fill="none" aria-hidden="true"><path d="M2 5V3.5a3 3 0 016 0V5" stroke="currentColor" stroke-width="1.3"/><rect x=".8" y="5" width="8.4" height="6.4" rx="1.4" fill="currentColor"/></svg>Витрати <span class="cnt">23</span></button>
       <button class="tab" type="button" role="tab" id="tab-kitchen" aria-controls="p-kitchen" aria-selected="false" tabindex="-1">Кухня</button>
+      <button class="tab" type="button" role="tab" id="tab-shop" aria-controls="p-shop" aria-selected="false" tabindex="-1">Закупівля <span class="cnt js-shop-cnt">0</span></button>
       <button class="tab" type="button" role="tab" id="tab-docs"  aria-controls="p-docs"  aria-selected="false" tabindex="-1">Документи і бронювання <span class="cnt">9</span></button>
     </div>
   </div>
@@ -2263,9 +2282,92 @@
     <section>
       <div class="sec-head">
         <h2>Кухня</h2>
-        <span class="eyebrow">перша закупівля — на зборі</span>
+        <span class="eyebrow">меню на 14 · 21–27.09 · узгоджено 20.09</span>
       </div>
-      <p>Вкладка під усе, що стосується їжі в будинку: хто готує, закупівля на чотирнадцятьох, сніданки перед виїздом на Expo і вечері після, алергії та обмеження. Створена заздалегідь, щоб було куди складати — наповнюємо, коли дійде черга.</p>
+      <p>П’ять вечерь у будинку в Niel, шість ранків і один пакет у дорогу. Обіди 24–26.09 і вечеря 24.09 — на Expo, у Premium; 22–23.09 ранок і обід злиті в один пізній сніданок, бо до вечері він один. Готуємо на чотирнадцятьох, без вибору на вечерю — одна страва на всіх, крім суботи, де до креветок є і паста, і рис. Закупівля — на сусідній вкладці, з галочками.</p>
+
+      <div class="stats">
+        <div class="stat is-accent"><span class="k">Вечері вдома</span><span class="v">5</span><span class="s">пн, вт, ср, пт, сб</span></div>
+        <div class="stat"><span class="k">Ранки</span><span class="v">6</span><span class="s">щодня два варіанти на вибір</span></div>
+        <div class="stat"><span class="k">На Expo</span><span class="v">4</span><span class="s">три обіди й вечеря четверга</span></div>
+        <div class="stat"><span class="k">Закупівля</span><span class="v">2</span><span class="s">Польща 21.09 о 6:00 · Бельгія — холодне</span></div>
+      </div>
+    </section>
+
+    <section>
+      <div class="sub-head">
+        <h3>Меню по днях</h3>
+        <span class="eyebrow">що на столі</span>
+      </div>
+      <div class="t-wrap">
+        <table class="menu">
+          <thead><tr><th>День</th><th>Ранок</th><th>Вечір</th></tr></thead>
+          <tbody>
+            <tr><td class="d"><b>Пн 21.09</b></td><td>— у дорозі</td><td><b>Паста карбонара</b><span class="sub">два салати: помідори-огірки-цибуля з перцем · помідори з моцарелою і перцем</span></td></tr>
+            <tr><td class="d"><b>Вт 22.09</b></td><td>пізній сніданок-обід</td><td><b>Картопля з беконом</b><span class="sub">нарізка: сир, багет, черешки селери</span></td></tr>
+            <tr><td class="d"><b>Ср 23.09</b></td><td>пізній сніданок-обід</td><td><b>Сирний суп</b> і <b>плов з куркою</b></td></tr>
+            <tr><td class="d"><b>Чт 24.09</b></td><td>швидко, виїзд 07:15</td><td>— вечеря з open bar на Expo, повернення близько 23:00</td></tr>
+            <tr><td class="d"><b>Пт 25.09</b></td><td>звичайний</td><td><b>Болоньєзе</b> — фарш і готовий томатний соус<span class="sub">салат цезар</span></td></tr>
+            <tr><td class="d"><b>Сб 26.09</b></td><td>звичайний</td><td><b>Креветки у вершках</b>, до них паста і рис<span class="sub">нарізка: багет, хамон, камамбер</span></td></tr>
+            <tr><td class="d"><b>Нд 27.09</b></td><td>ранній, паралельно збираємо дорогу</td><td>— готель у Вроцлаві</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="note">
+        <p><b>Ранок щодня однаковий, на вибір із двох.</b> <b>Омлет із сосисками</b> і багет — або <b>бутерброди з ковбасою і сиром</b>. Хто прокинувся раніше, ставить пательню; хто пізніше — бере бутерброд. У четвер, коли виїзд о 07:15, реально буде другий варіант. Окрім цього в будинку постійно є мівіна на голодний вечір, виноград, лимони, банани, снеки, кава, чай і безлактозне молоко.</p>
+      </div>
+    </section>
+
+    <section>
+      <div class="sub-head">
+        <h3>План приготування</h3>
+        <span class="eyebrow">що і коли ставити</span>
+      </div>
+      <p>Повертаємося з Брюсселя близько 18:30, тож вечеря — це 45–60 хвилин від входу до столу. Порядок у кожній картці — від довгого до короткого: спочатку те, що готується саме, потім те, що потребує рук.</p>
+      <div class="plan">
+        <div class="task">
+          <span class="task-no">Пн</span>
+          <h3>Карбонара і два салати</h3>
+          <p>Перший вечір, продукти з польської закупівлі. <b>1.</b> Велика каструля води на пасту — на вогонь одразу, 2 кг спагеті на 14 варяться в дві партії або в двох каструлях. <b>2.</b> Бекон 1 кг дрібно, на пательню без олії до хрускоту, часник в кінці. <b>3.</b> У мисці 10 яєць + 300 г тертого пармезану + перець; за бажанням 300 мл вершків. <b>4.</b> Гарячу пасту в бекон, зняти з вогню, влити яєчну суміш, швидко перемішати — яйце має схопитися, не зваритися. <b>5.</b> Салати паралельно, поки вариться паста: помідори-огірки-цибуля-перець з олією; помідори-моцарела-перець з олією й базиліком.</p>
+          <div class="task-side"><span class="pill pill-flag">45 хв</span><span class="task-when">на 14</span></div>
+        </div>
+        <div class="task">
+          <span class="task-no">Вт</span>
+          <h3>Картопля з беконом і нарізка</h3>
+          <p><b>1.</b> Духовку на 200°. Картоплю 4 кг почистити, крупно нарізати, залити кип’ятком на 5 хвилин — так вона запечеться швидше й рівніше. <b>2.</b> Змішати з олією, паприкою, розмарином, сіллю, розкласти на два дека, зверху бекон 1 кг шматками і цибулю півкільцями. <b>3.</b> 45 хвилин, один раз перемішати. <b>4.</b> Поки пече — нарізка: сир, багети, селера паличками; окремо дрібка солі до селери.</p>
+          <div class="task-side"><span class="pill pill-flag">1 год 10, з них 45 — духовка</span><span class="task-when">на 14</span></div>
+        </div>
+        <div class="task">
+          <span class="task-no">Ср</span>
+          <h3>Сирний суп і плов</h3>
+          <p>Дві каструлі одразу. <b>Плов, 60 хв:</b> у казан або найбільшу каструлю олію, цибулю 4 шт до золотого, курку 2 кг шматками до скоринки, моркву 1 кг брусочками, спеції для плову, сіль; залити водою на палець вище, 15 хвилин; рис 1,5 кг промитий рівним шаром зверху, не мішати, вода на 1,5 см вище рису, часник головками в рис; кришка, малий вогонь 25 хвилин, потім 10 хвилин без вогню. <b>Суп, 35 хв:</b> курячі стегна 1 кг у 4 л води на бульйон, картопля 1 кг кубиками, морква й цибуля; за 10 хвилин до кінця — плавлений сир 8 шт (або 400 г вершкового), вершки 500 мл, зелень. Курку із супу — назад у миски.</p>
+          <div class="task-side"><span class="pill pill-flag">1 год 15</span><span class="task-when">на 14</span></div>
+        </div>
+        <div class="task">
+          <span class="task-no">Чт</span>
+          <h3>День без кухні</h3>
+          <p>Виїзд 07:15 — сніданок бутербродами, кава в термос. Вечеря з open bar на Expo о 18:00, концерти до 22:00, повернення близько 23:00. Удома нічого не готуємо; хто голодний — мівіна.</p>
+          <div class="task-side"><span class="pill pill-flag">0 хв</span><span class="task-when">на 14</span></div>
+        </div>
+        <div class="task">
+          <span class="task-no">Пт</span>
+          <h3>Болоньєзе і цезар</h3>
+          <p><b>1.</b> Вода на пасту. <b>2.</b> Фарш 2 кг на дві пательні, розбиваючи грудки, цибуля 3 шт, часник; коли зарум’яниться — готовий томатний соус 2 л, сіль, орегано, 15 хвилин на малому вогні. <b>3.</b> Цезар паралельно: куряче філе 1 кг смужками на пательню з паприкою; салат порвати руками, черрі навпіл, сухарики, пармезан, соус цезар із пляшки — змішувати перед подачею, інакше розмокне. <b>4.</b> Паста 2 кг, зверху соус, пармезан.</p>
+          <div class="task-side"><span class="pill pill-flag">40 хв</span><span class="task-when">на 14</span></div>
+        </div>
+        <div class="task">
+          <span class="task-no">Сб</span>
+          <h3>Креветки у вершках, паста і рис, нарізка</h3>
+          <p>Остання вечеря. <b>1.</b> Рис 0,8 кг у каструлю на 20 хвилин; вода на пасту 1 кг. <b>2.</b> Креветки 1,5 кг розморозити заздалегідь (з ранку в холодильник) і обсушити. <b>3.</b> Масло 100 г і часник 6 зубців на пательню, креветки 3 хвилини, вершки 1,5 л, пармезан 200 г, лимонний сік, перець — 5 хвилин до загустіння. <b>4.</b> Соус на вибір до пасти або до рису. <b>5.</b> Нарізка: багети, хамон, камамбер — на стіл першою, поки решта готується.</p>
+          <div class="task-side"><span class="pill pill-flag">35 хв</span><span class="task-when">на 14</span></div>
+        </div>
+        <div class="task">
+          <span class="task-no">Нд</span>
+          <h3>Пакет у дорогу на 1 100 км</h3>
+          <p>Сендвічі по два на особу — 28, з решти ковбаси, сиру й багетів; яйця варені, банани, виноград, горіхи, батончики, вода. Що не з’їли — не везти: у Вроцлаві готель, у Києві — дім.</p>
+          <div class="task-side"><span class="pill pill-flag">20 хв, звечора</span><span class="task-when">на 14</span></div>
+        </div>
+      </div>
     </section>
 
     <section>
@@ -2279,6 +2381,103 @@
       </div>
 
       <p><b>Уже зібрано.</b> Коврижних везе <b>основні спеції для готування</b> — у будинку є кухня, а спеції в чужому домі завжди виявляються не ті. Воду в дорогу беруть, домовилися в групі. Своєї зарядної станції в Коврижних не буде — відвіз у Бучу, тож розраховувати на неї в будинку теж не варто.</p>
+    </section>
+
+  </div>
+
+  <!-- ========== 8б. ЗАКУПІВЛЯ ========== -->
+  <div class="panel" id="p-shop" role="tabpanel" aria-labelledby="tab-shop" tabindex="0" hidden>
+
+    <section>
+      <div class="sec-head">
+        <h2>Закупівля</h2>
+        <span class="eyebrow js-shop-total">—</span>
+      </div>
+      <p>Список під меню з «Кухні», на чотирнадцятьох. Поділений за тим, де купувати: у Польщі дешевше і все, що переживе одинадцять годин у машині; у Бельгії — холодне й свіже. Галочки запам’ятовуються у вашому браузері — у кожного свій список, тож домовтеся, хто веде основний.</p>
+      <div class="note">
+        <p><b>Польща — понеділок 21.09 із відкриття, о 6:00.</b> Неділя 20.09 — неторгова, великі мережі закриті. Biedronka, Lidl, Kaufland відкриваються о 6:00–7:00 і лягають рівно на виїзд із готелю. <b>Бельгія — увечері 21.09 до 20:00 або вранці 22.09:</b> Colruyt чи Delhaize під Niel. Другий бельгійський догон — у середу-четвер: багети, фрукти, те, що з’їли швидше.</p>
+      </div>
+    </section>
+
+    <section>
+      <div class="sub-head">
+        <h3>Польща, 21.09 о 6:00</h3>
+        <span class="eyebrow">сухе, овочі, вода — 70% списку</span>
+      </div>
+        <div class="chk-head"><h4>Сухе, овочі, напої, побут</h4><span class="prog-count js-grp"></span></div>
+        <div class="chk-list">
+            <label class="chk"><input type="checkbox" data-id="pl-pasta"><span class="nm">Спагеті / паста</span><span class="why">карбонара 2, болоньєзе 2, до креветок 1</span><span class="qty">5 кг</span></label>
+            <label class="chk"><input type="checkbox" data-id="pl-rice"><span class="nm">Рис довгий</span><span class="why">плов 1,5, до креветок 0,8</span><span class="qty">2,5 кг</span></label>
+            <label class="chk"><input type="checkbox" data-id="pl-tomato"><span class="nm">Томатний соус готовий</span><span class="why">болоньєзе; банки або пакети</span><span class="qty">2 л</span></label>
+            <label class="chk"><input type="checkbox" data-id="pl-oil"><span class="nm">Олія: оливкова + соняшникова</span><span class="qty">1 л + 1 л</span></label>
+            <label class="chk"><input type="checkbox" data-id="pl-potato"><span class="nm">Картопля</span><span class="why">з беконом 4, суп 1</span><span class="qty">5 кг</span></label>
+            <label class="chk"><input type="checkbox" data-id="pl-onion"><span class="nm">Цибуля</span><span class="why">у кожній вечері</span><span class="qty">3 кг</span></label>
+            <label class="chk"><input type="checkbox" data-id="pl-redonion"><span class="nm">Цибуля червона</span><span class="why">салат пн</span><span class="qty">3 шт</span></label>
+            <label class="chk"><input type="checkbox" data-id="pl-garlic"><span class="nm">Часник</span><span class="why">плов бере 2</span><span class="qty">4 головки</span></label>
+            <label class="chk"><input type="checkbox" data-id="pl-carrot"><span class="nm">Морква</span><span class="why">плов 1, суп 0,5</span><span class="qty">2 кг</span></label>
+            <label class="chk"><input type="checkbox" data-id="pl-eggs"><span class="nm">Яйця</span><span class="why">карбонара 10 + омлети перших днів</span><span class="qty">6 десятків</span></label>
+            <label class="chk"><input type="checkbox" data-id="pl-noodles"><span class="nm">Мівіна / локшина швидка</span><span class="why">на голодний вечір</span><span class="qty">20 шт</span></label>
+            <label class="chk"><input type="checkbox" data-id="pl-coffee"><span class="nm">Кава мелена або розчинна</span><span class="why">дізнатися, яка кавоварка в будинку</span><span class="qty">500 г</span></label>
+            <label class="chk"><input type="checkbox" data-id="pl-tea"><span class="nm">Чай чорний і зелений</span><span class="qty">2 × 50 пак.</span></label>
+            <label class="chk"><input type="checkbox" data-id="pl-sugar"><span class="nm">Цукор</span><span class="qty">1 кг</span></label>
+            <label class="chk"><input type="checkbox" data-id="pl-salt"><span class="nm">Сіль, перець чорний мелений</span><span class="qty">1 + 1</span></label>
+            <label class="chk"><input type="checkbox" data-id="pl-spices"><span class="nm">Спеції: паприка, орегано, розмарин, суміш для плову</span><span class="why">резерв — спеції з Києва під питанням</span><span class="qty">по 1</span></label>
+            <label class="chk"><input type="checkbox" data-id="pl-lemon"><span class="nm">Лимони</span><span class="qty">8 шт</span></label>
+            <label class="chk"><input type="checkbox" data-id="pl-banana"><span class="nm">Банани</span><span class="qty">4 кг</span></label>
+            <label class="chk"><input type="checkbox" data-id="pl-grapes"><span class="nm">Виноград</span><span class="why">ще 1 кг у Бельгії пізніше</span><span class="qty">2 кг</span></label>
+            <label class="chk"><input type="checkbox" data-id="pl-snacks"><span class="nm">Снеки: чіпси, горіхи, печиво, батончики</span><span class="qty">6 + 1 кг + 1 кг + 20</span></label>
+            <label class="chk"><input type="checkbox" data-id="pl-water"><span class="nm">Вода</span><span class="why">6 × 5 л — у Бельгії вдвічі дорожча</span><span class="qty">30 л</span></label>
+            <label class="chk"><input type="checkbox" data-id="pl-croutons"><span class="nm">Сухарики для цезаря</span><span class="qty">300 г</span></label>
+            <label class="chk"><input type="checkbox" data-id="pl-household"><span class="nm">Пакети для сміття, губки, засіб для посуду, фольга, рушники паперові, серветки</span><span class="qty">по 1–2</span></label>
+        </div>
+        <div class="chk-head"><h4>Холодне — лише якщо є сумка-холодильник</h4><span class="prog-count js-grp"></span></div>
+        <p class="sub-note">У вакуумі й в розсолі витримає дорогу; без сумки — переносимо в бельгійський список і не ризикуємо.</p>
+        <div class="chk-list">
+            <label class="chk"><input type="checkbox" data-id="pl-bacon"><span class="nm">Бекон у вакуумі</span><span class="why">карбонара 1, картопля 1</span><span class="qty">2 кг</span></label>
+            <label class="chk"><input type="checkbox" data-id="pl-sausages"><span class="nm">Сосиски у вакуумі</span><span class="why">омлети перших трьох ранків</span><span class="qty">2 кг</span></label>
+            <label class="chk"><input type="checkbox" data-id="pl-kielbasa"><span class="nm">Ковбаса на бутерброди, нарізка у вакуумі</span><span class="qty">1,5 кг</span></label>
+            <label class="chk"><input type="checkbox" data-id="pl-cheese"><span class="nm">Сир твердий на бутерброди й нарізку</span><span class="qty">2 кг</span></label>
+            <label class="chk"><input type="checkbox" data-id="pl-parmesan"><span class="nm">Пармезан / грана падано</span><span class="why">карбонара, болоньєзе, цезар, креветки</span><span class="qty">500 г</span></label>
+            <label class="chk"><input type="checkbox" data-id="pl-melted"><span class="nm">Сир плавлений</span><span class="why">сирний суп</span><span class="qty">8 шт</span></label>
+            <label class="chk"><input type="checkbox" data-id="pl-mozzarella"><span class="nm">Моцарела в розсолі</span><span class="why">салат пн</span><span class="qty">5 × 125 г</span></label>
+            <label class="chk"><input type="checkbox" data-id="pl-butter"><span class="nm">Масло вершкове</span><span class="qty">500 г</span></label>
+        </div>
+    </section>
+
+    <section>
+      <div class="sub-head">
+        <h3>Бельгія, 21–22.09 і догон</h3>
+        <span class="eyebrow">м’ясо, риба, молочне, свіже</span>
+      </div>
+        <div class="chk-head"><h4>Colruyt / Delhaize під Niel</h4><span class="prog-count js-grp"></span></div>
+        <div class="chk-list">
+            <label class="chk"><input type="checkbox" data-id="be-baguette"><span class="nm">Багети</span><span class="why">купувати щодня по 4–6, не всі одразу</span><span class="qty">30 шт за тиждень</span></label>
+            <label class="chk"><input type="checkbox" data-id="be-tomato"><span class="nm">Помідори</span><span class="why">салати пн, бутерброди</span><span class="qty">4 кг</span></label>
+            <label class="chk"><input type="checkbox" data-id="be-cucumber"><span class="nm">Огірки</span><span class="qty">3 кг</span></label>
+            <label class="chk"><input type="checkbox" data-id="be-pepper"><span class="nm">Перець болгарський</span><span class="why">в обидва салати пн</span><span class="qty">8 шт</span></label>
+            <label class="chk"><input type="checkbox" data-id="be-celery"><span class="nm">Селера черешкова</span><span class="why">нарізка вт; лишок — у суп ср</span><span class="qty">2 пучки</span></label>
+            <label class="chk"><input type="checkbox" data-id="be-lettuce"><span class="nm">Салат ромен або айсберг</span><span class="why">цезар</span><span class="qty">3 головки</span></label>
+            <label class="chk"><input type="checkbox" data-id="be-cherry"><span class="nm">Черрі</span><span class="why">цезар</span><span class="qty">500 г</span></label>
+            <label class="chk"><input type="checkbox" data-id="be-herbs"><span class="nm">Зелень: базилік, петрушка</span><span class="qty">по 1 пучку</span></label>
+            <label class="chk"><input type="checkbox" data-id="be-chicken-thigh"><span class="nm">Курячі стегна без кістки</span><span class="why">плов 2, бульйон для супу 1</span><span class="qty">3 кг</span></label>
+            <label class="chk"><input type="checkbox" data-id="be-chicken-fillet"><span class="nm">Куряче філе</span><span class="why">цезар</span><span class="qty">1 кг</span></label>
+            <label class="chk"><input type="checkbox" data-id="be-mince"><span class="nm">Фарш яловичий або змішаний</span><span class="why">болоньєзе</span><span class="qty">2 кг</span></label>
+            <label class="chk"><input type="checkbox" data-id="be-shrimp"><span class="nm">Креветки очищені заморожені</span><span class="why">сб; розморозити з ранку</span><span class="qty">1,5 кг</span></label>
+            <label class="chk"><input type="checkbox" data-id="be-cream"><span class="nm">Вершки 20–30%</span><span class="why">креветки 1,5, суп 0,5, карбонара 0,3</span><span class="qty">2,5 л</span></label>
+            <label class="chk"><input type="checkbox" data-id="be-milk"><span class="nm">Молоко</span><span class="why">до кави й омлетів</span><span class="qty">3 л</span></label>
+            <label class="chk"><input type="checkbox" data-id="be-milk-lf"><span class="nm">Молоко безлактозне</span><span class="qty">4 л</span></label>
+            <label class="chk"><input type="checkbox" data-id="be-eggs"><span class="nm">Яйця</span><span class="why">омлети з середи, цезар</span><span class="qty">7 десятків</span></label>
+            <label class="chk"><input type="checkbox" data-id="be-sausages"><span class="nm">Сосиски</span><span class="why">омлети другої половини тижня</span><span class="qty">2 кг</span></label>
+            <label class="chk"><input type="checkbox" data-id="be-kielbasa"><span class="nm">Ковбаса на бутерброди</span><span class="qty">2 кг</span></label>
+            <label class="chk"><input type="checkbox" data-id="be-cheese"><span class="nm">Сир на бутерброди</span><span class="qty">1,5 кг</span></label>
+            <label class="chk"><input type="checkbox" data-id="be-jamon"><span class="nm">Хамон / серрано нарізка</span><span class="why">нарізка сб</span><span class="qty">400 г</span></label>
+            <label class="chk"><input type="checkbox" data-id="be-camembert"><span class="nm">Камамбер</span><span class="why">нарізка сб</span><span class="qty">4 × 250 г</span></label>
+            <label class="chk"><input type="checkbox" data-id="be-butter"><span class="nm">Масло вершкове</span><span class="qty">500 г</span></label>
+            <label class="chk"><input type="checkbox" data-id="be-caesar"><span class="nm">Соус цезар</span><span class="qty">2 пляшки</span></label>
+            <label class="chk"><input type="checkbox" data-id="be-mayo"><span class="nm">Майонез, кетчуп</span><span class="qty">по 1</span></label>
+            <label class="chk"><input type="checkbox" data-id="be-grapes"><span class="nm">Виноград</span><span class="why">догон у середу-четвер</span><span class="qty">1 кг</span></label>
+            <label class="chk"><input type="checkbox" data-id="be-banana"><span class="nm">Банани</span><span class="why">догон у середу-четвер</span><span class="qty">2 кг</span></label>
+        </div>
     </section>
 
   </div>
@@ -2422,6 +2621,41 @@
       try { start = localStorage.getItem("oxp-tab") || ""; } catch (e) { start = ""; }
     }
     show(keys.indexOf(start) >= 0 ? start : "plan", false);
+
+    /* ---------- чекліст закупівлі: галочки живуть у браузері ---------- */
+    (function () {
+      var SHOPKEY = "oxp-shop-1";
+      var boxes = Array.prototype.slice.call(document.querySelectorAll('#p-shop .chk input[data-id]'));
+      if (!boxes.length) return;
+      var state = {};
+      try { state = JSON.parse(localStorage.getItem(SHOPKEY) || "{}") || {}; } catch (e) { state = {}; }
+      boxes.forEach(function (b) { b.checked = !!state[b.getAttribute("data-id")]; });
+      function count() {
+        var done = 0;
+        boxes.forEach(function (b) { if (b.checked) done++; });
+        var left = boxes.length - done;
+        var cnt = document.querySelector(".js-shop-cnt");
+        if (cnt) cnt.textContent = left;
+        var tot = document.querySelector(".js-shop-total");
+        if (tot) tot.textContent = left ? "лишилося купити " + left + " із " + boxes.length : "усе куплено";
+        Array.prototype.forEach.call(document.querySelectorAll("#p-shop .chk-head"), function (h) {
+          var list = h.nextElementSibling;
+          while (list && !list.classList.contains("chk-list")) list = list.nextElementSibling;
+          if (!list) return;
+          var all = list.querySelectorAll("input"), d = list.querySelectorAll("input:checked");
+          var g = h.querySelector(".js-grp");
+          if (g) g.textContent = d.length + " / " + all.length;
+        });
+      }
+      boxes.forEach(function (b) {
+        b.addEventListener("change", function () {
+          state[b.getAttribute("data-id")] = b.checked;
+          try { localStorage.setItem(SHOPKEY, JSON.stringify(state)); } catch (e) {}
+          count();
+        });
+      });
+      count();
+    })();
 
     /* ---------- скільки лишилося до виїзду ---------- */
     /* Рахуємо в браузері, щоб цифра не старіла разом зі сторінкою. */
