@@ -845,6 +845,10 @@
   .chk-head h4 { margin: 0; font-size: 1rem; }
   .chk-head .prog-count { margin: 0; margin-left: auto; }
   .sub-note { font-size: 0.85rem; color: var(--ink-soft); margin: -0.2rem 0 0.6rem; }
+  .chk .got, .chk .miss, .chk .part { grid-column: 2; font-size: 0.78rem; font-weight: 600; }
+  .chk .got  { color: var(--ok); }
+  .chk .miss { color: var(--warn); }
+  .chk .part { color: var(--ink-soft); }
   .menu td .sub { display: block; }
 
   /* плитки-показники */
@@ -2491,44 +2495,61 @@
 
     <section>
       <div class="sub-head">
+        <h3>Підсумок Lidl, 21.09</h3>
+        <span class="eyebrow">чотири чеки, 10:21–10:35</span>
+      </div>
+      <div class="stats">
+        <div class="stat is-accent money"><span class="k">Витрачено</span><span class="v">3 612 zł</span><span class="s">≈ €819 · з них алкоголь ≈ 1 419 zł</span></div>
+        <div class="stat is-accent nomoney"><span class="k">Витрачено</span><span class="v">4 чеки</span><span class="s">суми — під кодом, у «Витратах»</span></div>
+        <div class="stat is-ok"><span class="k">Закрито</span><span class="v">20</span><span class="s">позицій польського списку повністю</span></div>
+        <div class="stat"><span class="k">Частково</span><span class="v">5</span><span class="s">заміна або не все</span></div>
+        <div class="stat"><span class="k">Забули</span><span class="v">4</span><span class="s">цукор, банани, виноград, масло</span></div>
+      </div>
+      <div class="note">
+        <p><b>Забули й докупити в Бельгії:</b> цукор, сіль, вершкове масло, банани, виноград, пакети для сміття, губки й засіб для посуду, сосиски до омлетів. <b>Замінили:</b> томатну пасту — пасатою, пармезан — тертим сиром, сосиски — кабаносами. <b>Понад список:</b> алкоголь на всю компанію (Jameson, Jägermeister, джин, лікер, вино, Corona, Somersby), шість термосумок, безлактозні кефір, скир і йогурти, кускус, пластівці й гранола, яблучний нектар 12 л, енергетики, гель для прання. <b>Уже є з польського чека і в бельгійському списку:</b> чері, безлактозне молоко, сир, ковбаса, камамбер, яйця, сировʼялена шинка — позначені зеленим, купувати не треба.</p>
+      </div>
+    </section>
+
+    <section>
+      <div class="sub-head">
         <h3>Польща — Lidl, Borowska 134, 21.09 зранку</h3>
         <span class="eyebrow">сухе, овочі, вода — 70% списку</span>
       </div>
         <div class="chk-head"><h4>Сухе, овочі, напої, побут</h4><span class="prog-count js-grp"></span></div>
         <div class="chk-list">
-            <label class="chk"><input type="checkbox" data-id="pl-pasta"><span class="nm">Спагеті</span><span class="why">карбонара 1,5 і болоньєзе 1,5 — по 100 г на людину</span><span class="qty">3 кг</span></label>
-            <label class="chk"><input type="checkbox" data-id="pl-rice"><span class="nm">Рис довгий</span><span class="why">до креветок 1,2; по 100 г у кожен суп</span><span class="qty">1,5 кг</span></label>
-            <label class="chk"><input type="checkbox" data-id="pl-tomato-paste"><span class="nm">Томатна паста</span><span class="why">болоньєзе 2, креветки 1</span><span class="qty">3 тюбики по 140 г</span></label>
-            <label class="chk"><input type="checkbox" data-id="pl-oil"><span class="nm">Олія соняшникова + оливкова</span><span class="qty">1 л + 0,5 л</span></label>
-            <label class="chk"><input type="checkbox" data-id="pl-potato"><span class="nm">Картопля</span><span class="why">з беконом 3, супи 1</span><span class="qty">4 кг</span></label>
-            <label class="chk"><input type="checkbox" data-id="pl-onion"><span class="nm">Цибуля</span><span class="why">з них 2 червоні — у салат пн</span><span class="qty">1,5 кг</span></label>
-            <label class="chk"><input type="checkbox" data-id="pl-garlic"><span class="nm">Часник</span><span class="qty">2 головки</span></label>
-            <label class="chk"><input type="checkbox" data-id="pl-carrot"><span class="nm">Морква</span><span class="why">тільки супи</span><span class="qty">0,5 кг</span></label>
-            <label class="chk"><input type="checkbox" data-id="pl-eggs"><span class="nm">Яйця</span><span class="why">карбонара 8 + омлети перших двох ранків; решта в Бельгії</span><span class="qty">4 десятки</span></label>
-            <label class="chk"><input type="checkbox" data-id="pl-noodles"><span class="nm">Мівіна</span><span class="why">по одній на голодний вечір</span><span class="qty">14 шт</span></label>
-            <label class="chk"><input type="checkbox" data-id="pl-coffee"><span class="nm">Кава мелена</span><span class="why">на 14 осіб це ~70 чашок, на три дні; дізнатися, яка кавоварка в будинку</span><span class="qty">500 г</span></label>
-            <label class="chk"><input type="checkbox" data-id="pl-tea"><span class="nm">Чай чорний і зелений</span><span class="qty">2 × 25 пак.</span></label>
-            <label class="chk"><input type="checkbox" data-id="pl-sugar"><span class="nm">Цукор</span><span class="qty">500 г</span></label>
-            <label class="chk"><input type="checkbox" data-id="pl-salt"><span class="nm">Сіль, перець чорний мелений</span><span class="qty">по 1</span></label>
-            <label class="chk"><input type="checkbox" data-id="pl-spices"><span class="nm">Спеції: паприка, орегано, італійські трави</span><span class="why">резерв — спеції з Києва під питанням</span><span class="qty">по 1</span></label>
-            <label class="chk"><input type="checkbox" data-id="pl-lemon"><span class="nm">Лимони</span><span class="qty">4 шт</span></label>
-            <label class="chk"><input type="checkbox" data-id="pl-banana"><span class="nm">Банани</span><span class="why">на два дні; догон у Бельгії</span><span class="qty">2 кг</span></label>
-            <label class="chk"><input type="checkbox" data-id="pl-grapes"><span class="nm">Виноград</span><span class="qty">1,5 кг</span></label>
-            <label class="chk"><input type="checkbox" data-id="pl-snacks"><span class="nm">Снеки: чіпси, горіхи, печиво</span><span class="qty">3 + 500 г + 500 г</span></label>
-            <label class="chk"><input type="checkbox" data-id="pl-water"><span class="nm">Вода</span><span class="why">на дорогу і перший день; у Niel вода з-під крана питна</span><span class="qty">4 × 5 л</span></label>
-            <label class="chk"><input type="checkbox" data-id="pl-household"><span class="nm">Пакети для сміття, губки, засіб для посуду, фольга, рушники паперові</span><span class="qty">по 1</span></label>
+            <label class="chk"><input type="checkbox" data-id="pl-pasta"><span class="nm">Спагеті</span><span class="why">карбонара 1,5 і болоньєзе 1,5 — по 100 г на людину</span><span class="got">куплено в Lidl 21.09</span><span class="qty">3 кг</span></label>
+            <label class="chk"><input type="checkbox" data-id="pl-rice"><span class="nm">Рис довгий</span><span class="why">до креветок 1,2; по 100 г у кожен суп</span><span class="got">куплено в Lidl 21.09</span><span class="qty">1,5 кг</span></label>
+            <label class="chk"><input type="checkbox" data-id="pl-tomato-paste"><span class="nm">Томатна паста</span><span class="why">болоньєзе 2, креветки 1</span><span class="part">замість пасти — пасата 2 × 720 мл, на болоньєзе й креветки вистачить</span><span class="qty">3 тюбики по 140 г</span></label>
+            <label class="chk"><input type="checkbox" data-id="pl-oil"><span class="nm">Олія соняшникова + оливкова</span><span class="got">куплено в Lidl 21.09</span><span class="qty">1 л + 0,5 л</span></label>
+            <label class="chk"><input type="checkbox" data-id="pl-potato"><span class="nm">Картопля</span><span class="why">з беконом 3, супи 1</span><span class="got">куплено в Lidl 21.09</span><span class="qty">4 кг</span></label>
+            <label class="chk"><input type="checkbox" data-id="pl-onion"><span class="nm">Цибуля</span><span class="why">з них 2 червоні — у салат пн</span><span class="got">куплено в Lidl 21.09</span><span class="qty">1,5 кг</span></label>
+            <label class="chk"><input type="checkbox" data-id="pl-garlic"><span class="nm">Часник</span><span class="got">куплено в Lidl 21.09</span><span class="qty">2 головки</span></label>
+            <label class="chk"><input type="checkbox" data-id="pl-carrot"><span class="nm">Морква</span><span class="why">тільки супи</span><span class="got">куплено в Lidl 21.09</span><span class="qty">0,5 кг</span></label>
+            <label class="chk"><input type="checkbox" data-id="pl-eggs"><span class="nm">Яйця</span><span class="why">карбонара 8 + омлети перших двох ранків; решта в Бельгії</span><span class="got">куплено в Lidl 21.09</span><span class="qty">4 десятки</span></label>
+            <label class="chk"><input type="checkbox" data-id="pl-noodles"><span class="nm">Мівіна</span><span class="why">по одній на голодний вечір</span><span class="got">куплено в Lidl 21.09</span><span class="qty">14 шт</span></label>
+            <label class="chk"><input type="checkbox" data-id="pl-coffee"><span class="nm">Кава мелена</span><span class="why">на 14 осіб це ~70 чашок, на три дні; дізнатися, яка кавоварка в будинку</span><span class="got">куплено в Lidl 21.09</span><span class="qty">500 г</span></label>
+            <label class="chk"><input type="checkbox" data-id="pl-tea"><span class="nm">Чай чорний і зелений</span><span class="got">куплено в Lidl 21.09</span><span class="qty">2 × 25 пак.</span></label>
+            <label class="chk"><input type="checkbox" data-id="pl-sugar"><span class="nm">Цукор</span><span class="miss">забули — купити в Бельгії</span><span class="qty">500 г</span></label>
+            <label class="chk"><input type="checkbox" data-id="pl-salt"><span class="nm">Сіль, перець чорний мелений</span><span class="part">перець є, солі в чеках немає — докупити</span><span class="qty">по 1</span></label>
+            <label class="chk"><input type="checkbox" data-id="pl-spices"><span class="nm">Спеції: паприка, орегано, італійські трави</span><span class="why">резерв — спеції з Києва під питанням</span><span class="got">куплено в Lidl 21.09</span><span class="qty">по 1</span></label>
+            <label class="chk"><input type="checkbox" data-id="pl-lemon"><span class="nm">Лимони</span><span class="got">куплено в Lidl 21.09</span><span class="qty">4 шт</span></label>
+            <label class="chk"><input type="checkbox" data-id="pl-banana"><span class="nm">Банани</span><span class="why">на два дні; догон у Бельгії</span><span class="miss">забули — купити в Бельгії</span><span class="qty">2 кг</span></label>
+            <label class="chk"><input type="checkbox" data-id="pl-grapes"><span class="nm">Виноград</span><span class="miss">забули — купити в Бельгії</span><span class="qty">1,5 кг</span></label>
+            <label class="chk"><input type="checkbox" data-id="pl-snacks"><span class="nm">Снеки: чіпси, горіхи, печиво</span><span class="got">куплено в Lidl 21.09</span><span class="qty">3 + 500 г + 500 г</span></label>
+            <label class="chk"><input type="checkbox" data-id="pl-water"><span class="nm">Вода</span><span class="why">на дорогу і перший день; у Niel вода з-під крана питна</span><span class="got">куплено в Lidl 21.09</span><span class="qty">4 × 5 л</span></label>
+            <label class="chk"><input type="checkbox" data-id="pl-household"><span class="nm">Пакети для сміття, губки, засіб для посуду, фольга, рушники паперові</span><span class="part">рушники, туалетний папір, гель є; пакети, губки, засіб для посуду — забули</span><span class="qty">по 1</span></label>
         </div>
         <div class="chk-head"><h4>Холодне — лише якщо є сумка-холодильник</h4><span class="prog-count js-grp"></span></div>
         <p class="sub-note">У вакуумі й в розсолі витримає дорогу; без сумки — переносимо в бельгійський список і не ризикуємо. <b>21.09: шість термосумок куплено там же</b>, холодне поїхало з Польщі.</p>
         <div class="chk-list">
-            <label class="chk"><input type="checkbox" data-id="pl-bacon"><span class="nm">Бекон у вакуумі</span><span class="why">карбонара 600 г, картопля 800 г</span><span class="qty">1,5 кг</span></label>
-            <label class="chk"><input type="checkbox" data-id="pl-sausages"><span class="nm">Сосиски у вакуумі</span><span class="why">омлети перших двох ранків</span><span class="qty">700 г</span></label>
-            <label class="chk"><input type="checkbox" data-id="pl-kielbasa"><span class="nm">Ковбаса на бутерброди, нарізка у вакуумі</span><span class="why">перші два ранки</span><span class="qty">600 г</span></label>
-            <label class="chk"><input type="checkbox" data-id="pl-cheese"><span class="nm">Сир твердий</span><span class="why">бутерброди й нарізка вт; 300 г — у картоплю</span><span class="qty">1 кг</span></label>
-            <label class="chk"><input type="checkbox" data-id="pl-parmesan"><span class="nm">Пармезан / грана падано</span><span class="why">карбонара 200, креветки 150, решта — на болоньєзе</span><span class="qty">400 г</span></label>
-            <label class="chk"><input type="checkbox" data-id="pl-melted"><span class="nm">Сир плавлений</span><span class="why">по 4 на кожен суп</span><span class="qty">8 шт</span></label>
-            <label class="chk"><input type="checkbox" data-id="pl-mozzarella"><span class="nm">Моцарела в розсолі</span><span class="why">салат пн</span><span class="qty">3 × 125 г</span></label>
-            <label class="chk"><input type="checkbox" data-id="pl-butter"><span class="nm">Масло вершкове</span><span class="qty">250 г</span></label>
+            <label class="chk"><input type="checkbox" data-id="pl-bacon"><span class="nm">Бекон у вакуумі</span><span class="why">карбонара 600 г, картопля 800 г</span><span class="got">куплено в Lidl 21.09</span><span class="qty">1,5 кг</span></label>
+            <label class="chk"><input type="checkbox" data-id="pl-sausages"><span class="nm">Сосиски у вакуумі</span><span class="why">омлети перших двох ранків</span><span class="part">сосисок немає — узяли кабаноси; на омлети докупити в Бельгії</span><span class="qty">700 г</span></label>
+            <label class="chk"><input type="checkbox" data-id="pl-kielbasa"><span class="nm">Ковбаса на бутерброди, нарізка у вакуумі</span><span class="why">перші два ранки</span><span class="got">куплено в Lidl 21.09</span><span class="qty">600 г</span></label>
+            <label class="chk"><input type="checkbox" data-id="pl-cheese"><span class="nm">Сир твердий</span><span class="why">бутерброди й нарізка вт; 300 г — у картоплю</span><span class="got">куплено в Lidl 21.09</span><span class="qty">1 кг</span></label>
+            <label class="chk"><input type="checkbox" data-id="pl-parmesan"><span class="nm">Пармезан / грана падано</span><span class="why">карбонара 200, креветки 150, решта — на болоньєзе</span><span class="part">пармезану немає — є тертий сир 6 пачок</span><span class="qty">400 г</span></label>
+            <label class="chk"><input type="checkbox" data-id="pl-melted"><span class="nm">Сир плавлений</span><span class="why">по 4 на кожен суп</span><span class="got">куплено в Lidl 21.09</span><span class="qty">8 шт</span></label>
+            <label class="chk"><input type="checkbox" data-id="pl-mozzarella"><span class="nm">Моцарела в розсолі</span><span class="why">салат пн</span><span class="got">куплено в Lidl 21.09</span><span class="qty">3 × 125 г</span></label>
+            <label class="chk"><input type="checkbox" data-id="pl-butter"><span class="nm">Масло вершкове</span><span class="miss">забули — купити в Бельгії</span><span class="qty">250 г</span></label>
         </div>
     </section>
 
@@ -2543,20 +2564,20 @@
             <label class="chk"><input type="checkbox" data-id="be-tomato"><span class="nm">Помідори</span><span class="why">два салати пн 1,7; бутерброди</span><span class="qty">2,5 кг</span></label>
             <label class="chk"><input type="checkbox" data-id="be-cucumber"><span class="nm">Огірки</span><span class="why">салат пн і бутерброди</span><span class="qty">1 кг</span></label>
             <label class="chk"><input type="checkbox" data-id="be-pepper"><span class="nm">Перець болгарський</span><span class="why">по два в кожен салат пн</span><span class="qty">4 шт</span></label>
-            <label class="chk"><input type="checkbox" data-id="be-cherry"><span class="nm">Помідори чері</span><span class="why">нарізка вт</span><span class="qty">500 г</span></label>
+            <label class="chk"><input type="checkbox" data-id="be-cherry"><span class="nm">Помідори чері</span><span class="why">нарізка вт</span><span class="got">вже є з Lidl: 500 г</span><span class="qty">500 г</span></label>
             <label class="chk"><input type="checkbox" data-id="be-herbs"><span class="nm">Базилік свіжий</span><span class="why">салат пн і креветки сб</span><span class="qty">1 пучок</span></label>
             <label class="chk"><input type="checkbox" data-id="be-chicken-breast"><span class="nm">Куряча грудка</span><span class="why">по 500 г на кожен суп</span><span class="qty">1 кг</span></label>
             <label class="chk"><input type="checkbox" data-id="be-mince"><span class="nm">Фарш яловичий або змішаний</span><span class="why">болоньєзе ср</span><span class="qty">1,5 кг</span></label>
             <label class="chk"><input type="checkbox" data-id="be-shrimp"><span class="nm">Креветки очищені заморожені</span><span class="why">сб; розморозити з ранку</span><span class="qty">1,5 кг</span></label>
-            <label class="chk"><input type="checkbox" data-id="be-cream"><span class="nm">Вершки 20–30%</span><span class="why">креветки 1, карбонара 0,3, два супи по 0,3</span><span class="qty">2 л</span></label>
+            <label class="chk"><input type="checkbox" data-id="be-cream"><span class="nm">Вершки 20–30%</span><span class="why">креветки 1, карбонара 0,3, два супи по 0,3</span><span class="part">з Lidl 3 пачки 30% — на креветки може не вистачити, докупити 1 л</span><span class="qty">2 л</span></label>
             <label class="chk"><input type="checkbox" data-id="be-milk"><span class="nm">Молоко</span><span class="why">до кави й омлетів</span><span class="qty">2 л</span></label>
-            <label class="chk"><input type="checkbox" data-id="be-milk-lf"><span class="nm">Молоко безлактозне</span><span class="qty">2 л</span></label>
-            <label class="chk"><input type="checkbox" data-id="be-eggs"><span class="nm">Яйця</span><span class="why">омлети з середи по неділю — по ~14 на ранок</span><span class="qty">5 десятків</span></label>
+            <label class="chk"><input type="checkbox" data-id="be-milk-lf"><span class="nm">Молоко безлактозне</span><span class="got">вже є з Lidl: 12 л</span><span class="qty">2 л</span></label>
+            <label class="chk"><input type="checkbox" data-id="be-eggs"><span class="nm">Яйця</span><span class="why">омлети з середи по неділю — по ~14 на ранок</span><span class="got">вже є з Lidl: 60 на весь тиждень</span><span class="qty">5 десятків</span></label>
             <label class="chk"><input type="checkbox" data-id="be-sausages"><span class="nm">Сосиски</span><span class="why">омлети другої половини тижня</span><span class="qty">800 г</span></label>
-            <label class="chk"><input type="checkbox" data-id="be-kielbasa"><span class="nm">Ковбаса на бутерброди</span><span class="qty">800 г</span></label>
-            <label class="chk"><input type="checkbox" data-id="be-cheese"><span class="nm">Сир на бутерброди</span><span class="qty">800 г</span></label>
-            <label class="chk"><input type="checkbox" data-id="be-jamon"><span class="nm">Хамон / серрано нарізка</span><span class="why">нарізка сб</span><span class="qty">300 г</span></label>
-            <label class="chk"><input type="checkbox" data-id="be-camembert"><span class="nm">Камамбер</span><span class="why">нарізка сб</span><span class="qty">2 × 250 г</span></label>
+            <label class="chk"><input type="checkbox" data-id="be-kielbasa"><span class="nm">Ковбаса на бутерброди</span><span class="got">вже є з Lidl: салямі, шинка, кабаноси</span><span class="qty">800 г</span></label>
+            <label class="chk"><input type="checkbox" data-id="be-cheese"><span class="nm">Сир на бутерброди</span><span class="got">вже є з Lidl: гауда 2 кг і скибки</span><span class="qty">800 г</span></label>
+            <label class="chk"><input type="checkbox" data-id="be-jamon"><span class="nm">Хамон / серрано нарізка</span><span class="why">нарізка сб</span><span class="got">вже є з Lidl: сировʼялена шинка 12 пачок</span><span class="qty">300 г</span></label>
+            <label class="chk"><input type="checkbox" data-id="be-camembert"><span class="nm">Камамбер</span><span class="why">нарізка сб</span><span class="got">вже є з Lidl: 4 × 120 г</span><span class="qty">2 × 250 г</span></label>
             <label class="chk"><input type="checkbox" data-id="be-butter"><span class="nm">Масло вершкове</span><span class="qty">250 г</span></label>
             <label class="chk"><input type="checkbox" data-id="be-mayo"><span class="nm">Майонез, кетчуп</span><span class="qty">по 1</span></label>
             <label class="chk"><input type="checkbox" data-id="be-grapes"><span class="nm">Виноград</span><span class="why">догон у середу-четвер</span><span class="qty">1 кг</span></label>
