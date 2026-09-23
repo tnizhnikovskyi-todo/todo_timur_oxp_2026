@@ -435,6 +435,18 @@
   .ses-orig { font-size: 0.8rem; color: var(--ink-faint); }
 
   .ses-who { margin-top: 0.4rem; font-size: 0.78rem; color: var(--ink-soft); }
+  /* Спільний запис «хто куди йде»: стан синхронізації і лічильник на рядку. */
+  .prog-sync { margin: 0.6rem 0 0; font-size: 0.82rem; color: var(--ink-soft); }
+  .prog-sync.is-warn { color: var(--warn); }
+  .prog-sync.is-ok { color: var(--ok); }
+  .prog-bar select.is-need { outline: 2px solid var(--accent); outline-offset: 1px; }
+  .ses-c {
+    flex: 0 0 auto; font-family: var(--mono); font-size: 0.66rem; font-weight: 600;
+    color: var(--ok); background: var(--ok-soft); border-radius: 999px; padding: 0.1rem 0.5rem;
+    white-space: nowrap;
+  }
+  .who-row .ses-body p { margin: 0 0 0.3rem; }
+  .who-row .ses-body .d { font-family: var(--mono); font-size: 0.76rem; color: var(--ink-faint); margin-right: 0.4rem; }
 
   /* Адреса у файлі завжди клікається — домовленість, а не прикраса:
      у дорозі відкрити карту має бути одним дотиком. */
@@ -1987,7 +1999,7 @@
   <section>
     <div class="sec-head"><h2>Програма</h2><span class="eyebrow">432 сесії · 16 залів · 3 дні</span></div>
     <p>Уся програма конференції, як вона стоїть на сайті події. Сесії згруповані за часом початку: в піковий слот 24.09 одночасно йде <b>шістнадцять</b> доповідей у різних залах, і вибір щоразу саме між ними. Фільтруйте за днем, залом і темою або шукайте за назвою й спікером. Перемикач <b>UA/EN</b> міняє мову назв, тем і посад; оригінал усе одно видно в розгорнутій сесії — на бейджах, табло й у застосунку Odoo написано саме його. Натисніть рядок, щоб розгорнути сесію; кнопка <b>«Йду»</b> позначає її вашою — так видно, хто що покриває. Якщо в одному слоті позначено дві — заголовок слота попередить: у двох залах одночасно не побути.</p>
-    <div class="note"><p><b>Прохання Бардакова від 23.09, 14:33.</b> До вечірньої зустрічі кожен обирає тут свої доповіді кнопкою «Йду» — на зустрічі після офісу Odoo розподілять, хто на які виступи йде, щоб охопити якнайбільше. Задорожна готувала окремий україномовний план заходу; після цього коригування чи він ще потрібен — у групі не відповіли.</p></div>
+    <div class="note"><p><b>Прохання Бардакова від 23.09, 14:33.</b> До вечірньої зустрічі кожен обирає тут свої доповіді кнопкою «Йду» — на зустрічі після офісу Odoo розподілять, хто на які виступи йде, щоб охопити якнайбільше. <b>Позначки спільні:</b> обери себе в «хто ти?» над списком — і твої «Йду» побачать усі, на будь-якому телефоні. Хто куди йде — зведення внизу вкладки. Задорожна готувала окремий україномовний план заходу; після цього коригування чи він ще потрібен — у групі не відповіли.</p></div>
 
     <div class="note">
       <p><b>Опорні точки, яких немає в списку доповідей.</b> 24.09: обід о 12:00, вечеря з open bar о 18:00, концерти 19:00–22:00 — The Juliets, Omdat Het Kan &amp; Average Rob, First Class Flamingo, майданчик до 23:00. 25.09 і 26.09: обід о 12:00, день закінчується о 17:00–17:30.</p>
@@ -2007,10 +2019,16 @@
       <select id="progTag" aria-label="Тема"><option value="">усі теми</option></select>
       <input id="progQ" type="search" placeholder="назва або спікер" aria-label="Пошук">
       <label class="prog-mine"><input id="progMine" type="checkbox"> тільки мої</label>
+      <select id="progWho" aria-label="Хто ти"><option value="">— хто ти? —</option><option value="bardakov">Бардаков Олексій</option><option value="nizhnikovskyi">Ніжніковський Тимур</option><option value="pryvolnieva">Привольнєва Марія</option><option value="kovryzhnykh">Коврижних Сергій</option><option value="popov">Попов Андрій</option><option value="zadorozhna">Задорожна Катерина</option><option value="adamenko">Адаменко Олесь</option><option value="dzhoshkun">Джошкун Олександр-Джеміль</option><option value="kutko">Кутько Ігор</option><option value="zvirik">Звірік Юлія</option><option value="lavrenko">Лавренко Владислав</option><option value="horai">Горай Альона</option><option value="mazurenko">Мазуренко Ігор</option><option value="prokopenko">Прокопенко Людмила</option></select>
     </div>
+    <p class="prog-sync" id="progSync"></p>
 
     <div class="ses-list" id="progList"></div>
     <p class="prog-count" id="progCount"></p>
+
+    <div class="sub-head" style="margin-top:1.6rem"><h3>Хто куди йде</h3><span class="eyebrow" id="whoEyebrow">спільний запис</span></div>
+    <p>Вибір усіх чотирнадцятьох в одному місці — щоб на зборі розділити доповіді, а не покривати одну й ту саму двома людьми. Оновлюється саме, щойно хтось натискає «Йду».</p>
+    <div class="ses-list" id="whoList"></div>
   </section>
 
   <section>
@@ -2965,57 +2983,104 @@
       }
 
       /* ---- мої сесії ---- */
-      /* Спільний запис умикається, щойно сторінці дадуть db: тоді кожен пише
-         свій документ, а бачать усі. Без нього — локально, у цьому браузері. */
-      var LKEY = "oxp-my-sessions";
-      var mine = {}, peers = {}, names = {}, db = null, myId = null, myDoc = null, saveT = null;
+      /* Спільний запис живе на воркері (worker.js, /api/picks): хто на які
+         доповіді йде. Людина обирає себе в «Хто ти?» — цей вибір лишається в
+         браузері, — а позначки «Йду» летять на сервер і видні всім. Поки себе
+         не обрано або сервер не відповідає, позначки живуть лише локально. */
+      var HOST = "todo-timur-oxp-2026.t-nizhnikovskyi.workers.dev";
+      /* Зі свого домену і з локального wrangler dev — відносний шлях; з артефакта
+         claude.ai чи файлу — повна адреса воркера (CORS на ньому відкритий). */
+      var SAME = location.hostname === HOST || /^(localhost|127\.0\.0\.1)$/.test(location.hostname);
+      var API = (SAME ? "" : "https://" + HOST) + "/api/picks";
+      var LKEY = "oxp-my-sessions", WKEY = "oxp-who";
+      var mine = {}, peers = {}, people = {}, me = "", online = false, lastUpd = null;
+      var syncEl = document.getElementById("progSync");
+      var whoSel = document.getElementById("progWho");
+      var NAMES = {};
+      for (var wi = 0; wi < whoSel.options.length; wi++) {
+        if (whoSel.options[wi].value) NAMES[whoSel.options[wi].value] = whoSel.options[wi].textContent;
+      }
 
       try {
         var st = JSON.parse(localStorage.getItem(LKEY) || "[]");
         for (var i = 0; i < st.length; i++) mine[st[i]] = true;
       } catch (e) {}
+      try { var sw = localStorage.getItem(WKEY); if (sw && NAMES[sw]) me = sw; } catch (e) {}
+      whoSel.value = me;
 
       function persist() {
-        var list = Object.keys(mine);
-        try { localStorage.setItem(LKEY, JSON.stringify(list)); } catch (e) {}
-        if (!myDoc) return;
-        clearTimeout(saveT);
-        saveT = setTimeout(function () {
-          myDoc.set({ slugs: list }).catch(function () {});
-        }, 400);
+        try { localStorage.setItem(LKEY, JSON.stringify(Object.keys(mine))); } catch (e) {}
       }
 
-      if (window.claude && typeof claude.use === "function") {
-        Promise.all([claude.use("db"), claude.use("user")]).then(function (r) {
-          db = r[0];
-          var user = r[1];
-          if (!db || !user) return;
-          return user.id().then(function (uid) {
-            if (!uid) return;
-            myId = uid;
-            myDoc = db.collection("signups").doc(uid);
-            db.collection("signups").onSnapshot(function (snap) {
-              peers = {};
-              snap.docs.forEach(function (d) {
-                var body = d.data() || {}, list = body.slugs || [];
-                if (d.id === myId) {
-                  mine = {};
-                  for (var i = 0; i < list.length; i++) mine[list[i]] = true;
-                } else {
-                  for (var j = 0; j < list.length; j++) {
-                    (peers[list[j]] = peers[list[j]] || []).push(d.id);
-                  }
-                }
-              });
-              var ids = [];
-              snap.docs.forEach(function (d) { if (d.id !== myId) ids.push(d.id); });
-              if (ids.length && user.profiles) {
-                user.profiles(ids).then(function (ps) { names = ps || {}; render(); });
-              } else { render(); }
-            }, function () {});
-          });
-        }).catch(function () {});
+      function hhmm(iso) {
+        if (!iso) return "";
+        var d = new Date(iso);
+        if (isNaN(d.getTime())) return "";
+        return ("0" + d.getHours()).slice(-2) + ":" + ("0" + d.getMinutes()).slice(-2);
       }
+
+      function setSync() {
+        if (!syncEl) return;
+        syncEl.className = "prog-sync";
+        if (!online) {
+          syncEl.classList.add("is-warn");
+          syncEl.textContent = "Спільний запис недоступний — позначки «Йду» лишаються тільки в цьому браузері.";
+        } else if (!me) {
+          syncEl.classList.add("is-warn");
+          syncEl.textContent = "Обери себе в «хто ти?» — тоді твої «Йду» побачать усі. Поки що вони лише в цьому браузері.";
+        } else {
+          syncEl.classList.add("is-ok");
+          syncEl.textContent = "Запис спільний: ти — " + NAMES[me] + (lastUpd ? ". Останнє оновлення " + hhmm(lastUpd) : "") + ".";
+        }
+      }
+
+      function applyState(data) {
+        people = (data && data.people) || {};
+        lastUpd = data && data.updated;
+        peers = {};
+        Object.keys(people).forEach(function (k) {
+          var list = people[k] || [];
+          if (k === me) {
+            mine = {};
+            for (var i = 0; i < list.length; i++) mine[list[i]] = true;
+            persist();
+          } else {
+            for (var j = 0; j < list.length; j++) (peers[list[j]] = peers[list[j]] || []).push(k);
+          }
+        });
+        online = true;
+        setSync(); render(); renderWho();
+      }
+
+      function offline() { online = false; setSync(); render(); renderWho(); }
+
+      function load() {
+        if (!window.fetch) return offline();
+        fetch(API, { cache: "no-store" })
+          .then(function (r) { return r.ok ? r.json() : Promise.reject(r.status); })
+          .then(applyState)["catch"](offline);
+      }
+
+      function send(body) {
+        return fetch(API, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) })
+          .then(function (r) { return r.ok ? r.json() : Promise.reject(r.status); })
+          .then(applyState);
+      }
+
+      whoSel.addEventListener("change", function () {
+        me = NAMES[this.value] ? this.value : "";
+        try { if (me) localStorage.setItem(WKEY, me); else localStorage.removeItem(WKEY); } catch (e) {}
+        whoSel.classList.remove("is-need");
+        if (!me) { setSync(); render(); renderWho(); return; }
+        var local = Object.keys(mine), server = people[me] || [];
+        /* Позначки, зроблені до вибору себе, переносимо на сервер — але лише
+           якщо там за цією людиною ще порожньо: не затираємо чужий телефон. */
+        if (online && local.length && !server.length) {
+          send({ who: me, slugs: local })["catch"](offline);
+        } else {
+          load();
+        }
+      });
 
       /* ---- довідники для фільтрів ---- */
       function fill(sel, values) {
@@ -3049,11 +3114,18 @@
         var ids = peers[slug] || [];
         if (!ids.length) return "";
         var out = [];
-        for (var i = 0; i < ids.length; i++) {
-          var p = names[ids[i]];
-          out.push((p && p.name) || "Хтось");
-        }
+        for (var i = 0; i < ids.length; i++) out.push(NAMES[ids[i]] || ids[i]);
         return out.join(", ");
+      }
+      function goingCount(slug) { return (peers[slug] || []).length + (mine[slug] ? 1 : 0); }
+      /* Лічильник на рядку оновлюємо на місці, щоб не перемальовувати список
+         і не згортати відкриті доповіді. */
+      function updateChip(d, slug) {
+        if (!d) return;
+        var sum = d.querySelector("summary"), c = sum && sum.querySelector(".ses-c"), gc = goingCount(slug);
+        if (!gc) { if (c) c.parentNode.removeChild(c); return; }
+        if (!c) { c = document.createElement("span"); c.className = "ses-c"; sum.insertBefore(c, sum.querySelector(".ses-r")); }
+        c.textContent = gc === 1 ? "1 йде" : gc + " йдуть";
       }
 
       /* Скільки доповідей іде в кожен слот — рахуємо по всіх даних дня, а не
@@ -3095,7 +3167,10 @@
         var t = document.createElement("span"); t.className = "ses-t"; t.textContent = durOf(r);
         var n = document.createElement("span"); n.className = "ses-n"; n.textContent = titleOf(i, r);
         var rm = document.createElement("span"); rm.className = "ses-r"; rm.textContent = r[D_ROOM] || "—";
-        sum.appendChild(t); sum.appendChild(n); sum.appendChild(rm);
+        sum.appendChild(t); sum.appendChild(n);
+        var gc = goingCount(r[D_SLUG]);
+        if (gc) { var c = document.createElement("span"); c.className = "ses-c"; c.textContent = gc === 1 ? "1 йде" : gc + " йдуть"; sum.appendChild(c); }
+        sum.appendChild(rm);
         d.appendChild(sum);
 
         var body = document.createElement("div");
@@ -3195,21 +3270,79 @@
         host.appendChild(frag);
         document.getElementById("progCount").textContent =
           shown + " із " + DATA.length + " сесій · " + order.length + " слотів" +
-          (myDoc ? " · запис спільний" : " · запис лише у цьому браузері");      }
+          (online && me ? " · запис спільний" : " · запис лише у цьому браузері");
+      }
 
       host.addEventListener("click", function (e) {
         var btn = e.target.closest ? e.target.closest(".ses-go") : null;
         if (!btn) return;
         var slug = btn.getAttribute("data-slug");
-        if (mine[slug]) { delete mine[slug]; } else { mine[slug] = true; }
+        var going = !mine[slug];
+        if (going) { mine[slug] = true; } else { delete mine[slug]; }
         persist();
-        btn.setAttribute("aria-pressed", mine[slug] ? "true" : "false");
-        btn.textContent = mine[slug] ? "Йду ✓" : "Йду";
+        btn.setAttribute("aria-pressed", going ? "true" : "false");
+        btn.textContent = going ? "Йду ✓" : "Йду";
         var d = btn.closest("details");
-        if (d) d.classList.toggle("is-mine", !!mine[slug]);
+        if (d) d.classList.toggle("is-mine", going);
+        updateChip(d, slug);
         var sl = btn.closest(".slot");
         if (sl) markClash(sl);
+        renderWho();
+        if (me && online) {
+          send({ who: me, slug: slug, going: going })["catch"](function () {
+            /* Не дійшло — повертаємо як було, щоб людина бачила, що не збереглося. */
+            if (going) { delete mine[slug]; } else { mine[slug] = true; }
+            persist(); offline();
+          });
+        } else if (!me) {
+          whoSel.classList.add("is-need");
+          setSync();
+        }
       });
+
+      /* ---- зведення «Хто куди йде» ---- */
+      var bySlug = {};
+      for (var bi = 0; bi < DATA.length; bi++) bySlug[DATA[bi][D_SLUG]] = bi;
+      var DAYN = { "24": "чт", "25": "пт", "26": "сб" };
+      function renderWho() {
+        var box = document.getElementById("whoList");
+        if (!box) return;
+        var frag = document.createDocumentFragment(), total = 0, withPicks = 0;
+        Object.keys(NAMES).forEach(function (k) {
+          var list = (k === me) ? Object.keys(mine) : (people[k] || []);
+          var idx = [];
+          for (var i = 0; i < list.length; i++) if (bySlug[list[i]] !== undefined) idx.push(bySlug[list[i]]);
+          idx.sort(function (x, y) {
+            var a = DATA[x], b = DATA[y];
+            return a[D_DAY] !== b[D_DAY] ? a[D_DAY] - b[D_DAY] : (a[D_TIME] < b[D_TIME] ? -1 : a[D_TIME] > b[D_TIME] ? 1 : 0);
+          });
+          total += idx.length; if (idx.length) withPicks++;
+          var d = document.createElement("details");
+          d.className = "ses who-row" + (k === me ? " is-mine" : "");
+          var sum = document.createElement("summary");
+          var t = document.createElement("span"); t.className = "ses-t"; t.textContent = idx.length ? idx.length + (idx.length === 1 ? " доп." : " доп.") : "—";
+          var n = document.createElement("span"); n.className = "ses-n"; n.textContent = NAMES[k] + (k === me ? " (це ти)" : "");
+          var per = { "24": 0, "25": 0, "26": 0 };
+          idx.forEach(function (i) { per[String(DATA[i][D_DAY])]++; });
+          var rm = document.createElement("span"); rm.className = "ses-r";
+          rm.textContent = idx.length ? "чт " + per["24"] + " · пт " + per["25"] + " · сб " + per["26"] : "нічого не обрано";
+          sum.appendChild(t); sum.appendChild(n); sum.appendChild(rm); d.appendChild(sum);
+          var body = document.createElement("div"); body.className = "ses-body";
+          if (!idx.length) {
+            var pe = document.createElement("p"); pe.textContent = "Позначок «Йду» ще немає."; body.appendChild(pe);
+          }
+          idx.forEach(function (i) {
+            var r = DATA[i], pp = document.createElement("p");
+            var dd = document.createElement("span"); dd.className = "d"; dd.textContent = (DAYN[String(r[D_DAY])] || r[D_DAY]) + " " + r[D_TIME];
+            pp.appendChild(dd); pp.appendChild(document.createTextNode(titleOf(i, r) + (r[D_ROOM] ? " · " + r[D_ROOM] : "")));
+            body.appendChild(pp);
+          });
+          d.appendChild(body); frag.appendChild(d);
+        });
+        box.innerHTML = ""; box.appendChild(frag);
+        var ey = document.getElementById("whoEyebrow");
+        if (ey) ey.textContent = online ? (withPicks + " із 14 обрали · " + total + " позначок") : "спільний запис недоступний";
+      }
 
       [].forEach.call(document.querySelectorAll(".prog-lang"), function (b) {
         b.setAttribute("aria-pressed", b.getAttribute("data-lang") === lang ? "true" : "false");
@@ -3243,7 +3376,9 @@
         qt = setTimeout(function () { q = v; render(); }, 150);
       });
 
-      render();
+      render(); renderWho(); setSync(); load();
+      setInterval(function () { if (!document.hidden) load(); }, 45000);
+      document.addEventListener("visibilitychange", function () { if (!document.hidden) load(); });
     })();
     /* ---------- що вже минуло ---------- */
     /* Дні поїздки й дні події гаснуть самі, щойно настає наступний: це

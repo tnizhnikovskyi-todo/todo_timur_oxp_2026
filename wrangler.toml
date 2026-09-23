@@ -1,12 +1,14 @@
-# Воркер без коду — тільки статика зі dist/.
+# Статика зі dist/ плюс маленький API у worker.js — спільний запис «хто на
+# які доповіді йде» для вкладки «Подія».
 #
 # Cloudflare веде нові проєкти через Workers, а не Pages, тому деплой іде
-# командою `npx wrangler deploy`. Секція [assets] без ключа `main` означає:
-# скрипта немає, віддавай файли з каталогу як є.
+# командою `npx wrangler deploy`. Запити на файли обслуговують активи; те, що
+# на файл не схоже (/api/picks), потрапляє у worker.js.
 #
 # Ім'я має збігатися з назвою проєкту в панелі Cloudflare.
 
 name = "todo-timur-oxp-2026"
+main = "worker.js"
 compatibility_date = "2026-08-25"
 
 # Основна адреса потрібна — це і є сторінка.
@@ -19,5 +21,16 @@ preview_urls = false
 
 [assets]
 directory = "./dist"
+binding = "ASSETS"
+
+# Сховище спільного запису — один Durable Object на SQLite. Ресурс не треба
+# створювати в панелі: міграція нижче робить це при першому деплої.
+[[durable_objects.bindings]]
+name = "PICKS"
+class_name = "Picks"
+
+[[migrations]]
+tag = "v1"
+new_sqlite_classes = ["Picks"]
 
 # not_found_handling = "404-page" — сторінка одна, спеціальної обробки не треба.
