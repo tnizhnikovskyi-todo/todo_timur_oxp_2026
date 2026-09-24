@@ -10,3 +10,5 @@
   Cache-Control: no-cache
 /index.html
   Cache-Control: no-cache
+/notes.json
+  Cache-Control: no-cache

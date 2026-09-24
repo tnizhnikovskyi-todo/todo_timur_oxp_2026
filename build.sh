@@ -27,5 +27,7 @@ cat wrapper/head.html "$out/.body.tmp" wrapper/tail.html > "$out/index.html"
 rm -f "$out/.body.tmp"
 
 cp static/robots.txt static/_headers "$out/"
+# Підсумок обміну з Event Hub, коли його пише рутина, а не воркер.
+[ -f static/notes.json ] && cp static/notes.json "$out/"
 
 printf 'Зібрано %s (%s байт)\n' "$out/index.html" "$(wc -c < "$out/index.html")"

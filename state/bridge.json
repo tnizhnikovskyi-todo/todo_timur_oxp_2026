@@ -1,0 +1,18 @@
+{
+ "known": {
+  "lavrenko|what-s-new-in-javascript-11016": 4,
+  "lavrenko|ask-me-anything-about-odoo-s-performance-10707": 5,
+  "lavrenko|how-to-contribute-to-odoo-s-code-base-11012": 6,
+  "lavrenko|stop-building-connectors-a-configuration-driven-integration-framework-for-odoo-10402": 7,
+  "lavrenko|when-your-odoo-database-explodes-understanding-pg-toast-and-how-we-reduced-500gb-to-60gb-9200": 8,
+  "adamenko|what-s-new-in-sales-9855": 14
+ },
+ "last": "2026-09-24T11:47:12Z",
+ "stats": {
+  "imported": 8,
+  "created": 0,
+  "removed": 0,
+  "droppedFromSite": 0,
+  "notes": 9
+ }
+}

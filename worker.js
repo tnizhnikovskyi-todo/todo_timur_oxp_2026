@@ -300,8 +300,17 @@ export class Picks {
     }
 
     if (url.pathname === "/api/notes") {
-      const cached = (await this.state.storage.get("bridge.notes")) || { updated: null, notes: {} };
       const bridge = await this.bridgeState();
+      if (!bridge.enabled) {
+        // Воркер без доступу до Odoo: обмін робить щогодинна рутина і кладе
+        // підсумок у static/notes.json — віддаємо його з тими ж заголовками.
+        try {
+          const r = await this.env.ASSETS.fetch(new Request(new URL("/notes.json", url).toString()));
+          if (r.ok) return json(await r.json());
+        } catch (e) {}
+        return json({ updated: null, notes: {}, bridge });
+      }
+      const cached = (await this.state.storage.get("bridge.notes")) || { updated: null, notes: {} };
       // Давно не тягнули — підштовхнемо у фоні, відповідь віддаємо з кешу.
       if (bridge.enabled && (!bridge.at || Date.now() - Date.parse(bridge.at) > STALE_MS)) {
         await this.schedulePush();
