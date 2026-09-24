@@ -446,6 +446,7 @@
     white-space: nowrap;
   }
   .ses-c.is-note { color: var(--flag); background: var(--flag-soft); }
+  .ses-c.is-live { color: var(--accent); background: var(--accent-soft); }
   .who-row .ses-body p { margin: 0 0 0.3rem; }
   .who-row .ses-body .d { font-family: var(--mono); font-size: 0.76rem; color: var(--ink-faint); margin-right: 0.4rem; }
 
@@ -2006,6 +2007,7 @@
       <select id="progTag" aria-label="Тема"><option value="">усі теми</option></select>
       <input id="progQ" type="search" placeholder="назва або спікер" aria-label="Пошук">
       <label class="prog-mine"><input id="progMine" type="checkbox"> тільки мої</label>
+      <label class="prog-mine"><input id="progNext" type="checkbox"> лише майбутні</label>
       <select id="progWho" aria-label="Хто ти"><option value="">— хто ти? —</option><option value="bardakov">Бардаков Олексій</option><option value="nizhnikovskyi">Ніжніковський Тимур</option><option value="pryvolnieva">Привольнєва Марія</option><option value="kovryzhnykh">Коврижних Сергій</option><option value="popov">Попов Андрій</option><option value="zadorozhna">Задорожна Катерина</option><option value="adamenko">Адаменко Олесь</option><option value="dzhoshkun">Джошкун Олександр-Джеміль</option><option value="kutko">Кутько Ігор</option><option value="zvirik">Звірік Юлія</option><option value="lavrenko">Лавренко Владислав</option><option value="horai">Горай Альона</option><option value="mazurenko">Мазуренко Ігор</option><option value="prokopenko">Прокопенко Людмила</option></select>
     </div>
     <p class="prog-sync" id="progSync"></p>
@@ -2940,6 +2942,38 @@
 
       var day = "24", room = "", tag = "", q = "", onlyMine = false;
 
+      /* ---- лише майбутні ---- */
+      /* Час беремо брюссельський, а не телефона: у когось він ще київський.
+         Доповідь «минула», коли скінчилась; та, що триває, лишається з позначкою. */
+      var NEXTKEY = "oxp-prog-next";
+      function brusselsNow() {
+        var d = new Date(), day = d.getDate(), min = d.getHours() * 60 + d.getMinutes(), mon = d.getMonth() + 1, yr = d.getFullYear();
+        try {
+          var parts = new Intl.DateTimeFormat("en-GB", { timeZone: "Europe/Brussels", hour12: false, year: "numeric", month: "numeric", day: "numeric", hour: "numeric", minute: "numeric" }).formatToParts(d);
+          var v = {};
+          for (var i = 0; i < parts.length; i++) v[parts[i].type] = parseInt(parts[i].value, 10);
+          if (!isNaN(v.day) && !isNaN(v.hour)) { day = v.day; min = (v.hour % 24) * 60 + v.minute; mon = v.month; yr = v.year; }
+        } catch (e) {}
+        return { day: day, min: min, inEvent: yr === 2026 && mon === 9 && day >= 24 && day <= 26 };
+      }
+      function durMin(str) {
+        var t = String(str || ""), h = t.match(/(\d+)\s*год/), m = t.match(/(?:^|\s)(\d+)\s*$/);
+        return (h ? parseInt(h[1], 10) * 60 : 0) + (m ? parseInt(m[1], 10) : 0) || 30;
+      }
+      function startMin(r) { var p = String(r[D_TIME]).split(":"); return parseInt(p[0], 10) * 60 + parseInt(p[1], 10); }
+      function isEnded(r, now) {
+        if (r[D_DAY] !== now.day) return r[D_DAY] < now.day && now.inEvent;
+        return startMin(r) + durMin(r[D_DUR]) <= now.min;
+      }
+      function isLive(r, now) {
+        if (r[D_DAY] !== now.day || !now.inEvent) return false;
+        var st = startMin(r);
+        return st <= now.min && now.min < st + durMin(r[D_DUR]);
+      }
+      var onlyNext = brusselsNow().inEvent;
+      try { var sn = localStorage.getItem(NEXTKEY); if (sn === "1" || sn === "0") onlyNext = sn === "1"; } catch (e) {}
+      var NOW = brusselsNow();
+
       /* ---- мова назв ---- */
       /* На сайті події назви лише англійською (подекуди французькою чи
          нідерландською). Переклад лежить окремим блоком і зіставляється
@@ -3176,6 +3210,7 @@
 
       function rowFor(i) {
         var r = DATA[i];
+        var live = isLive(r, NOW);
         var d = document.createElement("details");
         d.className = "ses" + (mine[r[D_SLUG]] ? " is-mine" : "");
 
@@ -3188,6 +3223,7 @@
         if (gc) { var c = document.createElement("span"); c.className = "ses-c"; c.textContent = gc === 1 ? "1 йде" : gc + " йдуть"; sum.appendChild(c); }
         var nt = NOTES[r[D_SLUG]];
         if (nt && nt.n) { var cn = document.createElement("span"); cn.className = "ses-c is-note"; cn.textContent = notesWord(nt.n); sum.appendChild(cn); }
+        if (live) { var cl = document.createElement("span"); cl.className = "ses-c is-live"; cl.textContent = "триває"; sum.appendChild(cl); }
         sum.appendChild(rm);
         d.appendChild(sum);
 
@@ -3254,13 +3290,15 @@
       }
 
       function render() {
-        var qq = q.toLowerCase(), shown = 0;
+        var qq = q.toLowerCase(), shown = 0, hiddenPast = 0;
         var frag = document.createDocumentFragment();
         var order = [], bucket = {};
+        NOW = brusselsNow();
 
         for (var i = 0; i < DATA.length; i++) {
           var r = DATA[i];
           if (String(r[D_DAY]) !== day) continue;
+          if (onlyNext && isEnded(r, NOW)) { hiddenPast++; continue; }
           if (room && r[D_ROOM] !== room) continue;
           if (tag && r[D_TAGS].indexOf(tag) < 0) continue;
           if (onlyMine && !mine[r[D_SLUG]]) continue;
@@ -3297,10 +3335,17 @@
           frag.appendChild(slot);
         }
 
+        if (!shown && onlyNext && hiddenPast) {
+          var em = document.createElement("div"); em.className = "empty";
+          var eh = document.createElement("h3"); eh.textContent = "На цей день усе вже минуло";
+          var ep = document.createElement("p"); ep.textContent = "Зніми «лише майбутні», щоб побачити доповіді, які вже відбулися.";
+          em.appendChild(eh); em.appendChild(ep); frag.appendChild(em);
+        }
         host.textContent = "";
         host.appendChild(frag);
         document.getElementById("progCount").textContent =
           shown + " із " + DATA.length + " сесій · " + order.length + " слотів" +
+          (onlyNext && hiddenPast ? " · сховано " + hiddenPast + " минулих" : "") +
           (online && me ? " · запис спільний" : " · запис лише у цьому браузері");
       }
 
@@ -3400,6 +3445,15 @@
       document.getElementById("progRoom").addEventListener("change", function () { room = this.value; render(); });
       document.getElementById("progTag").addEventListener("change", function () { tag = this.value; render(); });
       document.getElementById("progMine").addEventListener("change", function () { onlyMine = this.checked; render(); });
+      var nextBox = document.getElementById("progNext");
+      nextBox.checked = onlyNext;
+      nextBox.addEventListener("change", function () {
+        onlyNext = this.checked;
+        try { localStorage.setItem(NEXTKEY, onlyNext ? "1" : "0"); } catch (e) {}
+        render();
+      });
+      /* Хвилина минула — доповідь могла скінчитися; список перемальовується сам. */
+      setInterval(function () { if (!document.hidden && onlyNext) render(); }, 60000);
       var qi = document.getElementById("progQ"), qt = null;
       qi.addEventListener("input", function () {
         clearTimeout(qt);
