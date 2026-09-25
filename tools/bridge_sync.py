@@ -133,24 +133,41 @@ def apply(d, created, unlinked, no_post=False):
     stats = {"imported": sum(len(v) for v in p["imports"].values()), "created": len(created),
              "removed": len(p["unlinks"]) if unlinked else 0, "droppedFromSite": len(p["drops_from_site"]),
              "notes": sum(v["n"] for v in p["notes"].values())}
+    # На сайт — по одній позначці, а не повним списком: так не затираємо те,
+    # що хтось відмітив на сайті між знімком і записом. Стан пишемо ПІСЛЯ
+    # запису: позначка з бота, яка не дійшла до сайту, не повинна потрапити в
+    # known — інакше наступний план вирішить, що її зняли на сайті, і
+    # запропонує зняти її в Odoo.
+    def toggle(who, slug, going):
+        body = json.dumps({"who": who, "slug": slug, "going": going}).encode()
+        req = urllib.request.Request(SITE, body, {"Content-Type": "application/json",
+                                                  "User-Agent": "oxp-bridge-sync/1 (+tools/bridge_sync.py)"}, method="POST")
+        with urllib.request.urlopen(req, timeout=20) as r: r.read()
+    pending = {}
+    if no_post:
+        pending = {w: list(v) for w, v in p["imports"].items()}
+    else:
+        for who, slugs in sorted(p["imports"].items()):
+            for slug in slugs:
+                try:
+                    toggle(who, slug, True)
+                except Exception as e:
+                    pending.setdefault(who, []).append(slug)
+                    print("site FAIL", who, slug, e)
+            print("site +", who, len(slugs) - len(pending.get(who, [])), "of", len(slugs))
+        for who, slug in p["drops_from_site"]:
+            toggle(who, slug, False)
+            print("site -", who, slug)
+    for who, slugs in pending.items():
+        for slug in slugs: known.pop(who + "|" + slug, None)
+    if pending:
+        stats["pendingImports"] = sum(len(v) for v in pending.values())
+        stats["imported"] -= stats["pendingImports"]
     ts = now()
     json.dump({"updated": ts, "notes": p["notes"],
-               "bridge": {"enabled": True, "via": "routine", "at": ts, "ok": True, "error": None, "stats": stats}},
+               "bridge": {"enabled": True, "via": "routine", "at": ts, "ok": not pending or no_post, "error": None, "stats": stats}},
               open(os.path.join(ROOT, "static/notes.json"), "w", encoding="utf-8"), ensure_ascii=False)
     json.dump({"known": known, "last": ts, "stats": stats}, open(os.path.join(ROOT, "state/bridge.json"), "w", encoding="utf-8"), ensure_ascii=False, indent=1)
-    # на сайт: повні списки тих, у кого щось додалось або знялось
-    touched = set(p["imports"]) | {w for w, _ in p["drops_from_site"]}
-    if no_post:
-        # Без запису на сайт: імпорт із бота лишається в плані до наступного разу.
-        for who, slugs in p["imports"].items():
-            for slug in slugs: known.pop(who + "|" + slug, None)
-        json.dump({"known": known, "last": ts, "stats": stats}, open(os.path.join(ROOT, "state/bridge.json"), "w", encoding="utf-8"), ensure_ascii=False, indent=1)
-        print("site untouched; pending imports:", {w: len(v) for w, v in p["imports"].items()}); print("applied:", stats); return
-    for who in sorted(touched):
-        body = json.dumps({"who": who, "slugs": p["people"].get(who, [])}).encode()
-        req = urllib.request.Request(SITE, body, {"Content-Type": "application/json"}, method="POST")
-        with urllib.request.urlopen(req, timeout=20) as r: r.read()
-        print("POST", who, len(p["people"].get(who, [])), "slugs")
     print("applied:", stats)
 
 if __name__ == "__main__":
